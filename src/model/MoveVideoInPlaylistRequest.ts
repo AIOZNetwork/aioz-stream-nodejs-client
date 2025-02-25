@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -20,26 +20,27 @@ export default class MoveVideoInPlaylistRequest {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'currentId',
-      baseName: 'current_id',
-      type: 'string',
-      format: '',
+      "name": "currentId",
+      "baseName": "current_id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'nextId',
-      baseName: 'next_id',
-      type: 'string',
-      format: '',
+      "name": "nextId",
+      "baseName": "next_id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'previousId',
-      baseName: 'previous_id',
-      type: 'string',
-      format: '',
-    },
-  ];
+      "name": "previousId",
+      "baseName": "previous_id",
+      "type": "string",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return MoveVideoInPlaylistRequest.attributeTypeMap;
   }
+
 }
+

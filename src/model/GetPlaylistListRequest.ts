@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -25,50 +25,51 @@ export default class GetPlaylistListRequest {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'limit',
-      baseName: 'limit',
-      type: 'number',
-      format: '',
+      "name": "limit",
+      "baseName": "limit",
+      "type": "number",
+      "format": "",
     },
     {
-      name: 'metadata',
-      baseName: 'metadata',
-      type: 'Array<Metadata>',
-      format: '',
+      "name": "metadata",
+      "baseName": "metadata",
+      "type": "Array<Metadata>",
+      "format": "",
     },
     {
-      name: 'offset',
-      baseName: 'offset',
-      type: 'number',
-      format: '',
+      "name": "offset",
+      "baseName": "offset",
+      "type": "number",
+      "format": "",
     },
     {
-      name: 'orderBy',
-      baseName: 'order_by',
-      type: 'string',
-      format: '',
+      "name": "orderBy",
+      "baseName": "order_by",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'search',
-      baseName: 'search',
-      type: 'string',
-      format: '',
+      "name": "search",
+      "baseName": "search",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'sortBy',
-      baseName: 'sort_by',
-      type: 'string',
-      format: '',
+      "name": "sortBy",
+      "baseName": "sort_by",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'tags',
-      baseName: 'tags',
-      type: 'Array<string>',
-      format: '',
-    },
-  ];
+      "name": "tags",
+      "baseName": "tags",
+      "type": "Array<string>",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return GetPlaylistListRequest.attributeTypeMap;
   }
+
 }
+

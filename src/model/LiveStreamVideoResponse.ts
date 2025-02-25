@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -35,104 +35,105 @@ export default class LiveStreamVideoResponse {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'assets',
-      baseName: 'assets',
-      type: 'LiveStreamAssets',
-      format: '',
+      "name": "assets",
+      "baseName": "assets",
+      "type": "LiveStreamAssets",
+      "format": "",
     },
     {
-      name: 'audioBitrate',
-      baseName: 'audio_bitrate',
-      type: 'number',
-      format: '',
+      "name": "audioBitrate",
+      "baseName": "audio_bitrate",
+      "type": "number",
+      "format": "",
     },
     {
-      name: 'createdAt',
-      baseName: 'created_at',
-      type: 'string',
-      format: '',
+      "name": "createdAt",
+      "baseName": "created_at",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'currentView',
-      baseName: 'current_view',
-      type: 'number',
-      format: '',
+      "name": "currentView",
+      "baseName": "current_view",
+      "type": "number",
+      "format": "",
     },
     {
-      name: 'duration',
-      baseName: 'duration',
-      type: 'number',
-      format: '',
+      "name": "duration",
+      "baseName": "duration",
+      "type": "number",
+      "format": "",
     },
     {
-      name: 'frameRate',
-      baseName: 'frame_rate',
-      type: 'number',
-      format: '',
+      "name": "frameRate",
+      "baseName": "frame_rate",
+      "type": "number",
+      "format": "",
     },
     {
-      name: 'id',
-      baseName: 'id',
-      type: 'string',
-      format: '',
+      "name": "id",
+      "baseName": "id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'liveStreamKeyId',
-      baseName: 'live_stream_key_id',
-      type: 'string',
-      format: '',
+      "name": "liveStreamKeyId",
+      "baseName": "live_stream_key_id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'qualities',
-      baseName: 'qualities',
-      type: 'Array<string>',
-      format: '',
+      "name": "qualities",
+      "baseName": "qualities",
+      "type": "Array<string>",
+      "format": "",
     },
     {
-      name: 'save',
-      baseName: 'save',
-      type: 'boolean',
-      format: '',
+      "name": "save",
+      "baseName": "save",
+      "type": "boolean",
+      "format": "",
     },
     {
-      name: 'status',
-      baseName: 'status',
-      type: 'string',
-      format: '',
+      "name": "status",
+      "baseName": "status",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'title',
-      baseName: 'title',
-      type: 'string',
-      format: '',
+      "name": "title",
+      "baseName": "title",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'totalView',
-      baseName: 'total_view',
-      type: 'number',
-      format: '',
+      "name": "totalView",
+      "baseName": "total_view",
+      "type": "number",
+      "format": "",
     },
     {
-      name: 'updatedAt',
-      baseName: 'updated_at',
-      type: 'string',
-      format: '',
+      "name": "updatedAt",
+      "baseName": "updated_at",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'userId',
-      baseName: 'user_id',
-      type: 'string',
-      format: '',
+      "name": "userId",
+      "baseName": "user_id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'video',
-      baseName: 'video',
-      type: 'Video',
-      format: '',
-    },
-  ];
+      "name": "video",
+      "baseName": "video",
+      "type": "Video",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return LiveStreamVideoResponse.attributeTypeMap;
   }
+
 }
+

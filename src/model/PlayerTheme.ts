@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -28,56 +28,57 @@ export default class PlayerTheme {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'asset',
-      baseName: 'asset',
-      type: 'Asset',
-      format: '',
+      "name": "asset",
+      "baseName": "asset",
+      "type": "Asset",
+      "format": "",
     },
     {
-      name: 'controls',
-      baseName: 'controls',
-      type: 'Controls',
-      format: '',
+      "name": "controls",
+      "baseName": "controls",
+      "type": "Controls",
+      "format": "",
     },
     {
-      name: 'createdAt',
-      baseName: 'created_at',
-      type: 'string',
-      format: '',
+      "name": "createdAt",
+      "baseName": "created_at",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'id',
-      baseName: 'id',
-      type: 'string',
-      format: '',
+      "name": "id",
+      "baseName": "id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'isDefault',
-      baseName: 'is_default',
-      type: 'boolean',
-      format: '',
+      "name": "isDefault",
+      "baseName": "is_default",
+      "type": "boolean",
+      "format": "",
     },
     {
-      name: 'name',
-      baseName: 'name',
-      type: 'string',
-      format: '',
+      "name": "name",
+      "baseName": "name",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'theme',
-      baseName: 'theme',
-      type: 'Theme',
-      format: '',
+      "name": "theme",
+      "baseName": "theme",
+      "type": "Theme",
+      "format": "",
     },
     {
-      name: 'userId',
-      baseName: 'user_id',
-      type: 'string',
-      format: '',
-    },
-  ];
+      "name": "userId",
+      "baseName": "user_id",
+      "type": "string",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return PlayerTheme.attributeTypeMap;
   }
+
 }
+

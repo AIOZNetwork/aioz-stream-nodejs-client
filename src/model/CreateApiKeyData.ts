@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -19,14 +19,15 @@ export default class CreateApiKeyData {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'apiKey',
-      baseName: 'api_key',
-      type: 'ApiKey',
-      format: '',
-    },
-  ];
+      "name": "apiKey",
+      "baseName": "api_key",
+      "type": "ApiKey",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return CreateApiKeyData.attributeTypeMap;
   }
+
 }
+

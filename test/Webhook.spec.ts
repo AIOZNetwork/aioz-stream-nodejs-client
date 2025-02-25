@@ -1,5 +1,5 @@
 import { expect } from '@jest/globals';
-import W3StreamError from '../src/W3StreamError';
+import StreamError from '../src/StreamError';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { v4 as uuidv4 } from 'uuid';
 let testWebhookForUpdateAndDelete: string | undefined;
@@ -29,7 +29,7 @@ describe('Webhook Service', () => {
           url: webhookURL,
           name: webhookName,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid URL', async () => {
@@ -41,7 +41,7 @@ describe('Webhook Service', () => {
           encodingStarted: true,
           fileReceived: true,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Missing URL', async () => {
@@ -52,7 +52,7 @@ describe('Webhook Service', () => {
           encodingStarted: true,
           fileReceived: true,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Missing Name', async () => {
@@ -66,9 +66,7 @@ describe('Webhook Service', () => {
     });
 
     it('Empty Request', async () => {
-      await expect(testClient.webhook.create({})).rejects.toThrow(
-        W3StreamError
-      );
+      await expect(testClient.webhook.create({})).rejects.toThrow(StreamError);
     });
   });
 
@@ -85,7 +83,7 @@ describe('Webhook Service', () => {
             url: webhookURL,
           }
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Update All Fields', async () => {
       const response = await testClient.webhook.update(
@@ -106,7 +104,7 @@ describe('Webhook Service', () => {
         testClient.webhook.update(testWebhookForUpdateAndDelete as string, {
           name: 'Updated Name Only',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid URL', async () => {
@@ -114,19 +112,19 @@ describe('Webhook Service', () => {
         testClient.webhook.update(testWebhookForUpdateAndDelete as string, {
           url: 'not-a-url',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid ID', async () => {
       await expect(testClient.webhook.update('invalid-id', {})).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(testClient.webhook.update(newId, {})).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
   });
@@ -160,7 +158,7 @@ describe('Webhook Service', () => {
 
     it('Invalid Offset', async () => {
       await expect(testClient.webhook.list({ offset: -1 })).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
   });
@@ -169,7 +167,7 @@ describe('Webhook Service', () => {
     it('Get other', async () => {
       await expect(
         anonymousTestClient.webhook.get(testWebhookForUpdateAndDelete as string)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Get', async () => {
       const response = await testClient.webhook.get(
@@ -180,15 +178,13 @@ describe('Webhook Service', () => {
 
     it('Invalid ID', async () => {
       await expect(testClient.webhook.get('invalid-id')).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
     it('Not exist ID', async () => {
       const newId = uuidv4();
-      await expect(testClient.webhook.get(newId)).rejects.toThrow(
-        W3StreamError
-      );
+      await expect(testClient.webhook.get(newId)).rejects.toThrow(StreamError);
     });
   });
 
@@ -198,7 +194,7 @@ describe('Webhook Service', () => {
         anonymousTestClient.webhook.delete(
           testWebhookForUpdateAndDelete as string
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Delete', async () => {
       const response = await testClient.webhook.delete(
@@ -211,13 +207,13 @@ describe('Webhook Service', () => {
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(testClient.webhook.delete(newId)).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
     it('Invalid ID', async () => {
       await expect(testClient.webhook.delete('invalid-id')).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
   });

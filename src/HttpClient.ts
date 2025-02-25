@@ -1,6 +1,6 @@
 /**
- * @w3stream/nodejs-client
- * w3stream is an API that encodes on the go to facilitate immediate playback, enhancing viewer streaming experiences across multiple devices and platforms. You can stream live or on-demand online videos within minutes.
+ * @aiozstream/nodejs-client
+ * AIOZ Stream is an API that encodes on the go to facilitate immediate playback, enhancing viewer streaming experiences across multiple devices and platforms. You can stream live or on-demand online videos within minutes.
  *
  * The version of the OpenAPI document: 1
  *
@@ -10,7 +10,7 @@
  */
 
 import axios, { AxiosError, AxiosHeaders, AxiosProgressEvent } from 'axios';
-import W3StreamError from './W3StreamError';
+import StreamError from './StreamError';
 import ProblemDetails from './model/ProblemDetails';
 import { encode } from 'js-base64';
 import { Readable, Stream } from 'stream';
@@ -23,20 +23,22 @@ export type QueryOptions = {
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
 };
 
+
 export type ApiResponseHeaders = {
-  server: string;
-  'content-type': string;
-  'transfer-encoding': string;
-  connection: string;
-  'cache-control': string;
-  date: string;
-  'x-ratelimit-remaining': string;
-  'x-ratelimit-retry-after': string;
-  'x-ratelimit-limit': string;
-  'x-server': string;
-  'access-control-allow-origin': string;
-  'timing-allow-origin': string;
-};
+  server: string
+  'content-type': string
+  'transfer-encoding': string
+  connection: string
+  'cache-control': string
+  date: string
+  'x-ratelimit-remaining': string
+  'x-ratelimit-retry-after': string
+  'x-ratelimit-limit': string
+  'x-server': string
+  'access-control-allow-origin': string
+  'timing-allow-origin': string
+}
+
 
 export default class HttpClient {
   private publicKey?: string;
@@ -70,8 +72,8 @@ export default class HttpClient {
         : this.secretKey
         ? `Basic ${encode(`${this.publicKey}:${this.secretKey}`)}`
         : '',
-      'w3stream-public-key': this.publicKey || '',
-      'w3stream-secret-key': this.secretKey || '',
+      'stream-public-key': this.publicKey || '',
+      'stream-secret-key': this.secretKey || '',
       ...(params.applicationName && params.applicationVersion
         ? {
             'AV-Origin-App': `${params.applicationName}:${params.applicationVersion}`,
@@ -108,7 +110,7 @@ export default class HttpClient {
       };
     } catch (error: any) {
       const axiosError = error as AxiosError;
-      throw new W3StreamError(
+      throw new StreamError(
         axiosError.response?.status || 0,
         axiosError.response?.data as ProblemDetails
       );

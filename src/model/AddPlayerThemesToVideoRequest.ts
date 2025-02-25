@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -19,20 +19,21 @@ export default class AddPlayerThemesToVideoRequest {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'playerThemeId',
-      baseName: 'player_theme_id',
-      type: 'string',
-      format: '',
+      "name": "playerThemeId",
+      "baseName": "player_theme_id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'videoId',
-      baseName: 'video_id',
-      type: 'string',
-      format: '',
-    },
-  ];
+      "name": "videoId",
+      "baseName": "video_id",
+      "type": "string",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return AddPlayerThemesToVideoRequest.attributeTypeMap;
   }
+
 }
+

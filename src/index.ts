@@ -1,15 +1,16 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
  */
 
-import HttpClient from './HttpClient';
+
+import HttpClient from "./HttpClient";
 
 import ApiKeyApi from './api/ApiKeyApi';
 import LiveStreamApi from './api/LiveStreamApi';
@@ -18,19 +19,117 @@ import PlaylistApi from './api/PlaylistApi';
 import VideoApi from './api/VideoApi';
 import VideoChapterApi from './api/VideoChapterApi';
 import WebhookApi from './api/WebhookApi';
-import { createReadStream, existsSync, statSync } from 'fs';
-import UploadProgressEvent from './model/UploadProgressEvent';
-import { QueryOptions } from './HttpClient';
-import FormData from 'form-data';
-import path from 'path';
-import crypto from 'crypto';
+import {createReadStream, existsSync, statSync} from "fs";
+import UploadProgressEvent from "./model/UploadProgressEvent";
+import { QueryOptions} from './HttpClient';
+import FormData from "form-data";
+import path from "path";
+import crypto from "crypto";
 
-const PRODUCTION_BASE_URI = 'https://api.w3stream.xyz/api';
+
+    import AddPlayerThemesToVideoRequest from './model/AddPlayerThemesToVideoRequest';
+    import AddVideoToPlaylistRequest from './model/AddVideoToPlaylistRequest';
+    import ApiKey from './model/ApiKey';
+    import Asset from './model/Asset';
+    import Controls from './model/Controls';
+    import CreateApiKeyData from './model/CreateApiKeyData';
+    import CreateApiKeyRequest from './model/CreateApiKeyRequest';
+    import CreateApiKeyResponse from './model/CreateApiKeyResponse';
+    import CreateLiveStreamKeyRequest from './model/CreateLiveStreamKeyRequest';
+    import CreateLiveStreamKeyResponse from './model/CreateLiveStreamKeyResponse';
+    import CreatePlayerThemeRequest from './model/CreatePlayerThemeRequest';
+    import CreatePlayerThemesData from './model/CreatePlayerThemesData';
+    import CreatePlayerThemesResponse from './model/CreatePlayerThemesResponse';
+    import CreatePlaylistData from './model/CreatePlaylistData';
+    import CreatePlaylistRequest from './model/CreatePlaylistRequest';
+    import CreatePlaylistResponse from './model/CreatePlaylistResponse';
+    import CreateStreamingRequest from './model/CreateStreamingRequest';
+    import CreateStreamingResponse from './model/CreateStreamingResponse';
+    import CreateVideoCaptionData from './model/CreateVideoCaptionData';
+    import CreateVideoCaptionResponse from './model/CreateVideoCaptionResponse';
+    import CreateVideoChapterData from './model/CreateVideoChapterData';
+    import CreateVideoChapterResponse from './model/CreateVideoChapterResponse';
+    import CreateVideoRequest from './model/CreateVideoRequest';
+    import CreateVideoResponse from './model/CreateVideoResponse';
+    import CreateWebhookData from './model/CreateWebhookData';
+    import CreateWebhookRequest from './model/CreateWebhookRequest';
+    import CreateWebhookResponse from './model/CreateWebhookResponse';
+    import GetApiKeysData from './model/GetApiKeysData';
+    import GetApiKeysResponse from './model/GetApiKeysResponse';
+    import GetLiveStreamKeyData from './model/GetLiveStreamKeyData';
+    import GetLiveStreamKeyResponse from './model/GetLiveStreamKeyResponse';
+    import GetLiveStreamKeysListData from './model/GetLiveStreamKeysListData';
+    import GetLiveStreamKeysListResponse from './model/GetLiveStreamKeysListResponse';
+    import GetLiveStreamVideoPublicResponse from './model/GetLiveStreamVideoPublicResponse';
+    import GetLiveStreamVideoResponse from './model/GetLiveStreamVideoResponse';
+    import GetLiveStreamVideosRequest from './model/GetLiveStreamVideosRequest';
+    import GetLiveStreamVideosResponse from './model/GetLiveStreamVideosResponse';
+    import GetPlayerThemeByIdData from './model/GetPlayerThemeByIdData';
+    import GetPlayerThemeByIdResponse from './model/GetPlayerThemeByIdResponse';
+    import GetPlayerThemeData from './model/GetPlayerThemeData';
+    import GetPlayerThemeResponse from './model/GetPlayerThemeResponse';
+    import GetPlaylistByIdData from './model/GetPlaylistByIdData';
+    import GetPlaylistByIdResponse from './model/GetPlaylistByIdResponse';
+    import GetPlaylistListData from './model/GetPlaylistListData';
+    import GetPlaylistListRequest from './model/GetPlaylistListRequest';
+    import GetPlaylistListResponse from './model/GetPlaylistListResponse';
+    import GetStreamingResponse from './model/GetStreamingResponse';
+    import GetStreamingsResponse from './model/GetStreamingsResponse';
+    import GetTranscodeCostData from './model/GetTranscodeCostData';
+    import GetTranscodeCostResponse from './model/GetTranscodeCostResponse';
+    import GetUserWebhookData from './model/GetUserWebhookData';
+    import GetUserWebhookResponse from './model/GetUserWebhookResponse';
+    import GetVideoCaptionsData from './model/GetVideoCaptionsData';
+    import GetVideoCaptionsResponse from './model/GetVideoCaptionsResponse';
+    import GetVideoChaptersData from './model/GetVideoChaptersData';
+    import GetVideoChaptersResponse from './model/GetVideoChaptersResponse';
+    import GetVideoDetailResponse from './model/GetVideoDetailResponse';
+    import GetVideoListData from './model/GetVideoListData';
+    import GetVideoListRequest from './model/GetVideoListRequest';
+    import GetVideoListResponse from './model/GetVideoListResponse';
+    import GetVideoPlayerInfoResponse from './model/GetVideoPlayerInfoResponse';
+    import GetWebhooksListData from './model/GetWebhooksListData';
+    import GetWebhooksListResponse from './model/GetWebhooksListResponse';
+    import LiveStreamAssets from './model/LiveStreamAssets';
+    import LiveStreamKeyData from './model/LiveStreamKeyData';
+    import LiveStreamVideoData from './model/LiveStreamVideoData';
+    import LiveStreamVideoResponse from './model/LiveStreamVideoResponse';
+    import LiveStreamVideosResponse from './model/LiveStreamVideosResponse';
+    import Metadata from './model/Metadata';
+    import MoveVideoInPlaylistRequest from './model/MoveVideoInPlaylistRequest';
+    import PlayerTheme from './model/PlayerTheme';
+    import Playlist from './model/Playlist';
+    import PlaylistItem from './model/PlaylistItem';
+    import PlaylistItemVideo from './model/PlaylistItemVideo';
+    import PublicPlaylistObject from './model/PublicPlaylistObject';
+    import QualityObject from './model/QualityObject';
+    import RemovePlayerThemesFromVideoRequest from './model/RemovePlayerThemesFromVideoRequest';
+    import RenameAPIKeyRequest from './model/RenameAPIKeyRequest';
+    import ResponseError from './model/ResponseError';
+    import ResponseSuccess from './model/ResponseSuccess';
+    import Theme from './model/Theme';
+    import UpdateLiveStreamKeyData from './model/UpdateLiveStreamKeyData';
+    import UpdateLiveStreamKeyRequest from './model/UpdateLiveStreamKeyRequest';
+    import UpdateLiveStreamKeyResponse from './model/UpdateLiveStreamKeyResponse';
+    import UpdateLiveStreamVideoRequest from './model/UpdateLiveStreamVideoRequest';
+    import UpdatePlayerThemeRequest from './model/UpdatePlayerThemeRequest';
+    import UpdatePlayerThemeResponse from './model/UpdatePlayerThemeResponse';
+    import UpdateVideoInfoRequest from './model/UpdateVideoInfoRequest';
+    import UpdateWebhookRequest from './model/UpdateWebhookRequest';
+    import UploadLogoByIdResponse from './model/UploadLogoByIdResponse';
+    import Video from './model/Video';
+    import VideoAssets from './model/VideoAssets';
+    import VideoCaption from './model/VideoCaption';
+    import VideoChapter from './model/VideoChapter';
+    import VideoWatermark from './model/VideoWatermark';
+    import Webhook from './model/Webhook';
+
+const PRODUCTION_BASE_URI = 'https://api.aiozstream.network/api';
 const DEFAULT_CHUNK_SIZE = 50 * 1024 * 1024;
 const MIN_CHUNK_SIZE = 5 * 1024 * 1024;
 const MAX_CHUNK_SIZE = 128 * 1024 * 1024;
 
-class W3StreamClient {
+class StreamClient {
   private httpClient: HttpClient;
   private _apiKey: ApiKeyApi;
   private _liveStream: LiveStreamApi;
@@ -40,28 +139,9 @@ class W3StreamClient {
   private _videoChapter: VideoChapterApi;
   private _webhook: WebhookApi;
 
-  constructor(params: {
-    publicKey?: string;
-    secretKey?: string;
-    bearerToken?: string;
-    baseUri?: string;
-    chunkSize?: number;
-    applicationName?: string;
-    applicationVersion?: string;
-    sdkName?: string;
-    sdkVersion?: string;
-  }) {
-    if (
-      params.chunkSize &&
-      (params.chunkSize < MIN_CHUNK_SIZE || params.chunkSize > MAX_CHUNK_SIZE)
-    ) {
-      throw new Error(
-        'Invalid chunk size value. Must be greater than ' +
-          MIN_CHUNK_SIZE +
-          ' bytes and lower than ' +
-          MAX_CHUNK_SIZE +
-          ' bytes.'
-      );
+  constructor(params: {publicKey?: string, secretKey?: string,  bearerToken?: string, baseUri?: string, chunkSize?: number, applicationName?: string, applicationVersion?: string; sdkName?: string; sdkVersion?: string;}) {
+    if(params.chunkSize && (params.chunkSize < MIN_CHUNK_SIZE || params.chunkSize > MAX_CHUNK_SIZE)) {
+      throw new Error("Invalid chunk size value. Must be greater than " + MIN_CHUNK_SIZE + " bytes and lower than " + MAX_CHUNK_SIZE + " bytes.");
     }
 
     this.validateOrigin(
@@ -76,7 +156,7 @@ class W3StreamClient {
       ...params,
       baseUri: params.baseUri || PRODUCTION_BASE_URI,
       chunkSize: params.chunkSize || DEFAULT_CHUNK_SIZE,
-    });
+    })
 
     this._apiKey = new ApiKeyApi(this.httpClient);
     this._liveStream = new LiveStreamApi(this.httpClient);
@@ -87,61 +167,65 @@ class W3StreamClient {
     this._webhook = new WebhookApi(this.httpClient);
   }
 
+
+
   /**
-   * Get an ApiKeyApi instance
-   * @return ApiKeyApi
-   */
+  * Get an ApiKeyApi instance
+  * @return ApiKeyApi
+  */
   public get apiKey(): ApiKeyApi {
     return this._apiKey;
   }
 
   /**
-   * Get an LiveStreamApi instance
-   * @return LiveStreamApi
-   */
+  * Get an LiveStreamApi instance
+  * @return LiveStreamApi
+  */
   public get liveStream(): LiveStreamApi {
     return this._liveStream;
   }
 
   /**
-   * Get an PlayersApi instance
-   * @return PlayersApi
-   */
+  * Get an PlayersApi instance
+  * @return PlayersApi
+  */
   public get players(): PlayersApi {
     return this._players;
   }
 
   /**
-   * Get an PlaylistApi instance
-   * @return PlaylistApi
-   */
+  * Get an PlaylistApi instance
+  * @return PlaylistApi
+  */
   public get playlist(): PlaylistApi {
     return this._playlist;
   }
 
   /**
-   * Get an VideoApi instance
-   * @return VideoApi
-   */
+  * Get an VideoApi instance
+  * @return VideoApi
+  */
   public get video(): VideoApi {
     return this._video;
   }
 
   /**
-   * Get an VideoChapterApi instance
-   * @return VideoChapterApi
-   */
+  * Get an VideoChapterApi instance
+  * @return VideoChapterApi
+  */
   public get videoChapter(): VideoChapterApi {
     return this._videoChapter;
   }
 
   /**
-   * Get an WebhookApi instance
-   * @return WebhookApi
-   */
+  * Get an WebhookApi instance
+  * @return WebhookApi
+  */
   public get webhook(): WebhookApi {
     return this._webhook;
   }
+
+
 
   private validateOrigin(type: string, name?: string, version?: string) {
     if (name && !version) {
@@ -166,6 +250,7 @@ class W3StreamClient {
       }
     }
   }
+
 
   public async uploadVideo(
     id: string,
@@ -262,4 +347,5 @@ class W3StreamClient {
   }
 }
 
-export = W3StreamClient;
+
+export = StreamClient;

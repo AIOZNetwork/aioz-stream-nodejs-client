@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -25,56 +25,57 @@ export default class VideoWatermark {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'bottom',
-      baseName: 'bottom',
-      type: 'string',
-      format: '',
+      "name": "bottom",
+      "baseName": "bottom",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'height',
-      baseName: 'height',
-      type: 'string',
-      format: '',
+      "name": "height",
+      "baseName": "height",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'id',
-      baseName: 'id',
-      type: 'string',
-      format: '',
+      "name": "id",
+      "baseName": "id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'left',
-      baseName: 'left',
-      type: 'string',
-      format: '',
+      "name": "left",
+      "baseName": "left",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'opacity',
-      baseName: 'opacity',
-      type: 'string',
-      format: '',
+      "name": "opacity",
+      "baseName": "opacity",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'right',
-      baseName: 'right',
-      type: 'string',
-      format: '',
+      "name": "right",
+      "baseName": "right",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'top',
-      baseName: 'top',
-      type: 'string',
-      format: '',
+      "name": "top",
+      "baseName": "top",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'width',
-      baseName: 'width',
-      type: 'string',
-      format: '',
-    },
-  ];
+      "name": "width",
+      "baseName": "width",
+      "type": "string",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return VideoWatermark.attributeTypeMap;
   }
+
 }
+

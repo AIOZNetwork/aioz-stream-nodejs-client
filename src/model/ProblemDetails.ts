@@ -1,5 +1,5 @@
 export default interface ProblemDetails {
-  type: string;
-  title: string;
-  detail: string;
+  type: string,
+  title: string,
+  detail: string,
 }

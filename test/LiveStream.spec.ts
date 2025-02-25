@@ -1,5 +1,5 @@
 import { expect } from '@jest/globals';
-import W3StreamError from '../src/W3StreamError';
+import StreamError from '../src/StreamError';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { v4 as uuidv4 } from 'uuid';
 let liveStreamKeyID: string;
@@ -30,7 +30,7 @@ describe('LiveStream Service', () => {
         testClient.liveStream.createLiveStreamKey({
           name: undefined,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Valid Create Live Stream Key with Save is nil', async () => {
@@ -61,13 +61,13 @@ describe('LiveStream Service', () => {
     it('Invalid Get Live Stream Key', async () => {
       await expect(
         testClient.liveStream.getLiveStreamKey('invalid-id')
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
         testClient.liveStream.getLiveStreamKey(newId)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -100,7 +100,7 @@ describe('LiveStream Service', () => {
           name: liveStreamKeyName,
           save: true,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Update Live Stream Key', async () => {
       const resp = await testClient.liveStream.updateLiveStreamKey(
@@ -140,7 +140,7 @@ describe('LiveStream Service', () => {
           name: liveStreamKeyName,
           save: true,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Not exist ID', async () => {
       const newId = uuidv4();
@@ -149,7 +149,7 @@ describe('LiveStream Service', () => {
           name: liveStreamKeyName,
           save: true,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -170,7 +170,7 @@ describe('LiveStream Service', () => {
     it('Invalid Get Live Stream Videos', async () => {
       await expect(
         testClient.liveStream.getLiveStreamVideos('invalid-id', {})
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Get Live Stream Videos with Offset is -1', async () => {
@@ -178,7 +178,7 @@ describe('LiveStream Service', () => {
         testClient.liveStream.getLiveStreamVideos(liveStreamKeyID, {
           offset: -1,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Get Live Stream Videos with SortBy is empty', async () => {
@@ -186,7 +186,7 @@ describe('LiveStream Service', () => {
         testClient.liveStream.getLiveStreamVideos(liveStreamKeyID, {
           sortBy: '',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Get Live Stream Videos with OrderBy is empty', async () => {
@@ -194,7 +194,7 @@ describe('LiveStream Service', () => {
         testClient.liveStream.getLiveStreamVideos(liveStreamKeyID, {
           orderBy: '',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Get Live Stream Videos with Search is empty', async () => {
@@ -202,7 +202,7 @@ describe('LiveStream Service', () => {
         testClient.liveStream.getLiveStreamVideos(liveStreamKeyID, {
           search: '',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -228,7 +228,7 @@ describe('LiveStream Service', () => {
           qualities: qualities,
           save: true,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Create Streaming with Title is nil', async () => {
@@ -238,7 +238,7 @@ describe('LiveStream Service', () => {
           qualities: qualities,
           save: true,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Create Streaming with invalid qualities', async () => {
@@ -248,7 +248,7 @@ describe('LiveStream Service', () => {
           qualities: ['invalid-quality'],
           save: true,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -264,14 +264,14 @@ describe('LiveStream Service', () => {
     it('Invalid Get Streaming', async () => {
       await expect(
         testClient.liveStream.getStreaming('invalid-id', 'invalid-stream-id')
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
         testClient.liveStream.getStreaming(newId, newId)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -284,7 +284,7 @@ describe('LiveStream Service', () => {
     it('Invalid Get Streamings', async () => {
       await expect(
         testClient.liveStream.getStreamings('invalid-id')
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -308,13 +308,13 @@ describe('LiveStream Service', () => {
     it('Invalid Delete Live Stream Video', async () => {
       await expect(
         testClient.liveStream.deleteStreaming('invalid-id', 'invalid-stream-id')
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
         testClient.liveStream.deleteStreaming(newId, newId)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -322,7 +322,7 @@ describe('LiveStream Service', () => {
     it('Delete other', async () => {
       await expect(
         anonymousTestClient.liveStream.deleteLiveStreamKey(liveStreamKeyID)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Delete Live Stream Key with ID', async () => {
       const resp = await testClient.liveStream.deleteLiveStreamKey(
@@ -334,13 +334,13 @@ describe('LiveStream Service', () => {
     it('Invalid Delete Live Stream Key with Invalid ID', async () => {
       await expect(
         testClient.liveStream.deleteLiveStreamKey('invalid-id')
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
         testClient.liveStream.deleteLiveStreamKey(newId)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
   afterAll(async () => {

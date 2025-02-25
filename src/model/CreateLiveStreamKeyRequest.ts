@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -19,20 +19,21 @@ export default class CreateLiveStreamKeyRequest {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'name',
-      baseName: 'name',
-      type: 'string',
-      format: '',
+      "name": "name",
+      "baseName": "name",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'save',
-      baseName: 'save',
-      type: 'boolean',
-      format: '',
-    },
-  ];
+      "name": "save",
+      "baseName": "save",
+      "type": "boolean",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return CreateLiveStreamKeyRequest.attributeTypeMap;
   }
+
 }
+

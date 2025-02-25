@@ -1,13 +1,13 @@
 import { expect } from '@jest/globals';
-import W3StreamError from '../src/W3StreamError';
+import StreamError from '../src/StreamError';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { openInvalidFile, openTestImageFile } from './Video.spec';
 import { v4 as uuidv4 } from 'uuid';
 
 let testPlaylistID: string | undefined;
-const testVideoIDOne = '98cdf5b1-991a-4b39-803f-509f580e90d5';
-const testVideoIDTwo = '0cacff1a-df3b-4867-b4f4-c4c4b45b7c25';
-const testVideoIDThree = '1f625e54-308d-401e-aa67-12f86eff6d1a';
+const testVideoIDOne = '2582cc17-ae70-428d-8937-309a380590eb';
+const testVideoIDTwo = 'f812a31b-617d-41de-95eb-ac5e173ddfb8';
+const testVideoIDThree = '8aa2c5e3-72a2-451e-ae99-73d65a4762b7';
 let testFirstItemID: string | undefined;
 let testSecondItemID: string | undefined;
 let testThirdItemID: string | undefined;
@@ -48,7 +48,7 @@ describe('Playlist Service', () => {
         testClient.playlist.getPlaylists({
           sortBy: 'invalid',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid OrderBy', async () => {
@@ -56,7 +56,7 @@ describe('Playlist Service', () => {
         testClient.playlist.getPlaylists({
           orderBy: 'invalid',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -70,7 +70,7 @@ describe('Playlist Service', () => {
           undefined,
           testName
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Update Request With Name and Thumbnail', async () => {
       const thumbnailFile = await openTestImageFile();
@@ -92,7 +92,7 @@ describe('Playlist Service', () => {
           undefined,
           testName
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Thumbnail', async () => {
@@ -104,7 +104,7 @@ describe('Playlist Service', () => {
           undefined,
           testName
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
@@ -117,7 +117,7 @@ describe('Playlist Service', () => {
           undefined,
           testName
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -132,14 +132,14 @@ describe('Playlist Service', () => {
     it('Invalid Playlist ID', async () => {
       await expect(
         testClient.playlist.getPlaylistPublicInfo('')
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
         testClient.playlist.getPlaylistPublicInfo(newId)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -152,7 +152,7 @@ describe('Playlist Service', () => {
             videoId: testVideoIDOne,
           }
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Add First Video Request', async () => {
       const response = await testClient.playlist.addVideoToPlaylist(
@@ -189,13 +189,13 @@ describe('Playlist Service', () => {
         testClient.playlist.addVideoToPlaylist(testPlaylistID as string, {
           videoId: '',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Empty Request', async () => {
       await expect(
         testClient.playlist.addVideoToPlaylist(testPlaylistID as string, {})
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
@@ -204,7 +204,7 @@ describe('Playlist Service', () => {
         testClient.playlist.addVideoToPlaylist(newId, {
           videoId: testVideoIDOne,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -214,7 +214,7 @@ describe('Playlist Service', () => {
         anonymousTestClient.playlist.getPlaylistById({
           id: testPlaylistID as string,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Playlist ID', async () => {
       const response = await testClient.playlist.getPlaylistById({
@@ -240,7 +240,7 @@ describe('Playlist Service', () => {
         testClient.playlist.getPlaylistById({
           id: '',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Empty Request', async () => {
@@ -248,7 +248,7 @@ describe('Playlist Service', () => {
         testClient.playlist.getPlaylistById({
           id: '',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid OrderBy', async () => {
@@ -257,7 +257,7 @@ describe('Playlist Service', () => {
           id: testPlaylistID as string,
           orderBy: 'invalid' as 'asc' | 'desc',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid SortBy', async () => {
@@ -266,7 +266,7 @@ describe('Playlist Service', () => {
           id: testPlaylistID as string,
           sortBy: 'invalid' as 'created_at' | 'title' | 'duration',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
@@ -275,7 +275,7 @@ describe('Playlist Service', () => {
         testClient.playlist.getPlaylistById({
           id: newId,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -290,7 +290,7 @@ describe('Playlist Service', () => {
             previousId: testThirdItemID as string,
           }
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Move Video Request', async () => {
       const response = await testClient.playlist.moveVideoInPlaylist(
@@ -309,7 +309,7 @@ describe('Playlist Service', () => {
         testClient.playlist.moveVideoInPlaylist('', {
           currentId: testFirstItemID as string,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Missing Current ID', async () => {
@@ -317,7 +317,7 @@ describe('Playlist Service', () => {
         testClient.playlist.moveVideoInPlaylist(testPlaylistID as string, {
           nextId: testSecondItemID as string,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Missing Next ID', async () => {
@@ -325,7 +325,7 @@ describe('Playlist Service', () => {
         testClient.playlist.moveVideoInPlaylist(testPlaylistID as string, {
           currentId: testFirstItemID as string,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -336,7 +336,7 @@ describe('Playlist Service', () => {
           testPlaylistID as string,
           testFirstItemID as string
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Remove First Video Request', async () => {
       const response = await testClient.playlist.removeVideoFromPlaylist(
@@ -365,7 +365,7 @@ describe('Playlist Service', () => {
     it('Invalid Playlist ID', async () => {
       await expect(
         testClient.playlist.removeVideoFromPlaylist('', testVideoIDOne)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Missing Item ID', async () => {
@@ -374,14 +374,14 @@ describe('Playlist Service', () => {
           testPlaylistID as string,
           ''
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
         testClient.playlist.removeVideoFromPlaylist(newId, newId)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -391,7 +391,7 @@ describe('Playlist Service', () => {
         anonymousTestClient.playlist.deletePlaylistThumbnail(
           testPlaylistID as string
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Playlist ID', async () => {
       const response = await testClient.playlist.deletePlaylistThumbnail(
@@ -403,14 +403,14 @@ describe('Playlist Service', () => {
     it('Invalid Playlist ID', async () => {
       await expect(
         testClient.playlist.deletePlaylistThumbnail('')
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
         testClient.playlist.deletePlaylistThumbnail(newId)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -420,7 +420,7 @@ describe('Playlist Service', () => {
         anonymousTestClient.playlist.deletePlaylistById(
           testPlaylistID as string
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Playlist ID', async () => {
       const response = await testClient.playlist.deletePlaylistById(
@@ -431,7 +431,7 @@ describe('Playlist Service', () => {
 
     it('Invalid Playlist ID', async () => {
       await expect(testClient.playlist.deletePlaylistById('')).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
@@ -439,7 +439,7 @@ describe('Playlist Service', () => {
       const newId = uuidv4();
       await expect(
         testClient.playlist.deletePlaylistById(newId)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 });

@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -22,38 +22,39 @@ export default class Controls {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'enableApi',
-      baseName: 'enable_api',
-      type: 'boolean',
-      format: '',
+      "name": "enableApi",
+      "baseName": "enable_api",
+      "type": "boolean",
+      "format": "",
     },
     {
-      name: 'enableControls',
-      baseName: 'enable_controls',
-      type: 'boolean',
-      format: '',
+      "name": "enableControls",
+      "baseName": "enable_controls",
+      "type": "boolean",
+      "format": "",
     },
     {
-      name: 'forceAutoplay',
-      baseName: 'force_autoplay',
-      type: 'boolean',
-      format: '',
+      "name": "forceAutoplay",
+      "baseName": "force_autoplay",
+      "type": "boolean",
+      "format": "",
     },
     {
-      name: 'forceLoop',
-      baseName: 'force_loop',
-      type: 'boolean',
-      format: '',
+      "name": "forceLoop",
+      "baseName": "force_loop",
+      "type": "boolean",
+      "format": "",
     },
     {
-      name: 'hideTitle',
-      baseName: 'hide_title',
-      type: 'boolean',
-      format: '',
-    },
-  ];
+      "name": "hideTitle",
+      "baseName": "hide_title",
+      "type": "boolean",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return Controls.attributeTypeMap;
   }
+
 }
+

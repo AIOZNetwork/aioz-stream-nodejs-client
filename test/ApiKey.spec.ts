@@ -1,5 +1,5 @@
 import { expect } from '@jest/globals';
-import W3StreamError from '../src/W3StreamError';
+import StreamError from '../src/StreamError';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -31,7 +31,7 @@ describe('ApiKey Service', () => {
           type: 'read',
           ttl: '24h',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Type', async () => {
@@ -41,7 +41,7 @@ describe('ApiKey Service', () => {
           type: 'invalid',
           ttl: '24h',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid TTL', async () => {
@@ -51,7 +51,7 @@ describe('ApiKey Service', () => {
           type: 'read',
           ttl: 'invalid',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -64,7 +64,7 @@ describe('ApiKey Service', () => {
             apiKeyName: 'Updated API Key',
           }
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Update', async () => {
       const response = await testClient.apiKey.update(
@@ -81,7 +81,7 @@ describe('ApiKey Service', () => {
         testClient.apiKey.update('invalid-id', {
           apiKeyName: 'Updated API Key',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Empty Name', async () => {
@@ -89,7 +89,7 @@ describe('ApiKey Service', () => {
         testClient.apiKey.update(testApiKeyForUpdateAndDelete as string, {
           apiKeyName: '',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
@@ -98,7 +98,7 @@ describe('ApiKey Service', () => {
         testClient.apiKey.update(newId, {
           apiKeyName: 'Updated API Key',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -108,7 +108,7 @@ describe('ApiKey Service', () => {
         anonymousTestClient.apiKey.delete(
           testApiKeyForUpdateAndDelete as string
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Delete', async () => {
       const response = await testClient.apiKey.delete(
@@ -119,18 +119,18 @@ describe('ApiKey Service', () => {
 
     it('Invalid ID', async () => {
       await expect(testClient.apiKey.delete('invalid-id')).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
     it('Empty ID', async () => {
-      await expect(testClient.apiKey.delete('')).rejects.toThrow(W3StreamError);
+      await expect(testClient.apiKey.delete('')).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(testClient.apiKey.delete(newId)).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
   });
@@ -156,13 +156,13 @@ describe('ApiKey Service', () => {
 
     it('Invalid Offset', async () => {
       await expect(testClient.apiKey.list({ offset: -1 })).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
     it('Invalid Limit', async () => {
       await expect(testClient.apiKey.list({ limit: 1001 })).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
   });
