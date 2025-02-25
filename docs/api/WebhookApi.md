@@ -16,7 +16,7 @@ All URIs are relative to *http://localhost/api*
 ## **`create()` - Create webhook**
 
 
-Webhooks can push notifications to your server, rather than polling w3stream for changes
+Webhooks can push notifications to your server, rather than polling streaming service for changes
 
 ### Parameters
 

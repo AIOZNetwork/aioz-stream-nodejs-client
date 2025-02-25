@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -21,32 +21,33 @@ export default class LiveStreamAssets {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'hlsUrl',
-      baseName: 'hls_url',
-      type: 'string',
-      format: '',
+      "name": "hlsUrl",
+      "baseName": "hls_url",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'iframe',
-      baseName: 'iframe',
-      type: 'string',
-      format: '',
+      "name": "iframe",
+      "baseName": "iframe",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'playerUrl',
-      baseName: 'player_url',
-      type: 'string',
-      format: '',
+      "name": "playerUrl",
+      "baseName": "player_url",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'thumbnailUrl',
-      baseName: 'thumbnail_url',
-      type: 'string',
-      format: '',
-    },
-  ];
+      "name": "thumbnailUrl",
+      "baseName": "thumbnail_url",
+      "type": "string",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return LiveStreamAssets.attributeTypeMap;
   }
+
 }
+

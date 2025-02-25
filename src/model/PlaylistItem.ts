@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -26,56 +26,57 @@ export default class PlaylistItem {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'createdAt',
-      baseName: 'created_at',
-      type: 'string',
-      format: '',
+      "name": "createdAt",
+      "baseName": "created_at",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'id',
-      baseName: 'id',
-      type: 'string',
-      format: '',
+      "name": "id",
+      "baseName": "id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'nextId',
-      baseName: 'next_id',
-      type: 'string',
-      format: '',
+      "name": "nextId",
+      "baseName": "next_id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'playlistId',
-      baseName: 'playlist_id',
-      type: 'string',
-      format: '',
+      "name": "playlistId",
+      "baseName": "playlist_id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'previousId',
-      baseName: 'previous_id',
-      type: 'string',
-      format: '',
+      "name": "previousId",
+      "baseName": "previous_id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'updatedAt',
-      baseName: 'updated_at',
-      type: 'string',
-      format: '',
+      "name": "updatedAt",
+      "baseName": "updated_at",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'video',
-      baseName: 'video',
-      type: 'PlaylistItemVideo',
-      format: '',
+      "name": "video",
+      "baseName": "video",
+      "type": "PlaylistItemVideo",
+      "format": "",
     },
     {
-      name: 'videoId',
-      baseName: 'video_id',
-      type: 'string',
-      format: '',
-    },
-  ];
+      "name": "videoId",
+      "baseName": "video_id",
+      "type": "string",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return PlaylistItem.attributeTypeMap;
   }
+
 }
+

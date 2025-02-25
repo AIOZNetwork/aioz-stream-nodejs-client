@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -21,26 +21,27 @@ export default class CreatePlaylistRequest {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'metadata',
-      baseName: 'metadata',
-      type: 'Array<Metadata>',
-      format: '',
+      "name": "metadata",
+      "baseName": "metadata",
+      "type": "Array<Metadata>",
+      "format": "",
     },
     {
-      name: 'name',
-      baseName: 'name',
-      type: 'string',
-      format: '',
+      "name": "name",
+      "baseName": "name",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'tags',
-      baseName: 'tags',
-      type: 'Array<string>',
-      format: '',
-    },
-  ];
+      "name": "tags",
+      "baseName": "tags",
+      "type": "Array<string>",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return CreatePlaylistRequest.attributeTypeMap;
   }
+
 }
+

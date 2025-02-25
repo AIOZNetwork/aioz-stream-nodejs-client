@@ -1,9 +1,9 @@
 /**
- * @w3stream/nodejs-client
- * VMS Service
+ * @aiozstream/nodejs-client
+ * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- *
+ * 
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -25,56 +25,57 @@ export default class GetLiveStreamVideosRequest {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'limit',
-      baseName: 'limit',
-      type: 'number',
-      format: '',
+      "name": "limit",
+      "baseName": "limit",
+      "type": "number",
+      "format": "",
     },
     {
-      name: 'liveStreamKeyId',
-      baseName: 'live_stream_key_id',
-      type: 'string',
-      format: '',
+      "name": "liveStreamKeyId",
+      "baseName": "live_stream_key_id",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'offset',
-      baseName: 'offset',
-      type: 'number',
-      format: '',
+      "name": "offset",
+      "baseName": "offset",
+      "type": "number",
+      "format": "",
     },
     {
-      name: 'orderBy',
-      baseName: 'order_by',
-      type: 'string',
-      format: '',
+      "name": "orderBy",
+      "baseName": "order_by",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'search',
-      baseName: 'search',
-      type: 'string',
-      format: '',
+      "name": "search",
+      "baseName": "search",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'sortBy',
-      baseName: 'sort_by',
-      type: 'string',
-      format: '',
+      "name": "sortBy",
+      "baseName": "sort_by",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'status',
-      baseName: 'status',
-      type: 'string',
-      format: '',
+      "name": "status",
+      "baseName": "status",
+      "type": "string",
+      "format": "",
     },
     {
-      name: 'videoStatus',
-      baseName: 'video_status',
-      type: 'string',
-      format: '',
-    },
-  ];
+      "name": "videoStatus",
+      "baseName": "video_status",
+      "type": "string",
+      "format": "",
+    }  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return GetLiveStreamVideosRequest.attributeTypeMap;
   }
+
 }
+

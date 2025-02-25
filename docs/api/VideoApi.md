@@ -314,17 +314,17 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 
 ### Upload chunks
 
-Large files are broken into chunks for upload. You can control the size of the chunks using the `chunkSize` parameter when you instanciate the W3StreamClient:
+Large files are broken into chunks for upload. You can control the size of the chunks using the `chunkSize` parameter when you instanciate the StreamClient:
 
 ```js
-const client = new W3StreamClient({
+const client = new StreamClient({
     apiKey: "YOUR_API_KEY",
     apiPublicKey: "YOUR_PUBLIC_KEY",
     chunkSize: 50 * 1024 * 1024, // 50mb chunks
 });
 ```
 ```js
-const client = new W3StreamClient({ apiKey: "YOUR_API_KEY", apiPublicKey: "YOUR_PUBLIC_KEY" });const client = new W3StreamClient({ apiKey: "YOUR_API_KEY", apiPublicKey: "YOUR_PUBLIC_KEY" });
+const client = new StreamClient({ apiKey: "stream-secret-key", apiPublicKey: "stream-public-key" });const client = new StreamClient({ apiKey: "stream-secret-key", apiPublicKey: "stream-public-key" });
 
 const id = 'id_example'; // video's id
 

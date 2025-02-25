@@ -1,4 +1,4 @@
-# Migrate from [@w3stream/nodejs-sdk](https://github.com/w3stream/nodejs-sdk)
+# Migrate from [@aiozstream/nodejs-sdk](https://github.com/AIOZNetwork/aioz-stream-nodejs-client)
 
 Listing methods are now called `list` instead of `search`.
 They don't fetch all pages by default, this is now left to the user.
@@ -190,7 +190,7 @@ client.playerThemes.update(playerId, properties);
 client.players.uploadLogo(
   'test/data/test.jpg',
   playerId,
-  'https://api-w3stream.attoaioz.cyou',
+  'https://api.aiozstream.network'
 );
 ```
 
@@ -200,7 +200,7 @@ client.players.uploadLogo(
 client.playerThemes.uploadLogo(
   playerId,
   'test/data/test.jpg',
-  'https://api-w3stream.attoaioz.cyou',
+  'https://api.aiozstream.network'
 );
 ```
 

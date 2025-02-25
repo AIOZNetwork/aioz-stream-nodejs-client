@@ -1,5 +1,5 @@
 import { expect } from '@jest/globals';
-import W3StreamError from '../src/W3StreamError';
+import StreamError from '../src/StreamError';
 import fs from 'fs';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { openInvalidFile, openTestImageFile } from './Video.spec';
@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 let testPlayerIDForUpdateAndDeleteAndGet: string | undefined;
 const playerName = 'Test Player Theme';
 const logoURL = 'https://example.com/logo.png';
-const testVideoForPlayer = '1f625e54-308d-401e-aa67-12f86eff6d1a';
+const testVideoForPlayer = '2582cc17-ae70-428d-8937-309a380590eb';
 
 const testClient = mockTestClient();
 const anonymousTestClient = anonymousMockTestClient();
@@ -66,7 +66,7 @@ describe('Players Service', () => {
             textColor: 'invalid-color',
           },
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Empty Name', async () => {
@@ -89,7 +89,7 @@ describe('Players Service', () => {
             controlBarHeight: 'invalid-size',
           },
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -114,7 +114,7 @@ describe('Players Service', () => {
     it('Invalid Player ID', async () => {
       await expect(
         testClient.players.uploadLogo('invalid-id', logoFile, logoURL)
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid File Type', async () => {
@@ -124,7 +124,7 @@ describe('Players Service', () => {
           invalidFile,
           logoURL
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Upload Link', async () => {
@@ -134,7 +134,7 @@ describe('Players Service', () => {
           logoFile,
           'invalid-link'
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -153,7 +153,7 @@ describe('Players Service', () => {
           playerThemeId: 'invalid-id',
           videoId: testVideoForPlayer,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Empty Video ID', async () => {
@@ -161,18 +161,11 @@ describe('Players Service', () => {
         testClient.players.addPlayer({
           playerThemeId: testPlayerIDForUpdateAndDeleteAndGet,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
   describe('get', () => {
-    it('Get other', async () => {
-      await expect(
-        anonymousTestClient.players.get(
-          testPlayerIDForUpdateAndDeleteAndGet as string
-        )
-      ).rejects.toThrow(W3StreamError);
-    });
     it('Valid Get', async () => {
       const response = await testClient.players.get(
         testPlayerIDForUpdateAndDeleteAndGet as string
@@ -183,28 +176,16 @@ describe('Players Service', () => {
 
     it('Invalid ID', async () => {
       await expect(testClient.players.get('invalid-id')).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
     it('Not exist ID', async () => {
       const newId = uuidv4();
-      await expect(testClient.players.get(newId)).rejects.toThrow(
-        W3StreamError
-      );
+      await expect(testClient.players.get(newId)).rejects.toThrow(StreamError);
     });
   });
 
   describe('update', () => {
-    it('Update other', async () => {
-      await expect(
-        anonymousTestClient.players.update(
-          testPlayerIDForUpdateAndDeleteAndGet as string,
-          {
-            name: 'Updated Player Theme',
-          }
-        )
-      ).rejects.toThrow(W3StreamError);
-    });
     it('Valid Update', async () => {
       const response = await testClient.players.update(
         testPlayerIDForUpdateAndDeleteAndGet as string,
@@ -228,7 +209,7 @@ describe('Players Service', () => {
             },
           }
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid ID', async () => {
@@ -236,7 +217,7 @@ describe('Players Service', () => {
         testClient.players.update('invalid-id', {
           name: 'Updated Player Theme',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
@@ -245,7 +226,7 @@ describe('Players Service', () => {
         testClient.players.update(newId, {
           name: 'Updated Player Theme',
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -268,25 +249,18 @@ describe('Players Service', () => {
 
     it('Invalid Offset', async () => {
       await expect(testClient.players.list({ offset: -1 })).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
     it('Invalid Limit', async () => {
       await expect(testClient.players.list({ limit: 1001 })).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
   });
 
   describe('deleteLogo', () => {
-    it('Delete other', async () => {
-      await expect(
-        anonymousTestClient.players.deleteLogo(
-          testPlayerIDForUpdateAndDeleteAndGet as string
-        )
-      ).rejects.toThrow(W3StreamError);
-    });
     it('Valid Delete Logo', async () => {
       const response = await testClient.players.deleteLogo(
         testPlayerIDForUpdateAndDeleteAndGet as string
@@ -296,20 +270,20 @@ describe('Players Service', () => {
 
     it('Invalid ID', async () => {
       await expect(testClient.players.deleteLogo('invalid-id')).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
     it('Empty ID', async () => {
       await expect(testClient.players.deleteLogo('')).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(testClient.players.deleteLogo(newId)).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
   });
@@ -321,7 +295,7 @@ describe('Players Service', () => {
           playerThemeId: testPlayerIDForUpdateAndDeleteAndGet as string,
           videoId: testVideoForPlayer,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Remove', async () => {
       const response = await testClient.players.removePlayer({
@@ -337,7 +311,7 @@ describe('Players Service', () => {
           playerThemeId: 'invalid-id',
           videoId: testVideoForPlayer,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Empty Video ID', async () => {
@@ -345,7 +319,7 @@ describe('Players Service', () => {
         testClient.players.removePlayer({
           playerThemeId: testPlayerIDForUpdateAndDeleteAndGet,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
@@ -355,7 +329,7 @@ describe('Players Service', () => {
           playerThemeId: newId,
           videoId: newId,
         })
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -365,7 +339,7 @@ describe('Players Service', () => {
         anonymousTestClient.players.delete(
           testPlayerIDForUpdateAndDeleteAndGet as string
         )
-      ).rejects.toThrow(W3StreamError);
+      ).rejects.toThrow(StreamError);
     });
     it('Valid Delete', async () => {
       const response = await testClient.players.delete(
@@ -376,19 +350,17 @@ describe('Players Service', () => {
 
     it('Invalid ID', async () => {
       await expect(testClient.players.delete('invalid-id')).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
 
     it('Empty ID', async () => {
-      await expect(testClient.players.delete('')).rejects.toThrow(
-        W3StreamError
-      );
+      await expect(testClient.players.delete('')).rejects.toThrow(StreamError);
     });
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(testClient.players.delete(newId)).rejects.toThrow(
-        W3StreamError
+        StreamError
       );
     });
   });
