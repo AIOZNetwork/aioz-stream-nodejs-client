@@ -1,5 +1,5 @@
 
-# Video
+# Media
 
 ## Properties
 

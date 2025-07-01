@@ -3,7 +3,7 @@
  * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- * 
+ *
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -20,21 +20,20 @@ export default class GetPlaylistListData {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      "name": "playlists",
-      "baseName": "playlists",
-      "type": "Array<Playlist>",
-      "format": "",
+      name: 'playlists',
+      baseName: 'playlists',
+      type: 'Array<Playlist>',
+      format: '',
     },
     {
-      "name": "total",
-      "baseName": "total",
-      "type": "number",
-      "format": "",
-    }  ];
+      name: 'total',
+      baseName: 'total',
+      type: 'number',
+      format: '',
+    },
+  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return GetPlaylistListData.attributeTypeMap;
   }
-
 }
-

@@ -6,7 +6,7 @@ import { mockTestClient } from './src/mockTestClient';
 import { v4 as uuidv4 } from 'uuid';
 
 const testLang = 'en';
-const testVideoIDForChapter = '8aa2c5e3-72a2-451e-ae99-73d65a4762b7';
+const testVideoIDForChapter = '557c6028-4261-4570-91f5-05015ce289f1';
 const chapterContent = `WEBVTT
 
 00:00:00.000 --> 00:01:00.000

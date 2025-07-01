@@ -8,13 +8,14 @@ All URIs are relative to *http://localhost/api*
 | [**update()**](VideoApi.md#update) | update video info | **PATCH** /videos/{id} |
 | [**delete()**](VideoApi.md#delete) | Delete video | **DELETE** /videos/{id} |
 | [**uploadThumbnail()**](VideoApi.md#uploadThumbnail) | Upload video thumbnail | **POST** /videos/{id}/thumbnail |
+| [**deleteThumbnail()**](VideoApi.md#deleteThumbnail) | Delete video thumbnail | **DELETE** /videos/{id}/thumbnail |
 | [**createCaption()**](VideoApi.md#createCaption) | Create a new video caption | **POST** /videos/{id}/captions/{lan} |
 | [**deleteCaption()**](VideoApi.md#deleteCaption) | Delete a video caption | **DELETE** /videos/{id}/captions/{lan} |
 | [**getCaptions()**](VideoApi.md#getCaptions) | Get video captions | **GET** /videos/{id}/captions |
 | [**getCost()**](VideoApi.md#getCost) | get video transcoding cost | **GET** /videos/cost |
 | [**getDetail()**](VideoApi.md#getDetail) | get video detail | **GET** /videos/{id} |
 | [**getVideoList()**](VideoApi.md#getVideoList) | Get user videos list | **POST** /videos |
-| [**getVideoPlayerInfo()**](VideoApi.md#getVideoPlayerInfo) | Get video player info | **GET** /videos/{id}/player.json |
+| [**getVideoPlayerInfo()**](VideoApi.md#getVideoPlayerInfo) | Get video object | **GET** /videos/{id}/player.json |
 | [**setDefaultCaption()**](VideoApi.md#setDefaultCaption) | Set default caption | **PATCH** /videos/{id}/captions/{lan} |
 | [**uploadPart()**](VideoApi.md#uploadPart) | Upload part of video | **POST** /videos/{id}/part |
 | [**uploadVideoComplete()**](VideoApi.md#uploadVideoComplete) | Get upload video when complete | **GET** /videos/{id}/complete |
@@ -30,12 +31,12 @@ Create a video object
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**CreateVideoRequest**](../model/CreateVideoRequest.md)| **yes**| video&#39;s info |
+ | **request** | [**CreateMediaRequest**](../model/CreateMediaRequest.md)| **yes**| video&#39;s info |
 
 
 ### Return type
 
-Promise<[**CreateVideoResponse**](../model/CreateVideoResponse.md)>.
+Promise<[**CreateMediaResponse**](../model/CreateMediaResponse.md)>.
 
 
 
@@ -95,6 +96,26 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| video&#39;s id |
  | **file** | **string \| Readable \| Buffer**| **yes**| file video to be uploaded |
+
+
+### Return type
+
+Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
+
+
+
+
+---
+
+<a name="deleteThumbnail"></a>
+## **`deleteThumbnail()` - Delete video thumbnail**
+
+
+### Parameters
+
+| Name | Type | Required | Description |
+| ------------- | ------------- | ------------- | ------------- |
+ | **id** | **string**| **yes**| video&#39;s id |
 
 
 ### Return type
@@ -245,10 +266,10 @@ Promise<[**GetVideoListResponse**](../model/GetVideoListResponse.md)>.
 ---
 
 <a name="getVideoPlayerInfo"></a>
-## **`getVideoPlayerInfo()` - Get video player info**
+## **`getVideoPlayerInfo()` - Get video object**
 
 
-Get video player info
+Get video object
 
 ### Parameters
 
@@ -301,7 +322,7 @@ Upload part of video
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| video&#39;s id |
- | **file** | **string \| Readable \| Buffer**| **yes**| File video to be uploaded |
+ | **file** | **string \| Readable \| Buffer**| **yes**| File media to be uploaded |
  | **hash** | **string**| no| Md5 hash of part |
  | **index** | **string**| no| Index of the part |
 | **progressListener** | **(event: UploadProgressEvent) => void \| undefined** | no | Optional upload progress listener |

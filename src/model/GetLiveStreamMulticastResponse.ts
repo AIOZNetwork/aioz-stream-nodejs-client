@@ -3,37 +3,37 @@
  * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- * 
+ *
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
  */
 
 import AttributeType from './AttributeType.js';
+import LiveStreamMulticast from './LiveStreamMulticast.js';
 
-export default class UpdateLiveStreamVideoRequest {
-  'save'?: boolean;
-  'title'?: string;
+export default class GetLiveStreamMulticastResponse {
+  'data'?: LiveStreamMulticast;
+  'status'?: string;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      "name": "save",
-      "baseName": "save",
-      "type": "boolean",
-      "format": "",
+      name: 'data',
+      baseName: 'data',
+      type: 'LiveStreamMulticast',
+      format: '',
     },
     {
-      "name": "title",
-      "baseName": "title",
-      "type": "string",
-      "format": "",
-    }  ];
+      name: 'status',
+      baseName: 'status',
+      type: 'string',
+      format: '',
+    },
+  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return UpdateLiveStreamVideoRequest.attributeTypeMap;
+    return GetLiveStreamMulticastResponse.attributeTypeMap;
   }
-
 }
-

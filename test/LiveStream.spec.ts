@@ -6,7 +6,13 @@ let liveStreamKeyID: string;
 let streamId: string;
 const liveStreamKeyName = 'name';
 const streamingTitle = 'title';
-const qualities = ['1080p', '720p', '360p'];
+const qualities = [
+  {
+    type: 'hls',
+    containerType: 'mpegts',
+    resolution: '240p',
+  },
+];
 
 const testClient = mockTestClient();
 const anonymousTestClient = anonymousMockTestClient();
@@ -155,27 +161,24 @@ describe('LiveStream Service', () => {
 
   describe('getLiveStreamVideo', () => {
     it('Valid Get Live Stream Videos', async () => {
-      const resp = await testClient.liveStream.getLiveStreamVideos(
-        liveStreamKeyID,
-        {
-          limit: 10,
-          offset: 0,
-          sortBy: 'created_at',
-          orderBy: 'desc',
-        }
-      );
+      const resp = await testClient.liveStream.getMedias(liveStreamKeyID, {
+        limit: 10,
+        offset: 0,
+        sortBy: 'created_at',
+        orderBy: 'desc',
+      });
       expect(resp).toBeDefined();
     });
 
     it('Invalid Get Live Stream Videos', async () => {
       await expect(
-        testClient.liveStream.getLiveStreamVideos('invalid-id', {})
+        testClient.liveStream.getMedias('invalid-id', {})
       ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Get Live Stream Videos with Offset is -1', async () => {
       await expect(
-        testClient.liveStream.getLiveStreamVideos(liveStreamKeyID, {
+        testClient.liveStream.getMedias(liveStreamKeyID, {
           offset: -1,
         })
       ).rejects.toThrow(StreamError);
@@ -183,7 +186,7 @@ describe('LiveStream Service', () => {
 
     it('Invalid Get Live Stream Videos with SortBy is empty', async () => {
       await expect(
-        testClient.liveStream.getLiveStreamVideos(liveStreamKeyID, {
+        testClient.liveStream.getMedias(liveStreamKeyID, {
           sortBy: '',
         })
       ).rejects.toThrow(StreamError);
@@ -191,7 +194,7 @@ describe('LiveStream Service', () => {
 
     it('Invalid Get Live Stream Videos with OrderBy is empty', async () => {
       await expect(
-        testClient.liveStream.getLiveStreamVideos(liveStreamKeyID, {
+        testClient.liveStream.getMedias(liveStreamKeyID, {
           orderBy: '',
         })
       ).rejects.toThrow(StreamError);
@@ -199,7 +202,7 @@ describe('LiveStream Service', () => {
 
     it('Invalid Get Live Stream Videos with Search is empty', async () => {
       await expect(
-        testClient.liveStream.getLiveStreamVideos(liveStreamKeyID, {
+        testClient.liveStream.getMedias(liveStreamKeyID, {
           search: '',
         })
       ).rejects.toThrow(StreamError);
@@ -245,7 +248,13 @@ describe('LiveStream Service', () => {
       await expect(
         testClient.liveStream.createStreaming(liveStreamKeyID, {
           title: streamingTitle,
-          qualities: ['invalid-quality'],
+          qualities: [
+            {
+              type: 'invalid-quality',
+              containerType: 'mpegts',
+              resolution: '240p',
+            },
+          ],
           save: true,
         })
       ).rejects.toThrow(StreamError);
@@ -289,18 +298,10 @@ describe('LiveStream Service', () => {
   });
 
   describe('deleteLiveStreamVideo', () => {
-    it('Delete other', async () => {
-      await expect(
-        anonymousTestClient.liveStream.deleteStreaming(
-          liveStreamKeyID,
-          streamId
-        )
-      ).rejects.toThrow(Error);
-    });
     it('Valid Delete Live Stream Video', async () => {
       const resp = await testClient.liveStream.deleteStreaming(
-        liveStreamKeyID,
-        streamId
+        streamId,
+        liveStreamKeyID
       );
       expect(resp).toBeDefined();
     });

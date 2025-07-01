@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**LiveStreamVideosResponse**](LiveStreamVideosResponse.md) |  |  [optional]
+**data** | [**LiveStreamMediasResponse**](LiveStreamMediasResponse.md) |  |  [optional]
 **status** | **string** |  |  [optional]
 
 

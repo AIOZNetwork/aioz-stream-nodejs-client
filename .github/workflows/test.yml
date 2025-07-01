@@ -1,7 +1,11 @@
-name: Run unit tests
-on: [push]
+name: Run tests on PR to main
+on:
+  pull_request:
+    branches:
+      - main
+
 jobs:
-  test:
+  run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -36,13 +40,4 @@ jobs:
       - name: Run tests
         run: npm test
 
-      - name: Create Pull Request
-        if: success() && github.ref != 'refs/heads/main'
-        run: |
-          gh pr create \
-            -B main \
-            -H ${{ github.ref_name }} \
-            --title "Merge ${{ github.ref_name }} into main" \
-            --body "Created by Github action after successful tests"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

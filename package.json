@@ -1,6 +1,6 @@
 {
   "name": "@aiozstream/nodejs-client",
-  "version": "1.0.9",
+  "version": "1.0.8",
   "description": "AIOZ stream nodejs API client",
   "keywords": [
     "aioz",
@@ -10,13 +10,13 @@
     "client",
     "live stream"
   ],
-  "homepage": "https://github.com/AIOZNetwork/aioz-stream-nodejs-client#readme",
-  "bugs:": "https://github.com/AIOZNetwork/aioz-stream-nodejs-client/issues",
+  "homepage": "https://github.com/AIOZNetwork/aiozstream-nodejs-client#readme",
+  "bugs:": "https://github.com/AIOZNetwork/aiozstream-nodejs-client/issues",
   "license": "MIT",
   "author": "aioz <support@aiozstream.network>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/AIOZNetwork/aioz-stream-nodejs-client"
+    "url": "https://github.com/AIOZNetwork/aiozstream-nodejs-client"
   },
   "main": "lib/index.js",
   "module": "lib/index.js",

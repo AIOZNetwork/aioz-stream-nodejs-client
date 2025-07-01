@@ -1,11 +1,11 @@
 
-# GetLiveStreamVideosResponse
+# GetLiveStreamStatisticResponse
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**LiveStreamVideosResponse**](LiveStreamVideosResponse.md) |  |  [optional]
+**data** | [**LiveStreamStatisticResp**](LiveStreamStatisticResp.md) |  |  [optional]
 **status** | **string** |  |  [optional]
 
 

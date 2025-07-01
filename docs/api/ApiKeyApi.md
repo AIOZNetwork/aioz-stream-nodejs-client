@@ -20,7 +20,7 @@ This endpoint enables you to create a new API key for a specific project.
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**CreateApiKeyRequest**](../model/CreateApiKeyRequest.md)| **yes**| API key&#39;s data |
+ | **request** | [**CreateApiKeyRequest**](../model/CreateApiKeyRequest.md)| **yes**| api key&#39;s data |
 
 
 ### Return type

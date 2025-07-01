@@ -3,7 +3,7 @@
  * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- * 
+ *
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -20,21 +20,20 @@ export default class CreateWebhookResponse {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      "name": "data",
-      "baseName": "data",
-      "type": "CreateWebhookData",
-      "format": "",
+      name: 'data',
+      baseName: 'data',
+      type: 'CreateWebhookData',
+      format: '',
     },
     {
-      "name": "status",
-      "baseName": "status",
-      "type": "string",
-      "format": "",
-    }  ];
+      name: 'status',
+      baseName: 'status',
+      type: 'string',
+      format: '',
+    },
+  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return CreateWebhookResponse.attributeTypeMap;
   }
-
 }
-

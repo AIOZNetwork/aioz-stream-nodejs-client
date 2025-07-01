@@ -67,7 +67,7 @@ This endpoint will update the indicated webhook.
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| webhook&#39;s id |
- | **request** | [**UpdateWebhookRequest**](../model/UpdateWebhookRequest.md)| **yes**| Update Webhook input, events example: video.encoding.quality.completed |
+ | **request** | [**UpdateWebhookRequest**](../model/UpdateWebhookRequest.md)| **yes**| Update Webhook input, events example: media.encoding.quality.completed |
 
 
 ### Return type
