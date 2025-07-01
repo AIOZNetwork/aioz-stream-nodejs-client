@@ -3,7 +3,7 @@
  * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- * 
+ *
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -19,15 +19,14 @@ export default class CreatePlayerThemesData {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      "name": "playerTheme",
-      "baseName": "player_theme",
-      "type": "PlayerTheme",
-      "format": "",
-    }  ];
+      name: 'playerTheme',
+      baseName: 'player_theme',
+      type: 'PlayerTheme',
+      format: '',
+    },
+  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return CreatePlayerThemesData.attributeTypeMap;
   }
-
 }
-

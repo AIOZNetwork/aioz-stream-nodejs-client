@@ -1,5 +1,5 @@
 
-# UpdateLiveStreamVideoRequest
+# UpdateLiveStreamMediaRequest
 
 ## Properties
 

@@ -4,23 +4,25 @@
  * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- * 
+ *
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
  */
 
-
 import AddPlayerThemesToVideoRequest from './model/AddPlayerThemesToVideoRequest';
 import AddVideoToPlaylistRequest from './model/AddVideoToPlaylistRequest';
 import ApiKey from './model/ApiKey';
 import Asset from './model/Asset';
+import AudioConfig from './model/AudioConfig';
 import Controls from './model/Controls';
 import CreateApiKeyData from './model/CreateApiKeyData';
 import CreateApiKeyRequest from './model/CreateApiKeyRequest';
 import CreateApiKeyResponse from './model/CreateApiKeyResponse';
 import CreateLiveStreamKeyRequest from './model/CreateLiveStreamKeyRequest';
 import CreateLiveStreamKeyResponse from './model/CreateLiveStreamKeyResponse';
+import CreateMediaRequest from './model/CreateMediaRequest';
+import CreateMediaResponse from './model/CreateMediaResponse';
 import CreatePlayerThemeRequest from './model/CreatePlayerThemeRequest';
 import CreatePlayerThemesData from './model/CreatePlayerThemesData';
 import CreatePlayerThemesResponse from './model/CreatePlayerThemesResponse';
@@ -33,8 +35,6 @@ import CreateVideoCaptionData from './model/CreateVideoCaptionData';
 import CreateVideoCaptionResponse from './model/CreateVideoCaptionResponse';
 import CreateVideoChapterData from './model/CreateVideoChapterData';
 import CreateVideoChapterResponse from './model/CreateVideoChapterResponse';
-import CreateVideoRequest from './model/CreateVideoRequest';
-import CreateVideoResponse from './model/CreateVideoResponse';
 import CreateWebhookData from './model/CreateWebhookData';
 import CreateWebhookRequest from './model/CreateWebhookRequest';
 import CreateWebhookResponse from './model/CreateWebhookResponse';
@@ -44,10 +44,12 @@ import GetLiveStreamKeyData from './model/GetLiveStreamKeyData';
 import GetLiveStreamKeyResponse from './model/GetLiveStreamKeyResponse';
 import GetLiveStreamKeysListData from './model/GetLiveStreamKeysListData';
 import GetLiveStreamKeysListResponse from './model/GetLiveStreamKeysListResponse';
+import GetLiveStreamMediasRequest from './model/GetLiveStreamMediasRequest';
+import GetLiveStreamMediasResponse from './model/GetLiveStreamMediasResponse';
+import GetLiveStreamMulticastResponse from './model/GetLiveStreamMulticastResponse';
+import GetLiveStreamStatisticResponse from './model/GetLiveStreamStatisticResponse';
 import GetLiveStreamVideoPublicResponse from './model/GetLiveStreamVideoPublicResponse';
 import GetLiveStreamVideoResponse from './model/GetLiveStreamVideoResponse';
-import GetLiveStreamVideosRequest from './model/GetLiveStreamVideosRequest';
-import GetLiveStreamVideosResponse from './model/GetLiveStreamVideosResponse';
 import GetPlayerThemeByIdData from './model/GetPlayerThemeByIdData';
 import GetPlayerThemeByIdResponse from './model/GetPlayerThemeByIdResponse';
 import GetPlayerThemeData from './model/GetPlayerThemeData';
@@ -76,48 +78,55 @@ import GetWebhooksListData from './model/GetWebhooksListData';
 import GetWebhooksListResponse from './model/GetWebhooksListResponse';
 import LiveStreamAssets from './model/LiveStreamAssets';
 import LiveStreamKeyData from './model/LiveStreamKeyData';
-import LiveStreamVideoData from './model/LiveStreamVideoData';
-import LiveStreamVideoResponse from './model/LiveStreamVideoResponse';
-import LiveStreamVideosResponse from './model/LiveStreamVideosResponse';
+import LiveStreamMediaData from './model/LiveStreamMediaData';
+import LiveStreamMediaResponse from './model/LiveStreamMediaResponse';
+import LiveStreamMediasResponse from './model/LiveStreamMediasResponse';
+import LiveStreamMulticast from './model/LiveStreamMulticast';
+import LiveStreamStatisticResp from './model/LiveStreamStatisticResp';
+import Media from './model/Media';
 import Metadata from './model/Metadata';
 import MoveVideoInPlaylistRequest from './model/MoveVideoInPlaylistRequest';
 import PlayerTheme from './model/PlayerTheme';
 import Playlist from './model/Playlist';
 import PlaylistItem from './model/PlaylistItem';
-import PlaylistItemVideo from './model/PlaylistItemVideo';
+import PlaylistItemMedia from './model/PlaylistItemMedia';
 import PublicPlaylistObject from './model/PublicPlaylistObject';
+import QualityConfig from './model/QualityConfig';
 import QualityObject from './model/QualityObject';
 import RemovePlayerThemesFromVideoRequest from './model/RemovePlayerThemesFromVideoRequest';
 import RenameAPIKeyRequest from './model/RenameAPIKeyRequest';
+import RequestCreateCaption from './model/RequestCreateCaption';
 import ResponseError from './model/ResponseError';
 import ResponseSuccess from './model/ResponseSuccess';
 import Theme from './model/Theme';
 import UpdateLiveStreamKeyData from './model/UpdateLiveStreamKeyData';
 import UpdateLiveStreamKeyRequest from './model/UpdateLiveStreamKeyRequest';
 import UpdateLiveStreamKeyResponse from './model/UpdateLiveStreamKeyResponse';
-import UpdateLiveStreamVideoRequest from './model/UpdateLiveStreamVideoRequest';
+import UpdateLiveStreamMediaRequest from './model/UpdateLiveStreamMediaRequest';
 import UpdatePlayerThemeRequest from './model/UpdatePlayerThemeRequest';
 import UpdatePlayerThemeResponse from './model/UpdatePlayerThemeResponse';
 import UpdateVideoInfoRequest from './model/UpdateVideoInfoRequest';
 import UpdateWebhookRequest from './model/UpdateWebhookRequest';
 import UploadLogoByIdResponse from './model/UploadLogoByIdResponse';
-import Video from './model/Video';
+import UpsertLiveStreamMulticastInput from './model/UpsertLiveStreamMulticastInput';
+import User from './model/User';
 import VideoAssets from './model/VideoAssets';
 import VideoCaption from './model/VideoCaption';
 import VideoChapter from './model/VideoChapter';
+import VideoConfig from './model/VideoConfig';
 import VideoWatermark from './model/VideoWatermark';
 import Webhook from './model/Webhook';
 
 /* tslint:disable:no-unused-variable */
 const primitives = [
-  "string",
-  "boolean",
-  "double",
-  "integer",
-  "long",
-  "float",
-  "number",
-  "any"
+  'string',
+  'boolean',
+  'double',
+  'integer',
+  'long',
+  'float',
+  'number',
+  'any',
 ];
 
 export const COLLECTION_FORMATS = {
@@ -128,111 +137,120 @@ export const COLLECTION_FORMATS = {
 };
 
 const supportedMediaTypes: { [mediaType: string]: number } = {
-  "application/json": Infinity,
-  "application/octet-stream": 0
-}
+  'application/json': Infinity,
+  'application/octet-stream': 0,
+};
 
-const enumsMap: Set<string> = new Set<string>([
-]);
+const enumsMap: Set<string> = new Set<string>([]);
 
-let typeMap: {[index: string]: any} = {
-  "AddPlayerThemesToVideoRequest": AddPlayerThemesToVideoRequest,
-  "AddVideoToPlaylistRequest": AddVideoToPlaylistRequest,
-  "ApiKey": ApiKey,
-  "Asset": Asset,
-  "Controls": Controls,
-  "CreateApiKeyData": CreateApiKeyData,
-  "CreateApiKeyRequest": CreateApiKeyRequest,
-  "CreateApiKeyResponse": CreateApiKeyResponse,
-  "CreateLiveStreamKeyRequest": CreateLiveStreamKeyRequest,
-  "CreateLiveStreamKeyResponse": CreateLiveStreamKeyResponse,
-  "CreatePlayerThemeRequest": CreatePlayerThemeRequest,
-  "CreatePlayerThemesData": CreatePlayerThemesData,
-  "CreatePlayerThemesResponse": CreatePlayerThemesResponse,
-  "CreatePlaylistData": CreatePlaylistData,
-  "CreatePlaylistRequest": CreatePlaylistRequest,
-  "CreatePlaylistResponse": CreatePlaylistResponse,
-  "CreateStreamingRequest": CreateStreamingRequest,
-  "CreateStreamingResponse": CreateStreamingResponse,
-  "CreateVideoCaptionData": CreateVideoCaptionData,
-  "CreateVideoCaptionResponse": CreateVideoCaptionResponse,
-  "CreateVideoChapterData": CreateVideoChapterData,
-  "CreateVideoChapterResponse": CreateVideoChapterResponse,
-  "CreateVideoRequest": CreateVideoRequest,
-  "CreateVideoResponse": CreateVideoResponse,
-  "CreateWebhookData": CreateWebhookData,
-  "CreateWebhookRequest": CreateWebhookRequest,
-  "CreateWebhookResponse": CreateWebhookResponse,
-  "GetApiKeysData": GetApiKeysData,
-  "GetApiKeysResponse": GetApiKeysResponse,
-  "GetLiveStreamKeyData": GetLiveStreamKeyData,
-  "GetLiveStreamKeyResponse": GetLiveStreamKeyResponse,
-  "GetLiveStreamKeysListData": GetLiveStreamKeysListData,
-  "GetLiveStreamKeysListResponse": GetLiveStreamKeysListResponse,
-  "GetLiveStreamVideoPublicResponse": GetLiveStreamVideoPublicResponse,
-  "GetLiveStreamVideoResponse": GetLiveStreamVideoResponse,
-  "GetLiveStreamVideosRequest": GetLiveStreamVideosRequest,
-  "GetLiveStreamVideosResponse": GetLiveStreamVideosResponse,
-  "GetPlayerThemeByIdData": GetPlayerThemeByIdData,
-  "GetPlayerThemeByIdResponse": GetPlayerThemeByIdResponse,
-  "GetPlayerThemeData": GetPlayerThemeData,
-  "GetPlayerThemeResponse": GetPlayerThemeResponse,
-  "GetPlaylistByIdData": GetPlaylistByIdData,
-  "GetPlaylistByIdResponse": GetPlaylistByIdResponse,
-  "GetPlaylistListData": GetPlaylistListData,
-  "GetPlaylistListRequest": GetPlaylistListRequest,
-  "GetPlaylistListResponse": GetPlaylistListResponse,
-  "GetStreamingResponse": GetStreamingResponse,
-  "GetStreamingsResponse": GetStreamingsResponse,
-  "GetTranscodeCostData": GetTranscodeCostData,
-  "GetTranscodeCostResponse": GetTranscodeCostResponse,
-  "GetUserWebhookData": GetUserWebhookData,
-  "GetUserWebhookResponse": GetUserWebhookResponse,
-  "GetVideoCaptionsData": GetVideoCaptionsData,
-  "GetVideoCaptionsResponse": GetVideoCaptionsResponse,
-  "GetVideoChaptersData": GetVideoChaptersData,
-  "GetVideoChaptersResponse": GetVideoChaptersResponse,
-  "GetVideoDetailResponse": GetVideoDetailResponse,
-  "GetVideoListData": GetVideoListData,
-  "GetVideoListRequest": GetVideoListRequest,
-  "GetVideoListResponse": GetVideoListResponse,
-  "GetVideoPlayerInfoResponse": GetVideoPlayerInfoResponse,
-  "GetWebhooksListData": GetWebhooksListData,
-  "GetWebhooksListResponse": GetWebhooksListResponse,
-  "LiveStreamAssets": LiveStreamAssets,
-  "LiveStreamKeyData": LiveStreamKeyData,
-  "LiveStreamVideoData": LiveStreamVideoData,
-  "LiveStreamVideoResponse": LiveStreamVideoResponse,
-  "LiveStreamVideosResponse": LiveStreamVideosResponse,
-  "Metadata": Metadata,
-  "MoveVideoInPlaylistRequest": MoveVideoInPlaylistRequest,
-  "PlayerTheme": PlayerTheme,
-  "Playlist": Playlist,
-  "PlaylistItem": PlaylistItem,
-  "PlaylistItemVideo": PlaylistItemVideo,
-  "PublicPlaylistObject": PublicPlaylistObject,
-  "QualityObject": QualityObject,
-  "RemovePlayerThemesFromVideoRequest": RemovePlayerThemesFromVideoRequest,
-  "RenameAPIKeyRequest": RenameAPIKeyRequest,
-  "ResponseError": ResponseError,
-  "ResponseSuccess": ResponseSuccess,
-  "Theme": Theme,
-  "UpdateLiveStreamKeyData": UpdateLiveStreamKeyData,
-  "UpdateLiveStreamKeyRequest": UpdateLiveStreamKeyRequest,
-  "UpdateLiveStreamKeyResponse": UpdateLiveStreamKeyResponse,
-  "UpdateLiveStreamVideoRequest": UpdateLiveStreamVideoRequest,
-  "UpdatePlayerThemeRequest": UpdatePlayerThemeRequest,
-  "UpdatePlayerThemeResponse": UpdatePlayerThemeResponse,
-  "UpdateVideoInfoRequest": UpdateVideoInfoRequest,
-  "UpdateWebhookRequest": UpdateWebhookRequest,
-  "UploadLogoByIdResponse": UploadLogoByIdResponse,
-  "Video": Video,
-  "VideoAssets": VideoAssets,
-  "VideoCaption": VideoCaption,
-  "VideoChapter": VideoChapter,
-  "VideoWatermark": VideoWatermark,
-  "Webhook": Webhook,
-}
+const typeMap: { [index: string]: any } = {
+  AddPlayerThemesToVideoRequest: AddPlayerThemesToVideoRequest,
+  AddVideoToPlaylistRequest: AddVideoToPlaylistRequest,
+  ApiKey: ApiKey,
+  Asset: Asset,
+  AudioConfig: AudioConfig,
+  Controls: Controls,
+  CreateApiKeyData: CreateApiKeyData,
+  CreateApiKeyRequest: CreateApiKeyRequest,
+  CreateApiKeyResponse: CreateApiKeyResponse,
+  CreateLiveStreamKeyRequest: CreateLiveStreamKeyRequest,
+  CreateLiveStreamKeyResponse: CreateLiveStreamKeyResponse,
+  CreateMediaRequest: CreateMediaRequest,
+  CreateMediaResponse: CreateMediaResponse,
+  CreatePlayerThemeRequest: CreatePlayerThemeRequest,
+  CreatePlayerThemesData: CreatePlayerThemesData,
+  CreatePlayerThemesResponse: CreatePlayerThemesResponse,
+  CreatePlaylistData: CreatePlaylistData,
+  CreatePlaylistRequest: CreatePlaylistRequest,
+  CreatePlaylistResponse: CreatePlaylistResponse,
+  CreateStreamingRequest: CreateStreamingRequest,
+  CreateStreamingResponse: CreateStreamingResponse,
+  CreateVideoCaptionData: CreateVideoCaptionData,
+  CreateVideoCaptionResponse: CreateVideoCaptionResponse,
+  CreateVideoChapterData: CreateVideoChapterData,
+  CreateVideoChapterResponse: CreateVideoChapterResponse,
+  CreateWebhookData: CreateWebhookData,
+  CreateWebhookRequest: CreateWebhookRequest,
+  CreateWebhookResponse: CreateWebhookResponse,
+  GetApiKeysData: GetApiKeysData,
+  GetApiKeysResponse: GetApiKeysResponse,
+  GetLiveStreamKeyData: GetLiveStreamKeyData,
+  GetLiveStreamKeyResponse: GetLiveStreamKeyResponse,
+  GetLiveStreamKeysListData: GetLiveStreamKeysListData,
+  GetLiveStreamKeysListResponse: GetLiveStreamKeysListResponse,
+  GetLiveStreamMediasRequest: GetLiveStreamMediasRequest,
+  GetLiveStreamMediasResponse: GetLiveStreamMediasResponse,
+  GetLiveStreamMulticastResponse: GetLiveStreamMulticastResponse,
+  GetLiveStreamStatisticResponse: GetLiveStreamStatisticResponse,
+  GetLiveStreamVideoPublicResponse: GetLiveStreamVideoPublicResponse,
+  GetLiveStreamVideoResponse: GetLiveStreamVideoResponse,
+  GetPlayerThemeByIdData: GetPlayerThemeByIdData,
+  GetPlayerThemeByIdResponse: GetPlayerThemeByIdResponse,
+  GetPlayerThemeData: GetPlayerThemeData,
+  GetPlayerThemeResponse: GetPlayerThemeResponse,
+  GetPlaylistByIdData: GetPlaylistByIdData,
+  GetPlaylistByIdResponse: GetPlaylistByIdResponse,
+  GetPlaylistListData: GetPlaylistListData,
+  GetPlaylistListRequest: GetPlaylistListRequest,
+  GetPlaylistListResponse: GetPlaylistListResponse,
+  GetStreamingResponse: GetStreamingResponse,
+  GetStreamingsResponse: GetStreamingsResponse,
+  GetTranscodeCostData: GetTranscodeCostData,
+  GetTranscodeCostResponse: GetTranscodeCostResponse,
+  GetUserWebhookData: GetUserWebhookData,
+  GetUserWebhookResponse: GetUserWebhookResponse,
+  GetVideoCaptionsData: GetVideoCaptionsData,
+  GetVideoCaptionsResponse: GetVideoCaptionsResponse,
+  GetVideoChaptersData: GetVideoChaptersData,
+  GetVideoChaptersResponse: GetVideoChaptersResponse,
+  GetVideoDetailResponse: GetVideoDetailResponse,
+  GetVideoListData: GetVideoListData,
+  GetVideoListRequest: GetVideoListRequest,
+  GetVideoListResponse: GetVideoListResponse,
+  GetVideoPlayerInfoResponse: GetVideoPlayerInfoResponse,
+  GetWebhooksListData: GetWebhooksListData,
+  GetWebhooksListResponse: GetWebhooksListResponse,
+  LiveStreamAssets: LiveStreamAssets,
+  LiveStreamKeyData: LiveStreamKeyData,
+  LiveStreamMediaData: LiveStreamMediaData,
+  LiveStreamMediaResponse: LiveStreamMediaResponse,
+  LiveStreamMediasResponse: LiveStreamMediasResponse,
+  LiveStreamMulticast: LiveStreamMulticast,
+  LiveStreamStatisticResp: LiveStreamStatisticResp,
+  Media: Media,
+  Metadata: Metadata,
+  MoveVideoInPlaylistRequest: MoveVideoInPlaylistRequest,
+  PlayerTheme: PlayerTheme,
+  Playlist: Playlist,
+  PlaylistItem: PlaylistItem,
+  PlaylistItemMedia: PlaylistItemMedia,
+  PublicPlaylistObject: PublicPlaylistObject,
+  QualityConfig: QualityConfig,
+  QualityObject: QualityObject,
+  RemovePlayerThemesFromVideoRequest: RemovePlayerThemesFromVideoRequest,
+  RenameAPIKeyRequest: RenameAPIKeyRequest,
+  RequestCreateCaption: RequestCreateCaption,
+  ResponseError: ResponseError,
+  ResponseSuccess: ResponseSuccess,
+  Theme: Theme,
+  UpdateLiveStreamKeyData: UpdateLiveStreamKeyData,
+  UpdateLiveStreamKeyRequest: UpdateLiveStreamKeyRequest,
+  UpdateLiveStreamKeyResponse: UpdateLiveStreamKeyResponse,
+  UpdateLiveStreamMediaRequest: UpdateLiveStreamMediaRequest,
+  UpdatePlayerThemeRequest: UpdatePlayerThemeRequest,
+  UpdatePlayerThemeResponse: UpdatePlayerThemeResponse,
+  UpdateVideoInfoRequest: UpdateVideoInfoRequest,
+  UpdateWebhookRequest: UpdateWebhookRequest,
+  UploadLogoByIdResponse: UploadLogoByIdResponse,
+  UpsertLiveStreamMulticastInput: UpsertLiveStreamMulticastInput,
+  User: User,
+  VideoAssets: VideoAssets,
+  VideoCaption: VideoCaption,
+  VideoChapter: VideoChapter,
+  VideoConfig: VideoConfig,
+  VideoWatermark: VideoWatermark,
+  Webhook: Webhook,
+};
 
 export default class ObjectSerializer {
   public static findCorrectType(data: any, expectedType: string): string {
@@ -250,32 +268,38 @@ export default class ObjectSerializer {
     return expectedType;
   }
 
-  public static serialize(data: any, type: string, format: string, defaultValue?: any): any {
+  public static serialize(
+    data: any,
+    type: string,
+    format: string,
+    defaultValue?: any
+  ): any {
     if (data == undefined) {
-      if(typeof defaultValue === "undefined") {
+      if (typeof defaultValue === 'undefined') {
         return data;
       }
       data = defaultValue;
     }
     if (primitives.indexOf(type.toLowerCase()) !== -1) {
       return data;
-    } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
-      let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
+    } else if (type.lastIndexOf('Array<', 0) === 0) {
+      // string.startsWith pre es6
+      let subType: string = type.replace('Array<', ''); // Array<Type> => Type>
       subType = subType.substring(0, subType.length - 1); // Type> => Type
-      let transformedData: any[] = [];
-      for (let index in data) {
-        let date = data[index];
+      const transformedData: any[] = [];
+      for (const index in data) {
+        const date = data[index];
         transformedData.push(ObjectSerializer.serialize(date, subType, format));
       }
       return transformedData;
-    } else if (type === "Date") {
-      if (format == "date") {
-        let month = data.getMonth()+1
-        month = month < 10 ? "0" + month.toString() : month.toString()
+    } else if (type === 'Date') {
+      if (format == 'date') {
+        let month = data.getMonth() + 1;
+        month = month < 10 ? '0' + month.toString() : month.toString();
         let day = data.getDate();
-        day = day < 10 ? "0" + day.toString() : day.toString();
+        day = day < 10 ? '0' + day.toString() : day.toString();
 
-        return data.getFullYear() + "-" + month + "-" + day;
+        return data.getFullYear() + '-' + month + '-' + day;
       } else {
         return data.toISOString().split('.')[0] + 'Z';
       }
@@ -283,19 +307,25 @@ export default class ObjectSerializer {
       if (enumsMap.has(type)) {
         return data;
       }
-      if (!typeMap[type]) { // in case we dont know the type
+      if (!typeMap[type]) {
+        // in case we dont know the type
         return data;
       }
-      
+
       // Get the actual type of this object
       type = this.findCorrectType(data, type);
 
       // get the map for the correct type.
-      let attributeTypes = typeMap[type].getAttributeTypeMap();
-      let instance: {[index: string]: any} = {};
-      for (let index in attributeTypes) {
-        let attributeType = attributeTypes[index];
-        instance[attributeType.baseName] = ObjectSerializer.serialize(data[attributeType.name], attributeType.type, attributeType.format, attributeType.defaultValue);
+      const attributeTypes = typeMap[type].getAttributeTypeMap();
+      const instance: { [index: string]: any } = {};
+      for (const index in attributeTypes) {
+        const attributeType = attributeTypes[index];
+        instance[attributeType.baseName] = ObjectSerializer.serialize(
+          data[attributeType.name],
+          attributeType.type,
+          attributeType.format,
+          attributeType.defaultValue
+        );
       }
       return instance;
     }
@@ -308,35 +338,43 @@ export default class ObjectSerializer {
       return data;
     } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
       return data;
-    } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
-      let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
+    } else if (type.lastIndexOf('Array<', 0) === 0) {
+      // string.startsWith pre es6
+      let subType: string = type.replace('Array<', ''); // Array<Type> => Type>
       subType = subType.substring(0, subType.length - 1); // Type> => Type
-      let transformedData: any[] = [];
-      for (let index in data) {
-        let date = data[index];
-        transformedData.push(ObjectSerializer.deserialize(date, subType, format));
+      const transformedData: any[] = [];
+      for (const index in data) {
+        const date = data[index];
+        transformedData.push(
+          ObjectSerializer.deserialize(date, subType, format)
+        );
       }
       return transformedData;
-    } else if (type === "Date") {
+    } else if (type === 'Date') {
       return new Date(data);
     } else {
-      if (enumsMap.has(type)) {// is Enum
+      if (enumsMap.has(type)) {
+        // is Enum
         return data;
       }
 
-      if (!typeMap[type]) { // dont know the type
+      if (!typeMap[type]) {
+        // dont know the type
         return data;
       }
-      let instance = new typeMap[type]();
-      let attributeTypes = typeMap[type].getAttributeTypeMap();
-      for (let index in attributeTypes) {
-        let attributeType = attributeTypes[index];
-        instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type, attributeType.format);
+      const instance = new typeMap[type]();
+      const attributeTypes = typeMap[type].getAttributeTypeMap();
+      for (const index in attributeTypes) {
+        const attributeType = attributeTypes[index];
+        instance[attributeType.name] = ObjectSerializer.deserialize(
+          data[attributeType.baseName],
+          attributeType.type,
+          attributeType.format
+        );
       }
       return instance;
     }
   }
-
 
   /**
    * Normalize media type
@@ -344,11 +382,13 @@ export default class ObjectSerializer {
    * We currently do not handle any media types attributes, i.e. anything
    * after a semicolon. All content is assumed to be UTF-8 compatible.
    */
-  public static normalizeMediaType(mediaType: string | undefined): string | undefined {
+  public static normalizeMediaType(
+    mediaType: string | undefined
+  ): string | undefined {
     if (mediaType === undefined) {
       return undefined;
     }
-    return mediaType.split(";")[0].trim().toLowerCase();
+    return mediaType.split(';')[0].trim().toLowerCase();
   }
 
   /**
@@ -360,12 +400,14 @@ export default class ObjectSerializer {
   public static getPreferredMediaType(mediaTypes: Array<string>): string {
     /** According to OAS 3 we should default to json */
     if (!mediaTypes) {
-      return "application/json";
+      return 'application/json';
     }
 
-    const normalMediaTypes = mediaTypes.map(this.normalizeMediaType).filter(mt => mt);
+    const normalMediaTypes = mediaTypes
+      .map(this.normalizeMediaType)
+      .filter((mt) => mt);
     let selectedMediaType: string | undefined = undefined;
-    let selectedRank: number = -Infinity;
+    let selectedRank = -Infinity;
     for (const mediaType of normalMediaTypes) {
       if (supportedMediaTypes[mediaType!] > selectedRank) {
         selectedMediaType = mediaType;
@@ -374,7 +416,9 @@ export default class ObjectSerializer {
     }
 
     if (selectedMediaType === undefined) {
-      throw new Error("None of the given media types are supported: " + mediaTypes.join(", "));
+      throw new Error(
+        'None of the given media types are supported: ' + mediaTypes.join(', ')
+      );
     }
 
     return selectedMediaType!;
@@ -384,7 +428,7 @@ export default class ObjectSerializer {
    * Convert data to a string according the given media type
    */
   public static stringify(data: any, mediaType: string): string {
-    if (mediaType === "application/json") {
+    if (mediaType === 'application/json') {
       return JSON.stringify(data);
     }
 
@@ -393,7 +437,11 @@ export default class ObjectSerializer {
       return data;
     }
 
-    throw new Error("The mediaType " + mediaType + " is not supported by ObjectSerializer.stringify.");
+    throw new Error(
+      'The mediaType ' +
+        mediaType +
+        ' is not supported by ObjectSerializer.stringify.'
+    );
   }
 
   /**
@@ -406,13 +454,20 @@ export default class ObjectSerializer {
         return rawData;
       }
 
-      throw new Error("Cannot parse content. No Content-Type defined.");
+      throw new Error('Cannot parse content. No Content-Type defined.');
     }
 
-    if (mediaType === "application/json" || mediaType.indexOf("application/vnd.stream+json;version=") === 0) {
+    if (
+      mediaType === 'application/json' ||
+      mediaType.indexOf('application/vnd.stream+json;version=') === 0
+    ) {
       return JSON.parse(rawData);
     }
 
-    throw new Error("The mediaType " + mediaType + " is not supported by ObjectSerializer.parse.");
+    throw new Error(
+      'The mediaType ' +
+        mediaType +
+        ' is not supported by ObjectSerializer.parse.'
+    );
   }
 }

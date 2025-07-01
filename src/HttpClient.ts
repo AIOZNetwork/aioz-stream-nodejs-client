@@ -23,22 +23,20 @@ export type QueryOptions = {
   onUploadProgress?: (progressEvent: AxiosProgressEvent) => void;
 };
 
-
 export type ApiResponseHeaders = {
-  server: string
-  'content-type': string
-  'transfer-encoding': string
-  connection: string
-  'cache-control': string
-  date: string
-  'x-ratelimit-remaining': string
-  'x-ratelimit-retry-after': string
-  'x-ratelimit-limit': string
-  'x-server': string
-  'access-control-allow-origin': string
-  'timing-allow-origin': string
-}
-
+  server: string;
+  'content-type': string;
+  'transfer-encoding': string;
+  connection: string;
+  'cache-control': string;
+  date: string;
+  'x-ratelimit-remaining': string;
+  'x-ratelimit-retry-after': string;
+  'x-ratelimit-limit': string;
+  'x-server': string;
+  'access-control-allow-origin': string;
+  'timing-allow-origin': string;
+};
 
 export default class HttpClient {
   private publicKey?: string;

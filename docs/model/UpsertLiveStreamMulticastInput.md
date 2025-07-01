@@ -1,12 +1,11 @@
 
-# CreateVideoResponse
+# UpsertLiveStreamMulticastInput
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Video**](Video.md) |  |  [optional]
-**status** | **string** |  |  [optional]
+**multicastUrls** | **Array&lt;string&gt;** |  |  [optional]
 
 
 

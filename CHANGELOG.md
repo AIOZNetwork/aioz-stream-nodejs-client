@@ -1,7 +1,5 @@
 # Changelog
 All changes to this project will be documented in this file.
-## [1.0.9] - 2025-01-15
-- Update new sdk name
 
 ## [1.0.8] - 2025-01-15
 - Update sdk api live stream

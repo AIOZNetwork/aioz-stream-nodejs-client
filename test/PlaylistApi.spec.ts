@@ -5,9 +5,9 @@ import { openInvalidFile, openTestImageFile } from './Video.spec';
 import { v4 as uuidv4 } from 'uuid';
 
 let testPlaylistID: string | undefined;
-const testVideoIDOne = '2582cc17-ae70-428d-8937-309a380590eb';
-const testVideoIDTwo = 'f812a31b-617d-41de-95eb-ac5e173ddfb8';
-const testVideoIDThree = '8aa2c5e3-72a2-451e-ae99-73d65a4762b7';
+const testVideoIDOne = 'f45f9867-89c7-41fb-be3a-8079d32a607a';
+const testVideoIDTwo = 'e0609700-7232-4625-8d86-c6a9395a790d';
+const testVideoIDThree = '557c6028-4261-4570-91f5-05015ce289f1';
 let testFirstItemID: string | undefined;
 let testSecondItemID: string | undefined;
 let testThirdItemID: string | undefined;

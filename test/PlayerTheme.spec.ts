@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 let testPlayerIDForUpdateAndDeleteAndGet: string | undefined;
 const playerName = 'Test Player Theme';
 const logoURL = 'https://example.com/logo.png';
-const testVideoForPlayer = '2582cc17-ae70-428d-8937-309a380590eb';
+const testVideoForPlayer = 'f45f9867-89c7-41fb-be3a-8079d32a607a';
 
 const testClient = mockTestClient();
 const anonymousTestClient = anonymousMockTestClient();
@@ -166,6 +166,13 @@ describe('Players Service', () => {
   });
 
   describe('get', () => {
+    it('Get other', async () => {
+      await expect(
+        anonymousTestClient.players.get(
+          testPlayerIDForUpdateAndDeleteAndGet as string
+        )
+      ).rejects.toThrow(StreamError);
+    });
     it('Valid Get', async () => {
       const response = await testClient.players.get(
         testPlayerIDForUpdateAndDeleteAndGet as string
@@ -186,6 +193,16 @@ describe('Players Service', () => {
   });
 
   describe('update', () => {
+    it('Update other', async () => {
+      await expect(
+        anonymousTestClient.players.update(
+          testPlayerIDForUpdateAndDeleteAndGet as string,
+          {
+            name: 'Updated Player Theme',
+          }
+        )
+      ).rejects.toThrow(StreamError);
+    });
     it('Valid Update', async () => {
       const response = await testClient.players.update(
         testPlayerIDForUpdateAndDeleteAndGet as string,
@@ -261,6 +278,13 @@ describe('Players Service', () => {
   });
 
   describe('deleteLogo', () => {
+    it('Delete other', async () => {
+      await expect(
+        anonymousTestClient.players.deleteLogo(
+          testPlayerIDForUpdateAndDeleteAndGet as string
+        )
+      ).rejects.toThrow(StreamError);
+    });
     it('Valid Delete Logo', async () => {
       const response = await testClient.players.deleteLogo(
         testPlayerIDForUpdateAndDeleteAndGet as string

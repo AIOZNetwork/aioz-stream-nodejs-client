@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **playlistId** | **string** |  |  [optional]
 **previousId** | **string** |  |  [optional]
 **updatedAt** | **string** |  |  [optional]
-**video** | [**PlaylistItemVideo**](PlaylistItemVideo.md) |  |  [optional]
+**video** | [**PlaylistItemMedia**](PlaylistItemMedia.md) |  |  [optional]
 **videoId** | **string** |  |  [optional]
 
 

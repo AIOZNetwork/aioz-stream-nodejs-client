@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **ttl** | **string** |  |  [optional]
 **type** | **string** |  |  [optional]
 **updatedAt** | **string** |  |  [optional]
+**user** | [**User**](User.md) |  |  [optional]
 
 
 

@@ -1,5 +1,5 @@
 
-# PlaylistItemVideo
+# PlaylistItemMedia
 
 ## Properties
 

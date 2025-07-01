@@ -3,7 +3,7 @@
  * Aioz Stream Service
  *
  * The version of the OpenAPI document: 1.0
- * 
+ *
  *
  * NOTE: This class is auto generated.
  * Do not edit the class manually.
@@ -20,27 +20,26 @@ export default class CreateApiKeyRequest {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      "name": "apiKeyName",
-      "baseName": "api_key_name",
-      "type": "string",
-      "format": "",
+      name: 'apiKeyName',
+      baseName: 'api_key_name',
+      type: 'string',
+      format: '',
     },
     {
-      "name": "ttl",
-      "baseName": "ttl",
-      "type": "string",
-      "format": "",
+      name: 'ttl',
+      baseName: 'ttl',
+      type: 'string',
+      format: '',
     },
     {
-      "name": "type",
-      "baseName": "type",
-      "type": "string",
-      "format": "",
-    }  ];
+      name: 'type',
+      baseName: 'type',
+      type: 'string',
+      format: '',
+    },
+  ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
     return CreateApiKeyRequest.attributeTypeMap;
   }
-
 }
-

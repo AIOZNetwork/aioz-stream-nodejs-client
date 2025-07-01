@@ -3,7 +3,7 @@ import StreamError from '../src/StreamError';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { v4 as uuidv4 } from 'uuid';
 let testWebhookForUpdateAndDelete: string | undefined;
-const webhookURL = 'https://webhook.site/335e64d4-96f7-4bef-906a-b8cd3862a071';
+const webhookURL = 'https://webhook.site/b112b207-054e-415b-9540-1eba2bef5001';
 const webhookName = 'Test Webhook';
 
 const testClient = mockTestClient();

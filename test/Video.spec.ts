@@ -12,7 +12,7 @@ const description = 'Test Description';
 const testLang = 'en';
 // eslint-disable-next-line prefer-const
 let deletedVideoLater: string[] = [];
-const testVideoCaptionID = '8aa2c5e3-72a2-451e-ae99-73d65a4762b7';
+const testVideoCaptionID = '557c6028-4261-4570-91f5-05015ce289f1';
 
 async function getVideoFilePath(fileName: string): Promise<string> {
   return path.join(__dirname, '/data', fileName);
@@ -61,7 +61,13 @@ describe('Video Service', () => {
           { key: 'key1', value: 'value1' },
           { key: 'key2', value: 'value2' },
         ],
-        qualities: ['240p'],
+        qualities: [
+          {
+            type: 'hls',
+            containerType: 'mpegts',
+            resolution: '240p',
+          },
+        ],
         tags: ['tag1', 'tag2'],
       });
       expect(resp).toBeDefined();
@@ -72,7 +78,13 @@ describe('Video Service', () => {
     it('Name create oversize video', async () => {
       const resp = await testClient.video.create({
         title: 'Test Video',
-        qualities: ['720p'],
+        qualities: [
+          {
+            type: 'hls',
+            containerType: 'mpegts',
+            resolution: '240p',
+          },
+        ],
       });
       if (resp.data?.id) {
         deletedVideoLater.push(resp.data?.id as string);
@@ -82,7 +94,13 @@ describe('Video Service', () => {
     it('Valid Minimal Request', async () => {
       const resp = await testClient.video.create({
         title: 'Test Video',
-        qualities: ['720p'],
+        qualities: [
+          {
+            type: 'hls',
+            containerType: 'mpegts',
+            resolution: '240p',
+          },
+        ],
       });
       expect(resp).toBeDefined();
       if (resp.data?.id) {
@@ -93,7 +111,13 @@ describe('Video Service', () => {
     it('Invalid Title - Empty', async () => {
       await expect(
         testClient.video.create({
-          qualities: ['720p'],
+          qualities: [
+            {
+              type: 'hls',
+              containerType: 'mpegts',
+              resolution: '240p',
+            },
+          ],
         })
       ).rejects.toThrow(StreamError);
     });
@@ -102,7 +126,13 @@ describe('Video Service', () => {
       await expect(
         testClient.video.create({
           title: 'a'.repeat(256),
-          qualities: ['720p'],
+          qualities: [
+            {
+              type: 'hls',
+              containerType: 'mpegts',
+              resolution: '240p',
+            },
+          ],
         })
       ).rejects.toThrow(StreamError);
     });
@@ -112,7 +142,13 @@ describe('Video Service', () => {
         testClient.video.create({
           title: 'Test Video',
           description: 'a'.repeat(1001),
-          qualities: ['720p'],
+          qualities: [
+            {
+              type: 'hls',
+              containerType: 'mpegts',
+              resolution: '240p',
+            },
+          ],
         })
       ).rejects.toThrow(StreamError);
     });
@@ -121,7 +157,13 @@ describe('Video Service', () => {
       await expect(
         testClient.video.create({
           title: 'Test Video',
-          qualities: ['720p'],
+          qualities: [
+            {
+              type: 'hls',
+              containerType: 'mpegts',
+              resolution: '240p',
+            },
+          ],
           metadata: [{ key: 'a'.repeat(256), value: 'value' }],
         })
       ).rejects.toThrow();
@@ -131,7 +173,13 @@ describe('Video Service', () => {
       await expect(
         testClient.video.create({
           title: 'Test Video',
-          qualities: ['invalid_quality'],
+          qualities: [
+            {
+              type: 'invalid_quality',
+              containerType: 'mpegts',
+              resolution: '240p',
+            },
+          ],
         })
       ).rejects.toThrow(StreamError);
     });
@@ -364,7 +412,13 @@ describe('Video Service', () => {
           { key: 'key1', value: 'value1' },
           { key: 'key2', value: 'value2' },
         ],
-        qualities: ['240p'],
+        qualities: [
+          {
+            type: 'hls',
+            containerType: 'mpegts',
+            resolution: '240p',
+          },
+        ],
         tags: ['tag1', 'tag2'],
       });
       const testLowBalanceVideoID = resp.data?.id as string;
@@ -547,7 +601,13 @@ describe('Video Service', () => {
           { key: 'key1', value: 'value1' },
           { key: 'key2', value: 'value2' },
         ],
-        qualities: ['240p'],
+        qualities: [
+          {
+            type: 'hls',
+            containerType: 'mpegts',
+            resolution: '240p',
+          },
+        ],
         tags: ['tag1', 'tag2'],
       });
       expect(resp).toBeDefined();

@@ -15,7 +15,6 @@ Name | Type | Description | Notes
 **playlistUrl** | **string** |  |  [optional]
 **size** | **number** |  |  [optional]
 **tags** | **string** |  |  [optional]
-**thumbnailId** | **string** |  |  [optional]
 **thumbnailUrl** | **string** |  |  [optional]
 **updatedAt** | **string** |  |  [optional]
 **userId** | **string** |  |  [optional]
