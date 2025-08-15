@@ -208,7 +208,7 @@ Remove a player theme from a video by Id.
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**RemovePlayerThemesFromVideoRequest**](../model/RemovePlayerThemesFromVideoRequest.md)| **yes**| Remove player theme from video request |
+ | **request** | [**RemovePlayerThemesFromMediaRequest**](../model/RemovePlayerThemesFromMediaRequest.md)| **yes**| Remove player theme from video request |
 
 
 ### Return type

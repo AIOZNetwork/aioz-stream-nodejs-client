@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **createdAt** | **string** |  |  [optional]
 **expiredAt** | **string** |  |  [optional]
 **id** | **string** |  |  [optional]
-**lastUsedAt** | **string** |  |  [optional]
+**lastRequestedAt** | **string** |  |  [optional]
 **name** | **string** |  |  [optional]
 **publicKey** | **string** |  |  [optional]
 **secret** | **string** |  |  [optional]

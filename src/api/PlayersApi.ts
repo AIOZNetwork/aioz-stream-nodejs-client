@@ -20,7 +20,7 @@ import CreatePlayerThemeRequest from '../model/CreatePlayerThemeRequest';
 import CreatePlayerThemesResponse from '../model/CreatePlayerThemesResponse';
 import GetPlayerThemeByIdResponse from '../model/GetPlayerThemeByIdResponse';
 import GetPlayerThemeResponse from '../model/GetPlayerThemeResponse';
-import RemovePlayerThemesFromVideoRequest from '../model/RemovePlayerThemesFromVideoRequest';
+import RemovePlayerThemesFromMediaRequest from '../model/RemovePlayerThemesFromMediaRequest';
 import ResponseSuccess from '../model/ResponseSuccess';
 import UpdatePlayerThemeRequest from '../model/UpdatePlayerThemeRequest';
 import UpdatePlayerThemeResponse from '../model/UpdatePlayerThemeResponse';
@@ -556,7 +556,7 @@ export default class PlayersApi {
    * @param request Remove player theme from video request
    */
   public async removePlayer(
-    request: RemovePlayerThemesFromVideoRequest = {}
+    request: RemovePlayerThemesFromMediaRequest = {}
   ): Promise<ResponseSuccess> {
     return this.removePlayerWithResponseHeaders(request).then(
       (res) => res.body
@@ -569,7 +569,7 @@ export default class PlayersApi {
    * @param request Remove player theme from video request
    */
   public async removePlayerWithResponseHeaders(
-    request: RemovePlayerThemesFromVideoRequest = {}
+    request: RemovePlayerThemesFromMediaRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
@@ -590,7 +590,7 @@ export default class PlayersApi {
     queryParams.body = ObjectSerializer.stringify(
       ObjectSerializer.serialize(
         request,
-        'RemovePlayerThemesFromVideoRequest',
+        'RemovePlayerThemesFromMediaRequest',
         ''
       ),
       contentType
