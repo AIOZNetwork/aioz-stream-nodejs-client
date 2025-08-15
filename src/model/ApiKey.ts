@@ -16,7 +16,7 @@ export default class ApiKey {
   'createdAt'?: string;
   'expiredAt'?: string;
   'id'?: string;
-  'lastUsedAt'?: string;
+  'lastRequestedAt'?: string;
   'name'?: string;
   'publicKey'?: string;
   'secret'?: string;
@@ -48,8 +48,8 @@ export default class ApiKey {
       format: '',
     },
     {
-      name: 'lastUsedAt',
-      baseName: 'last_used_at',
+      name: 'lastRequestedAt',
+      baseName: 'last_requested_at',
       type: 'string',
       format: '',
     },

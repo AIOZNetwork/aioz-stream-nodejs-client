@@ -10,30 +10,29 @@
  */
 
 import AttributeType from './AttributeType.js';
-import GetLiveStreamKeyData from './GetLiveStreamKeyData.js';
 
-export default class GetLiveStreamKeysListData {
-  'liveStreamKeys'?: Array<GetLiveStreamKeyData>;
-  'total'?: number;
+export default class RemovePlayerThemesFromMediaRequest {
+  'playerThemeId'?: string;
+  'videoId'?: string;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'liveStreamKeys',
-      baseName: 'live_stream_keys',
-      type: 'Array<GetLiveStreamKeyData>',
+      name: 'playerThemeId',
+      baseName: 'player_theme_id',
+      type: 'string',
       format: '',
     },
     {
-      name: 'total',
-      baseName: 'total',
-      type: 'number',
+      name: 'videoId',
+      baseName: 'video_id',
+      type: 'string',
       format: '',
     },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return GetLiveStreamKeysListData.attributeTypeMap;
+    return RemovePlayerThemesFromMediaRequest.attributeTypeMap;
   }
 }

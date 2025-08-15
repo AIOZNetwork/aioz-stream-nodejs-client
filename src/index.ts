@@ -12,7 +12,6 @@
 import HttpClient from './HttpClient';
 
 import ApiKeyApi from './api/ApiKeyApi';
-import LiveStreamApi from './api/LiveStreamApi';
 import PlayersApi from './api/PlayersApi';
 import PlaylistApi from './api/PlaylistApi';
 import VideoApi from './api/VideoApi';
@@ -33,7 +32,6 @@ const MAX_CHUNK_SIZE = 128 * 1024 * 1024;
 class StreamClient {
   private httpClient: HttpClient;
   private _apiKey: ApiKeyApi;
-  private _liveStream: LiveStreamApi;
   private _players: PlayersApi;
   private _playlist: PlaylistApi;
   private _video: VideoApi;
@@ -79,7 +77,6 @@ class StreamClient {
     });
 
     this._apiKey = new ApiKeyApi(this.httpClient);
-    this._liveStream = new LiveStreamApi(this.httpClient);
     this._players = new PlayersApi(this.httpClient);
     this._playlist = new PlaylistApi(this.httpClient);
     this._video = new VideoApi(this.httpClient);
@@ -93,14 +90,6 @@ class StreamClient {
    */
   public get apiKey(): ApiKeyApi {
     return this._apiKey;
-  }
-
-  /**
-   * Get an LiveStreamApi instance
-   * @return LiveStreamApi
-   */
-  public get liveStream(): LiveStreamApi {
-    return this._liveStream;
   }
 
   /**

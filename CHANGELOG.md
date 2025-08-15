@@ -1,6 +1,9 @@
 # Changelog
 All changes to this project will be documented in this file.
 
+## [1.0.11] - 2025-08-15
+- Upgrade from temporarily hiding livestream
+
 ## [1.0.10] - 2025-07-01
 - Update sdk name and add new endpoint
 

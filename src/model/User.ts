@@ -16,9 +16,11 @@ export default class User {
   'createdAt'?: string;
   'debt'?: number;
   'email'?: string;
+  'exclusiveCode'?: string;
   'firstName'?: string;
   'id'?: string;
   'lastName'?: string;
+  'lastRequestedAt'?: string;
   'mediaQualitiesConfig'?: string;
   'updatedAt'?: string;
   'walletAddress'?: string;
@@ -52,6 +54,12 @@ export default class User {
       format: '',
     },
     {
+      name: 'exclusiveCode',
+      baseName: 'exclusive_code',
+      type: 'string',
+      format: '',
+    },
+    {
       name: 'firstName',
       baseName: 'first_name',
       type: 'string',
@@ -66,6 +74,12 @@ export default class User {
     {
       name: 'lastName',
       baseName: 'last_name',
+      type: 'string',
+      format: '',
+    },
+    {
+      name: 'lastRequestedAt',
+      baseName: 'last_requested_at',
       type: 'string',
       format: '',
     },
