@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
+import AddMediaToPlaylistRequest from './model/AddMediaToPlaylistRequest';
 import AddPlayerThemesToVideoRequest from './model/AddPlayerThemesToVideoRequest';
-import AddVideoToPlaylistRequest from './model/AddVideoToPlaylistRequest';
 import ApiKey from './model/ApiKey';
 import Asset from './model/Asset';
 import AudioConfig from './model/AudioConfig';
@@ -70,6 +70,7 @@ import PlaylistItemMedia from './model/PlaylistItemMedia';
 import PublicPlaylistObject from './model/PublicPlaylistObject';
 import QualityConfig from './model/QualityConfig';
 import QualityObject from './model/QualityObject';
+import RemoveMediasFromPlaylistRequest from './model/RemoveMediasFromPlaylistRequest';
 import RemovePlayerThemesFromMediaRequest from './model/RemovePlayerThemesFromMediaRequest';
 import RenameAPIKeyRequest from './model/RenameAPIKeyRequest';
 import RequestCreateCaption from './model/RequestCreateCaption';
@@ -116,8 +117,8 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
 const enumsMap: Set<string> = new Set<string>([]);
 
 const typeMap: { [index: string]: any } = {
+  AddMediaToPlaylistRequest: AddMediaToPlaylistRequest,
   AddPlayerThemesToVideoRequest: AddPlayerThemesToVideoRequest,
-  AddVideoToPlaylistRequest: AddVideoToPlaylistRequest,
   ApiKey: ApiKey,
   Asset: Asset,
   AudioConfig: AudioConfig,
@@ -176,6 +177,7 @@ const typeMap: { [index: string]: any } = {
   PublicPlaylistObject: PublicPlaylistObject,
   QualityConfig: QualityConfig,
   QualityObject: QualityObject,
+  RemoveMediasFromPlaylistRequest: RemoveMediasFromPlaylistRequest,
   RemovePlayerThemesFromMediaRequest: RemovePlayerThemesFromMediaRequest,
   RenameAPIKeyRequest: RenameAPIKeyRequest,
   RequestCreateCaption: RequestCreateCaption,

@@ -21,6 +21,7 @@ export default class GetVideoListRequest {
   'sortBy'?: string;
   'status'?: string;
   'tags'?: Array<string>;
+  'type'?: string;
 
   static readonly discriminator?: string = undefined;
 
@@ -71,6 +72,12 @@ export default class GetVideoListRequest {
       name: 'tags',
       baseName: 'tags',
       type: 'Array<string>',
+      format: '',
+    },
+    {
+      name: 'type',
+      baseName: 'type',
+      type: 'string',
       format: '',
     },
   ];

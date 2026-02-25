@@ -13,7 +13,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
+          node-version: "16"
       - name: Install dependencies
         run: npm install
 
@@ -27,7 +27,9 @@ jobs:
         run: npm install dotenv --save
 
       - name: Install uuid
-        run: npm install uuid
+        run: |
+          npm install uuid@8
+          npm install --save-dev @types/uuid
 
       - name: Create env file
         run: |
@@ -39,5 +41,3 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-

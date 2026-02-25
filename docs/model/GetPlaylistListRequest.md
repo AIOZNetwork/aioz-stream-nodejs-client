@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **metadata** | [**Array&lt;Metadata&gt;**](Metadata.md) |  |  [optional]
 **offset** | **number** |  |  [optional]
 **orderBy** | **string** |  |  [optional]
+**playlistType** | **string** |  |  [optional]
 **search** | **string** |  |  [optional]
 **sortBy** | **string** |  |  [optional]
 **tags** | **Array&lt;string&gt;** |  |  [optional]

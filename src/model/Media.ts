@@ -35,6 +35,7 @@ export default class Media {
   'status'?: string;
   'tags'?: Array<string>;
   'title'?: string;
+  'type'?: string;
   'updatedAt'?: string;
   'userId'?: string;
   'view'?: number;
@@ -141,6 +142,12 @@ export default class Media {
     {
       name: 'title',
       baseName: 'title',
+      type: 'string',
+      format: '',
+    },
+    {
+      name: 'type',
+      baseName: 'type',
       type: 'string',
       format: '',
     },
