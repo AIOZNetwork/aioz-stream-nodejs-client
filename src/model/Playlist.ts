@@ -20,6 +20,7 @@ export default class Playlist {
   'itemCount'?: number;
   'metadata'?: { [key: string]: string };
   'name'?: string;
+  'playlistType'?: string;
   'playlistUrl'?: string;
   'size'?: number;
   'tags'?: string;
@@ -70,6 +71,12 @@ export default class Playlist {
     {
       name: 'name',
       baseName: 'name',
+      type: 'string',
+      format: '',
+    },
+    {
+      name: 'playlistType',
+      baseName: 'playlist_type',
       type: 'string',
       format: '',
     },

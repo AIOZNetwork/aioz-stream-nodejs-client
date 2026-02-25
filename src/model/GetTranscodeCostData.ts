@@ -13,7 +13,7 @@ import AttributeType from './AttributeType.js';
 
 export default class GetTranscodeCostData {
   'isEnough'?: boolean;
-  'price'?: string;
+  'price'?: number;
 
   static readonly discriminator?: string = undefined;
 
@@ -27,7 +27,7 @@ export default class GetTranscodeCostData {
     {
       name: 'price',
       baseName: 'price',
-      type: 'string',
+      type: 'number',
       format: '',
     },
   ];

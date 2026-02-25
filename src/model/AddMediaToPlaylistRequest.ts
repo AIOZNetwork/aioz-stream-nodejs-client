@@ -10,44 +10,36 @@
  */
 
 import AttributeType from './AttributeType.js';
-import Metadata from './Metadata.js';
 
-export default class CreatePlaylistRequest {
-  'metadata'?: Array<Metadata>;
-  'name'?: string;
-  'playlistType'?: string;
-  'tags'?: Array<string>;
+export default class AddMediaToPlaylistRequest {
+  'mediaId'?: string;
+  'optionMediaIds'?: Array<string>;
+  'optionPlaylists'?: Array<string>;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'metadata',
-      baseName: 'metadata',
-      type: 'Array<Metadata>',
-      format: '',
-    },
-    {
-      name: 'name',
-      baseName: 'name',
+      name: 'mediaId',
+      baseName: 'media_id',
       type: 'string',
       format: '',
     },
     {
-      name: 'playlistType',
-      baseName: 'playlist_type',
-      type: 'string',
+      name: 'optionMediaIds',
+      baseName: 'option_media_ids',
+      type: 'Array<string>',
       format: '',
     },
     {
-      name: 'tags',
-      baseName: 'tags',
+      name: 'optionPlaylists',
+      baseName: 'option_playlists',
       type: 'Array<string>',
       format: '',
     },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return CreatePlaylistRequest.attributeTypeMap;
+    return AddMediaToPlaylistRequest.attributeTypeMap;
   }
 }
