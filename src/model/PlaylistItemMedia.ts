@@ -10,13 +10,17 @@
  */
 
 import AttributeType from './AttributeType.js';
+import VideoCaption from './VideoCaption.js';
 import VideoChapter from './VideoChapter.js';
 
 export default class PlaylistItemMedia {
+  'captions'?: Array<VideoCaption>;
   'chapters'?: Array<VideoChapter>;
+  'description'?: string;
   'duration'?: number;
   'hlsUrl'?: string;
   'qualities'?: string;
+  'size'?: number;
   'thumbnailUrl'?: string;
   'title'?: string;
 
@@ -24,9 +28,21 @@ export default class PlaylistItemMedia {
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
+      name: 'captions',
+      baseName: 'captions',
+      type: 'Array<VideoCaption>',
+      format: '',
+    },
+    {
       name: 'chapters',
       baseName: 'chapters',
       type: 'Array<VideoChapter>',
+      format: '',
+    },
+    {
+      name: 'description',
+      baseName: 'description',
+      type: 'string',
       format: '',
     },
     {
@@ -45,6 +61,12 @@ export default class PlaylistItemMedia {
       name: 'qualities',
       baseName: 'qualities',
       type: 'string',
+      format: '',
+    },
+    {
+      name: 'size',
+      baseName: 'size',
+      type: 'number',
       format: '',
     },
     {

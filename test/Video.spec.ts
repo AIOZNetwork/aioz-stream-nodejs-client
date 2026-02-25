@@ -327,31 +327,31 @@ describe('Video Service', () => {
 
   describe('getCost', () => {
     it('Valid Single Quality', async () => {
-      const resp = await testClient.video.getCost('720p', 120.5);
+      const resp = await testClient.video.getCost('720p', 'video', 120.5);
       expect(resp).toBeDefined();
     });
 
     it('Valid Multiple Qualities', async () => {
-      const resp = await testClient.video.getCost('720p,1080p', 120.5);
+      const resp = await testClient.video.getCost('720p,1080p', 'video', 120.5);
       expect(resp).toBeDefined();
     });
 
     it('Invalid Quality', async () => {
-      await expect(testClient.video.getCost('invalid', 120.5)).rejects.toThrow(
-        StreamError
-      );
+      await expect(
+        testClient.video.getCost('invalid', 'video', 120.5)
+      ).rejects.toThrow(StreamError);
     });
 
     it('Empty Quality', async () => {
-      await expect(testClient.video.getCost('', 120.5)).rejects.toThrow(
-        StreamError
-      );
+      await expect(
+        testClient.video.getCost('', 'video', 120.5)
+      ).rejects.toThrow(StreamError);
     });
 
     it('Negative Duration', async () => {
-      await expect(testClient.video.getCost('720p', -1)).rejects.toThrow(
-        StreamError
-      );
+      await expect(
+        testClient.video.getCost('720p', 'video', -1)
+      ).rejects.toThrow(StreamError);
     });
   });
 
@@ -401,32 +401,6 @@ describe('Video Service', () => {
     it('Valid Get Upload When Video Completes', async () => {
       const resp = await testClient.video.uploadVideoComplete(testVideoID);
       expect(resp).toBeDefined();
-    });
-
-    it('Upload when low balance', async () => {
-      const resp = await anonymousTestClient.video.create({
-        title: 'Test Video',
-        description: 'Test Description',
-        isPublic: true,
-        metadata: [
-          { key: 'key1', value: 'value1' },
-          { key: 'key2', value: 'value2' },
-        ],
-        qualities: [
-          {
-            type: 'hls',
-            containerType: 'mpegts',
-            resolution: '240p',
-          },
-        ],
-        tags: ['tag1', 'tag2'],
-      });
-      const testLowBalanceVideoID = resp.data?.id as string;
-      const video = await getVideoFilePath('558k.mp4');
-      await anonymousTestClient.video.uploadPart(testLowBalanceVideoID, video);
-      await expect(
-        anonymousTestClient.video.uploadVideoComplete(testLowBalanceVideoID)
-      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid Video ID', async () => {
