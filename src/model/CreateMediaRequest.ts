@@ -15,13 +15,41 @@ import QualityConfig from './QualityConfig.js';
 import VideoWatermark from './VideoWatermark.js';
 
 export default class CreateMediaRequest {
+  /**
+   * Description of the media
+   */
   'description'?: string;
+  /**
+   * // Is panoramic media IsPanoramic *bool `json:\"is_panoramic\" form:\"is_panoramic\"` Is public media
+   */
   'isPublic'?: boolean;
+  /**
+   * Metadata of the media (key-value pair, max: 50 items, key max length: 255, value max length: 255)
+   */
   'metadata'?: Array<Metadata>;
+  /**
+   * Qualities of the media (default: 1080p, 720p,  360p, allow:2160p, 1440p, 1080p, 720p,  360p, 240p, 144p)
+   */
   'qualities'?: Array<QualityConfig>;
+  /**
+   * SegmentConfig
+   */
   'segmentDuration'?: number;
+  /**
+   * Tags of the media (max: 50 items, max length: 255)
+   */
   'tags'?: Array<string>;
+  /**
+   * Title of the media
+   */
   'title'?: string;
+  /**
+   * Type of the media (default: video, allowed: video, audio)
+   */
+  'type'?: string;
+  /**
+   * Media thumbnailConfig
+   */
   'watermark'?: VideoWatermark;
 
   static readonly discriminator?: string = undefined;
@@ -66,6 +94,12 @@ export default class CreateMediaRequest {
     {
       name: 'title',
       baseName: 'title',
+      type: 'string',
+      format: '',
+    },
+    {
+      name: 'type',
+      baseName: 'type',
       type: 'string',
       format: '',
     },

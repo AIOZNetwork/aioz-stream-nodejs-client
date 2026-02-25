@@ -107,7 +107,7 @@ Method | Description | HTTP request
 [**getPlaylistPublicInfo()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/PlaylistApi.md#getPlaylistPublicInfo) | Get a playlist public | **GET** `/playlists/{id}/player.json`
 [**getPlaylists()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/PlaylistApi.md#getPlaylists) | Get user&#39;s playlists | **POST** `/playlists`
 [**moveVideoInPlaylist()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/PlaylistApi.md#moveVideoInPlaylist) | Move a video in a playlist | **PUT** `/playlists/{id}/items`
-[**removeVideoFromPlaylist()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/PlaylistApi.md#removeVideoFromPlaylist) | Remove a video from a playlist | **DELETE** `/playlists/{id}/items/{item_id}`
+[**removeMediaFromPlaylist()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/PlaylistApi.md#removeMediaFromPlaylist) | Remove a media from a playlist | **DELETE** `/playlists/{id}/items/{item_id}`
 [**updatePlaylist()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/PlaylistApi.md#updatePlaylist) | Update a playlist | **PATCH** `/playlists/{id}`
 
 
@@ -156,8 +156,8 @@ Method | Description | HTTP request
 
 ### Models
 
+ - [AddMediaToPlaylistRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/AddMediaToPlaylistRequest.md)
  - [AddPlayerThemesToVideoRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/AddPlayerThemesToVideoRequest.md)
- - [AddVideoToPlaylistRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/AddVideoToPlaylistRequest.md)
  - [ApiKey](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ApiKey.md)
  - [Asset](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Asset.md)
  - [AudioConfig](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/AudioConfig.md)
@@ -216,6 +216,7 @@ Method | Description | HTTP request
  - [PublicPlaylistObject](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/PublicPlaylistObject.md)
  - [QualityConfig](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/QualityConfig.md)
  - [QualityObject](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/QualityObject.md)
+ - [RemoveMediasFromPlaylistRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/RemoveMediasFromPlaylistRequest.md)
  - [RemovePlayerThemesFromMediaRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/RemovePlayerThemesFromMediaRequest.md)
  - [RenameAPIKeyRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/RenameAPIKeyRequest.md)
  - [RequestCreateCaption](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/RequestCreateCaption.md)

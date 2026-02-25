@@ -149,7 +149,7 @@ describe('Playlist Service', () => {
         anonymousTestClient.playlist.addVideoToPlaylist(
           testPlaylistID as string,
           {
-            videoId: testVideoIDOne,
+            mediaId: testVideoIDOne,
           }
         )
       ).rejects.toThrow(StreamError);
@@ -158,7 +158,7 @@ describe('Playlist Service', () => {
       const response = await testClient.playlist.addVideoToPlaylist(
         testPlaylistID as string,
         {
-          videoId: testVideoIDOne,
+          mediaId: testVideoIDOne,
         }
       );
       expect(response).toBeDefined();
@@ -168,7 +168,7 @@ describe('Playlist Service', () => {
       const response = await testClient.playlist.addVideoToPlaylist(
         testPlaylistID as string,
         {
-          videoId: testVideoIDTwo,
+          mediaId: testVideoIDTwo,
         }
       );
       expect(response).toBeDefined();
@@ -178,7 +178,7 @@ describe('Playlist Service', () => {
       const response = await testClient.playlist.addVideoToPlaylist(
         testPlaylistID as string,
         {
-          videoId: testVideoIDThree,
+          mediaId: testVideoIDThree,
         }
       );
       expect(response).toBeDefined();
@@ -187,7 +187,7 @@ describe('Playlist Service', () => {
     it('Missing Video ID', async () => {
       await expect(
         testClient.playlist.addVideoToPlaylist(testPlaylistID as string, {
-          videoId: '',
+          mediaId: '',
         })
       ).rejects.toThrow(StreamError);
     });
@@ -202,7 +202,7 @@ describe('Playlist Service', () => {
       const newId = uuidv4();
       await expect(
         testClient.playlist.addVideoToPlaylist(newId, {
-          videoId: testVideoIDOne,
+          mediaId: testVideoIDOne,
         })
       ).rejects.toThrow(StreamError);
     });
@@ -332,14 +332,14 @@ describe('Playlist Service', () => {
   describe('Remove Video from Playlist', () => {
     it('Remove other', async () => {
       await expect(
-        anonymousTestClient.playlist.removeVideoFromPlaylist(
+        anonymousTestClient.playlist.removeMediaFromPlaylist(
           testPlaylistID as string,
           testFirstItemID as string
         )
       ).rejects.toThrow(StreamError);
     });
     it('Valid Remove First Video Request', async () => {
-      const response = await testClient.playlist.removeVideoFromPlaylist(
+      const response = await testClient.playlist.removeMediaFromPlaylist(
         testPlaylistID as string,
         testFirstItemID as string
       );
@@ -347,7 +347,7 @@ describe('Playlist Service', () => {
     });
 
     it('Valid Remove Second Video Request', async () => {
-      const response = await testClient.playlist.removeVideoFromPlaylist(
+      const response = await testClient.playlist.removeMediaFromPlaylist(
         testPlaylistID as string,
         testSecondItemID as string
       );
@@ -355,7 +355,7 @@ describe('Playlist Service', () => {
     });
 
     it('Valid Remove Third Video Request', async () => {
-      const response = await testClient.playlist.removeVideoFromPlaylist(
+      const response = await testClient.playlist.removeMediaFromPlaylist(
         testPlaylistID as string,
         testThirdItemID as string
       );
@@ -364,13 +364,13 @@ describe('Playlist Service', () => {
 
     it('Invalid Playlist ID', async () => {
       await expect(
-        testClient.playlist.removeVideoFromPlaylist('', testVideoIDOne)
+        testClient.playlist.removeMediaFromPlaylist('', testVideoIDOne)
       ).rejects.toThrow(StreamError);
     });
 
     it('Missing Item ID', async () => {
       await expect(
-        testClient.playlist.removeVideoFromPlaylist(
+        testClient.playlist.removeMediaFromPlaylist(
           testPlaylistID as string,
           ''
         )
@@ -380,7 +380,7 @@ describe('Playlist Service', () => {
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
-        testClient.playlist.removeVideoFromPlaylist(newId, newId)
+        testClient.playlist.removeMediaFromPlaylist(newId, newId)
       ).rejects.toThrow(StreamError);
     });
   });

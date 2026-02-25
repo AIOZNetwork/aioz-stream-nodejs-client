@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **isEnough** | **boolean** |  |  [optional]
-**price** | **string** |  |  [optional]
+**price** | **number** |  |  [optional]
 
 
 
