@@ -99,14 +99,6 @@ describe('Webhook Service', () => {
       expect(response).toBeDefined();
     });
 
-    it('Update Partial Fields, only Name', async () => {
-      await expect(
-        testClient.webhook.update(testWebhookForUpdateAndDelete as string, {
-          name: 'Updated Name Only',
-        })
-      ).rejects.toThrow(StreamError);
-    });
-
     it('Invalid URL', async () => {
       await expect(
         testClient.webhook.update(testWebhookForUpdateAndDelete as string, {

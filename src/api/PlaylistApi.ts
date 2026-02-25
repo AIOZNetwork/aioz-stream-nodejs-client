@@ -15,7 +15,7 @@ import { URLSearchParams } from 'url';
 import FormData from 'form-data';
 import ObjectSerializer, { COLLECTION_FORMATS } from '../ObjectSerializer';
 import HttpClient, { QueryOptions, ApiResponseHeaders } from '../HttpClient';
-import AddVideoToPlaylistRequest from '../model/AddVideoToPlaylistRequest';
+import AddMediaToPlaylistRequest from '../model/AddMediaToPlaylistRequest';
 import CreatePlaylistRequest from '../model/CreatePlaylistRequest';
 import CreatePlaylistResponse from '../model/CreatePlaylistResponse';
 import GetPlaylistByIdResponse from '../model/GetPlaylistByIdResponse';
@@ -24,6 +24,7 @@ import GetPlaylistListResponse from '../model/GetPlaylistListResponse';
 import Metadata from '../model/Metadata';
 import MoveVideoInPlaylistRequest from '../model/MoveVideoInPlaylistRequest';
 import PublicPlaylistObject from '../model/PublicPlaylistObject';
+import RemoveMediasFromPlaylistRequest from '../model/RemoveMediasFromPlaylistRequest';
 import ResponseSuccess from '../model/ResponseSuccess';
 import { Readable } from 'stream';
 import { readableToBuffer } from '../HttpClient';
@@ -46,7 +47,7 @@ export default class PlaylistApi {
    */
   public async addVideoToPlaylist(
     id: string,
-    payload: AddVideoToPlaylistRequest = {}
+    payload: AddMediaToPlaylistRequest = {}
   ): Promise<ResponseSuccess> {
     return this.addVideoToPlaylistWithResponseHeaders(id, payload).then(
       (res) => res.body
@@ -61,7 +62,7 @@ export default class PlaylistApi {
    */
   public async addVideoToPlaylistWithResponseHeaders(
     id: string,
-    payload: AddVideoToPlaylistRequest = {}
+    payload: AddMediaToPlaylistRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
@@ -87,7 +88,7 @@ export default class PlaylistApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(payload, 'AddVideoToPlaylistRequest', ''),
+      ObjectSerializer.serialize(payload, 'AddMediaToPlaylistRequest', ''),
       contentType
     );
 
@@ -268,13 +269,15 @@ export default class PlaylistApi {
    * Get playlist by ID
    * @param {Object} searchParams
    * @param { string } searchParams.id Playlist ID
-   * @param { &#39;created_at&#39; | &#39;title&#39; | &#39;duration&#39; } searchParams.sortBy sort by
-   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy allowed: asc, desc. Default: asc
+   * @param { string } searchParams.sortBy Sort by field (created_at, title, duration)
+   * @param { string } searchParams.orderBy Order by (asc, desc)
+   * @param { string } searchParams.search Search term
    */
   public async getPlaylistById(args: {
     id: string;
-    sortBy?: 'created_at' | 'title' | 'duration';
-    orderBy?: 'asc' | 'desc';
+    sortBy?: string;
+    orderBy?: string;
+    search?: string;
   }): Promise<GetPlaylistByIdResponse> {
     return this.getPlaylistByIdWithResponseHeaders(args).then(
       (res) => res.body
@@ -286,17 +289,20 @@ export default class PlaylistApi {
    * Get playlist by ID
    * @param {Object} searchParams
    * @param { string } searchParams.id Playlist ID
-   * @param { &#39;created_at&#39; | &#39;title&#39; | &#39;duration&#39; } searchParams.sortBy sort by
-   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy allowed: asc, desc. Default: asc
+   * @param { string } searchParams.sortBy Sort by field (created_at, title, duration)
+   * @param { string } searchParams.orderBy Order by (asc, desc)
+   * @param { string } searchParams.search Search term
    */
   public async getPlaylistByIdWithResponseHeaders({
     id,
     sortBy,
     orderBy,
+    search,
   }: {
     id: string;
-    sortBy?: 'created_at' | 'title' | 'duration';
-    orderBy?: 'asc' | 'desc';
+    sortBy?: string;
+    orderBy?: string;
+    search?: string;
   }): Promise<{ headers: ApiResponseHeaders; body: GetPlaylistByIdResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
@@ -316,17 +322,19 @@ export default class PlaylistApi {
     if (sortBy !== undefined) {
       urlSearchParams.append(
         'sort_by',
-        ObjectSerializer.serialize(
-          sortBy,
-          "'created_at' | 'title' | 'duration'",
-          ''
-        )
+        ObjectSerializer.serialize(sortBy, 'string', '')
       );
     }
     if (orderBy !== undefined) {
       urlSearchParams.append(
         'order_by',
-        ObjectSerializer.serialize(orderBy, "'asc' | 'desc'", '')
+        ObjectSerializer.serialize(orderBy, 'string', '')
+      );
+    }
+    if (search !== undefined) {
+      urlSearchParams.append(
+        'search',
+        ObjectSerializer.serialize(search, 'string', '')
       );
     }
 
@@ -529,40 +537,51 @@ export default class PlaylistApi {
   }
 
   /**
-   * Remove a specific video from a playlist for the authenticated user
-   * Remove a video from a playlist
+   * Remove a specific media from a playlist for the authenticated user
+   * Remove a media from a playlist
    * @param id Playlist ID
    * @param itemId Playlist Item ID
+   * @param payload Optional payload
    */
-  public async removeVideoFromPlaylist(
+  public async removeMediaFromPlaylist(
     id: string,
-    itemId: string
+    itemId: string,
+    payload: RemoveMediasFromPlaylistRequest = {}
   ): Promise<ResponseSuccess> {
-    return this.removeVideoFromPlaylistWithResponseHeaders(id, itemId).then(
-      (res) => res.body
-    );
+    return this.removeMediaFromPlaylistWithResponseHeaders(
+      id,
+      itemId,
+      payload
+    ).then((res) => res.body);
   }
 
   /**
-   * Remove a specific video from a playlist for the authenticated user
-   * Remove a video from a playlist
+   * Remove a specific media from a playlist for the authenticated user
+   * Remove a media from a playlist
    * @param id Playlist ID
    * @param itemId Playlist Item ID
+   * @param payload Optional payload
    */
-  public async removeVideoFromPlaylistWithResponseHeaders(
+  public async removeMediaFromPlaylistWithResponseHeaders(
     id: string,
-    itemId: string
+    itemId: string,
+    payload: RemoveMediasFromPlaylistRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter id was null or undefined when calling removeVideoFromPlaylist.'
+        'Required parameter id was null or undefined when calling removeMediaFromPlaylist.'
       );
     }
     if (itemId === null || itemId === undefined) {
       throw new Error(
-        'Required parameter itemId was null or undefined when calling removeVideoFromPlaylist.'
+        'Required parameter itemId was null or undefined when calling removeMediaFromPlaylist.'
+      );
+    }
+    if (payload === null || payload === undefined) {
+      throw new Error(
+        'Required parameter payload was null or undefined when calling removeMediaFromPlaylist.'
       );
     }
     // Path Params
@@ -570,6 +589,21 @@ export default class PlaylistApi {
       .substring(1)
       .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
       .replace('{' + 'item_id' + '}', encodeURIComponent(String(itemId)));
+
+    // Body Params
+    const contentType = ObjectSerializer.getPreferredMediaType([
+      'application/json',
+    ]);
+    queryParams.headers['Content-Type'] = contentType;
+
+    queryParams.body = ObjectSerializer.stringify(
+      ObjectSerializer.serialize(
+        payload,
+        'RemoveMediasFromPlaylistRequest',
+        ''
+      ),
+      contentType
+    );
 
     queryParams.method = 'DELETE';
 
