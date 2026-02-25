@@ -3,31 +3,22 @@ on:
   pull_request:
     branches:
       - main
-
 jobs:
   run-tests:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
         uses: actions/checkout@v2
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'
-      - name: Install dependencies
-        run: npm install
+          node-version: "16"
 
+      - name: Install dependencies
+        run: npm install 
       - name: Run Prettier
         run: npm run prettier
-
-      - name: Install Jest
-        run: npm install jest
-
-      - name: Install dotenv
-        run: npm install dotenv --save
-
-      - name: Install uuid
-        run: npm install uuid
 
       - name: Create env file
         run: |
@@ -39,5 +30,3 @@ jobs:
 
       - name: Run tests
         run: npm test
-
-

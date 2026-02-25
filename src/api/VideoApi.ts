@@ -549,14 +549,16 @@ export default class VideoApi {
   /**
    * get video transcoding cost
    * get video transcoding cost
-   * @param qualities video&#39;s qualities
-   * @param duration video&#39;s duration
+   * @param qualities media&#39;s qualities
+   * @param type media&#39;s type
+   * @param duration media&#39;s duration
    */
   public async getCost(
     qualities: string,
+    type: string,
     duration: number
   ): Promise<GetTranscodeCostResponse> {
-    return this.getCostWithResponseHeaders(qualities, duration).then(
+    return this.getCostWithResponseHeaders(qualities, type, duration).then(
       (res) => res.body
     );
   }
@@ -564,11 +566,13 @@ export default class VideoApi {
   /**
    * get video transcoding cost
    * get video transcoding cost
-   * @param qualities video&#39;s qualities
-   * @param duration video&#39;s duration
+   * @param qualities media&#39;s qualities
+   * @param type media&#39;s type
+   * @param duration media&#39;s duration
    */
   public async getCostWithResponseHeaders(
     qualities: string,
+    type: string,
     duration: number
   ): Promise<{ headers: ApiResponseHeaders; body: GetTranscodeCostResponse }> {
     const queryParams: QueryOptions = {};
@@ -576,6 +580,11 @@ export default class VideoApi {
     if (qualities === null || qualities === undefined) {
       throw new Error(
         'Required parameter qualities was null or undefined when calling getCost.'
+      );
+    }
+    if (type === null || type === undefined) {
+      throw new Error(
+        'Required parameter type was null or undefined when calling getCost.'
       );
     }
     if (duration === null || duration === undefined) {
@@ -593,6 +602,12 @@ export default class VideoApi {
       urlSearchParams.append(
         'qualities',
         ObjectSerializer.serialize(qualities, 'string', '')
+      );
+    }
+    if (type !== undefined) {
+      urlSearchParams.append(
+        'type',
+        ObjectSerializer.serialize(type, 'string', '')
       );
     }
     if (duration !== undefined) {

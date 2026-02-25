@@ -17,6 +17,7 @@ export default class GetPlaylistListRequest {
   'metadata'?: Array<Metadata>;
   'offset'?: number;
   'orderBy'?: string;
+  'playlistType'?: string;
   'search'?: string;
   'sortBy'?: string;
   'tags'?: Array<string>;
@@ -45,6 +46,12 @@ export default class GetPlaylistListRequest {
     {
       name: 'orderBy',
       baseName: 'order_by',
+      type: 'string',
+      format: '',
+    },
+    {
+      name: 'playlistType',
+      baseName: 'playlist_type',
       type: 'string',
       format: '',
     },

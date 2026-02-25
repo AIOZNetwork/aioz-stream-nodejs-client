@@ -12,7 +12,7 @@ All URIs are relative to *http://localhost/api*
 | [**getPlaylistPublicInfo()**](PlaylistApi.md#getPlaylistPublicInfo) | Get a playlist public | **GET** /playlists/{id}/player.json |
 | [**getPlaylists()**](PlaylistApi.md#getPlaylists) | Get user&#39;s playlists | **POST** /playlists |
 | [**moveVideoInPlaylist()**](PlaylistApi.md#moveVideoInPlaylist) | Move a video in a playlist | **PUT** /playlists/{id}/items |
-| [**removeVideoFromPlaylist()**](PlaylistApi.md#removeVideoFromPlaylist) | Remove a video from a playlist | **DELETE** /playlists/{id}/items/{item_id} |
+| [**removeMediaFromPlaylist()**](PlaylistApi.md#removeMediaFromPlaylist) | Remove a media from a playlist | **DELETE** /playlists/{id}/items/{item_id} |
 | [**updatePlaylist()**](PlaylistApi.md#updatePlaylist) | Update a playlist | **PATCH** /playlists/{id} |
 
 
@@ -27,7 +27,7 @@ Add a specific video to a playlist for the authenticated user
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Playlist ID |
- | **payload** | [**AddVideoToPlaylistRequest**](../model/AddVideoToPlaylistRequest.md)| **yes**| Video details |
+ | **payload** | [**AddMediaToPlaylistRequest**](../model/AddMediaToPlaylistRequest.md)| **yes**| Video details |
 
 
 ### Return type
@@ -116,8 +116,9 @@ Retrieve a specific playlist by its ID for the current user.
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Playlist ID |
- | **sortBy** | **&#39;created_at&#39; \| &#39;title&#39; \| &#39;duration&#39;**| no| sort by |
- | **orderBy** | **&#39;asc&#39; \| &#39;desc&#39;**| no| allowed: asc, desc. Default: asc |
+ | **sortBy** | **string**| no| Sort by field (created_at, title, duration) |
+ | **orderBy** | **string**| no| Order by (asc, desc) |
+ | **search** | **string**| no| Search term |
 
 
 ### Return type
@@ -196,11 +197,11 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 
 ---
 
-<a name="removeVideoFromPlaylist"></a>
-## **`removeVideoFromPlaylist()` - Remove a video from a playlist**
+<a name="removeMediaFromPlaylist"></a>
+## **`removeMediaFromPlaylist()` - Remove a media from a playlist**
 
 
-Remove a specific video from a playlist for the authenticated user
+Remove a specific media from a playlist for the authenticated user
 
 ### Parameters
 
@@ -208,6 +209,7 @@ Remove a specific video from a playlist for the authenticated user
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Playlist ID |
  | **itemId** | **string**| **yes**| Playlist Item ID |
+ | **payload** | [**RemoveMediasFromPlaylistRequest**](../model/RemoveMediasFromPlaylistRequest.md)| **yes**| Optional payload |
 
 
 ### Return type
