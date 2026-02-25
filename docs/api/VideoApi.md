@@ -208,8 +208,9 @@ get video transcoding cost
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **qualities** | **string**| **yes**| video&#39;s qualities |
- | **duration** | **number**| **yes**| video&#39;s duration |
+ | **qualities** | **string**| **yes**| media&#39;s qualities |
+ | **type** | **string**| **yes**| media&#39;s type |
+ | **duration** | **number**| **yes**| media&#39;s duration |
 
 
 ### Return type

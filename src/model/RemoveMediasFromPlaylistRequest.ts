@@ -11,21 +11,21 @@
 
 import AttributeType from './AttributeType.js';
 
-export default class AddVideoToPlaylistRequest {
-  'videoId'?: string;
+export default class RemoveMediasFromPlaylistRequest {
+  'optionPlaylists'?: Array<string>;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'videoId',
-      baseName: 'video_id',
-      type: 'string',
+      name: 'optionPlaylists',
+      baseName: 'option_playlists',
+      type: 'Array<string>',
       format: '',
     },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return AddVideoToPlaylistRequest.attributeTypeMap;
+    return RemoveMediasFromPlaylistRequest.attributeTypeMap;
   }
 }

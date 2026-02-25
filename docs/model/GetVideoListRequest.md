@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **sortBy** | **string** |  |  [optional]
 **status** | **string** |  |  [optional]
 **tags** | **Array&lt;string&gt;** |  |  [optional]
+**type** | **string** |  |  [optional]
 
 
 

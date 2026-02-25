@@ -1,11 +1,11 @@
 
-# AddVideoToPlaylistRequest
+# RemoveMediasFromPlaylistRequest
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**videoId** | **string** |  |  [optional]
+**optionPlaylists** | **Array&lt;string&gt;** |  |  [optional]
 
 
 
