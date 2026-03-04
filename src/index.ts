@@ -174,7 +174,7 @@ class StreamClient {
       throw new Error(`${file} is empty`);
     }
 
-    const localVarPath = `videos/${encodeURIComponent(id)}/part`;
+    const localVarPath = `media/${encodeURIComponent(id)}/part`;
     const chunkSize = this.httpClient.getChunkSize();
     const filename = path.basename(file);
 
@@ -244,7 +244,7 @@ class StreamClient {
       }
     }
 
-    const uploadCompleteLocalVarPath = `videos/${encodeURIComponent(
+    const uploadCompleteLocalVarPath = `media/${encodeURIComponent(
       id
     )}/complete`;
     await this.httpClient.call(uploadCompleteLocalVarPath, { method: 'GET' });
