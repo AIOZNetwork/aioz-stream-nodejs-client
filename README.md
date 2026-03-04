@@ -23,37 +23,37 @@ yarn add @aiozstream/nodejs-client
 ### Code sample
 
 ```typescript
-import StreamClient from "@aiozstream/nodejs-client";
+import StreamClient from '@aiozstream/nodejs-client'
  
-(async () => {
+;(async () => {
   try {
     const client = new StreamClient({
-      publicKey: "YOUR_PUBLIC_KEY",
-      secretKey: "YOUR_SECRET_KEY",
-    });
-    const videoCreationPayload = {
-      title: "First video", // The title of your new video.
-      description: "A new video.", // A brief description of your video.
-    };
- 
-    const video = await client.video.create(videoCreationPayload);
-    if (!video.data) {
-      throw new Error("Failed to create video");
+      publicKey: 'YOUR_PUBLIC_KEY=',
+      secretKey: 'YOUR_SECRET_KEY'
+    })
+    const mediaCreationPayload = {
+      title: 'First video', // The title of your new video.
+      description: 'A new video.' // A brief description of your video.
     }
-    if (!video.data.id) {
-      throw new Error("Failed to create video");
+ 
+    const media = await client.media.create(mediaCreationPayload)
+    if (!media.data) {
+      throw new Error('Failed to create video')
+    }
+    if (!media.data.id) {
+      throw new Error('Failed to create video')
     }
     // Option 1: Use client upload with videoId
-    // await client.uploadVideo(video.data.id, "./path/to/video.mp4");
+    // await client.uploadVideo(media.data.id, "./path/to/video.mp4");
     // console.log("Upload successfully");
     // Option 2: Upload parts yourself
-    const uploadResult = await client.video.uploadPart(
-      video.data.id,
-      "./path/to/video.mp4",
+    const uploadResult = await client.media.uploadPart(
+      media.data.id,
+      "./558k.mp4"
     );
     console.log(uploadResult);
- 
-    const checkResult = await client.video.uploadVideoComplete(video.data.id);
+
+    const checkResult = await client.media.uploadMediaComplete(media.data.id);
     // Check if the video upload is complete
     console.log(checkResult);
   } catch (e) {
