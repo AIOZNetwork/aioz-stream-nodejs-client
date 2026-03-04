@@ -1,4 +1,4 @@
-import { expect } from '@jest/globals';
+import { describe, expect, it } from '@jest/globals';
 import StreamError from '../src/StreamError';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { openInvalidFile, openTestImageFile } from './Video.spec';
@@ -220,9 +220,9 @@ describe('Playlist Service', () => {
       const response = await testClient.playlist.getPlaylistById({
         id: testPlaylistID as string,
       });
-      testFirstItemID = response.data?.playlist?.videoItems?.[1]?.id;
-      testSecondItemID = response.data?.playlist?.videoItems?.[1]?.nextId;
-      testThirdItemID = response.data?.playlist?.videoItems?.[1]?.previousId;
+      testFirstItemID = response.data?.playlist?.items?.[1]?.id;
+      testSecondItemID = response.data?.playlist?.items?.[1]?.nextId;
+      testThirdItemID = response.data?.playlist?.items?.[1]?.previousId;
       expect(response).toBeDefined();
     });
 

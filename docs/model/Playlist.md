@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **id** | **string** |  |  [optional]
 **iframe** | **string** |  |  [optional]
 **itemCount** | **number** |  |  [optional]
+**items** | [**Array&lt;PlaylistItem&gt;**](PlaylistItem.md) |  |  [optional]
 **metadata** | **Map&lt;String, string&gt;** |  |  [optional]
 **name** | **string** |  |  [optional]
 **playlistType** | **string** |  |  [optional]
@@ -19,7 +20,6 @@ Name | Type | Description | Notes
 **thumbnailUrl** | **string** |  |  [optional]
 **updatedAt** | **string** |  |  [optional]
 **userId** | **string** |  |  [optional]
-**videoItems** | [**Array&lt;PlaylistItem&gt;**](PlaylistItem.md) |  |  [optional]
 
 
 

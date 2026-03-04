@@ -10,29 +10,30 @@
  */
 
 import AttributeType from './AttributeType.js';
+import MediaCaption from './MediaCaption.js';
 
-export default class AddPlayerThemesToVideoRequest {
-  'mediaId'?: string;
-  'playerThemeId'?: string;
+export default class GetMediaCaptionsData {
+  'mediaCaptions'?: Array<MediaCaption>;
+  'total'?: number;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'mediaId',
-      baseName: 'media_id',
-      type: 'string',
+      name: 'mediaCaptions',
+      baseName: 'media_captions',
+      type: 'Array<MediaCaption>',
       format: '',
     },
     {
-      name: 'playerThemeId',
-      baseName: 'player_theme_id',
-      type: 'string',
+      name: 'total',
+      baseName: 'total',
+      type: 'number',
       format: '',
     },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return AddPlayerThemesToVideoRequest.attributeTypeMap;
+    return GetMediaCaptionsData.attributeTypeMap;
   }
 }
