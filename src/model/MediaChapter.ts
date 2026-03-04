@@ -11,28 +11,28 @@
 
 import AttributeType from './AttributeType.js';
 
-export default class AddPlayerThemesToVideoRequest {
-  'mediaId'?: string;
-  'playerThemeId'?: string;
+export default class MediaChapter {
+  'language'?: string;
+  'url'?: string;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'mediaId',
-      baseName: 'media_id',
+      name: 'language',
+      baseName: 'language',
       type: 'string',
       format: '',
     },
     {
-      name: 'playerThemeId',
-      baseName: 'player_theme_id',
+      name: 'url',
+      baseName: 'url',
       type: 'string',
       format: '',
     },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return AddPlayerThemesToVideoRequest.attributeTypeMap;
+    return MediaChapter.attributeTypeMap;
   }
 }

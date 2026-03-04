@@ -1,5 +1,5 @@
 
-# Media
+# GetMediaPlayerInfoResponse
 
 ## Properties
 
@@ -22,10 +22,8 @@ Name | Type | Description | Notes
 **status** | **string** |  |  [optional]
 **tags** | **Array&lt;string&gt;** |  |  [optional]
 **title** | **string** |  |  [optional]
-**type** | **string** |  |  [optional]
 **updatedAt** | **string** |  |  [optional]
 **userId** | **string** |  |  [optional]
-**view** | **number** |  |  [optional]
 
 
 

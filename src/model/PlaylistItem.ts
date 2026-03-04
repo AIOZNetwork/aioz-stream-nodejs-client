@@ -15,11 +15,11 @@ import PlaylistItemMedia from './PlaylistItemMedia.js';
 export default class PlaylistItem {
   'createdAt'?: string;
   'id'?: string;
+  'media'?: PlaylistItemMedia;
   'nextId'?: string;
   'playlistId'?: string;
   'previousId'?: string;
   'updatedAt'?: string;
-  'video'?: PlaylistItemMedia;
   'videoId'?: string;
 
   static readonly discriminator?: string = undefined;
@@ -35,6 +35,12 @@ export default class PlaylistItem {
       name: 'id',
       baseName: 'id',
       type: 'string',
+      format: '',
+    },
+    {
+      name: 'media',
+      baseName: 'media',
+      type: 'PlaylistItemMedia',
       format: '',
     },
     {
@@ -59,12 +65,6 @@ export default class PlaylistItem {
       name: 'updatedAt',
       baseName: 'updated_at',
       type: 'string',
-      format: '',
-    },
-    {
-      name: 'video',
-      baseName: 'video',
-      type: 'PlaylistItemMedia',
       format: '',
     },
     {

@@ -10,12 +10,12 @@
  */
 
 import AttributeType from './AttributeType.js';
-import VideoCaption from './VideoCaption.js';
-import VideoChapter from './VideoChapter.js';
+import MediaCaption from './MediaCaption.js';
+import MediaChapter from './MediaChapter.js';
 
 export default class PlaylistItemMedia {
-  'captions'?: Array<VideoCaption>;
-  'chapters'?: Array<VideoChapter>;
+  'captions'?: Array<MediaCaption>;
+  'chapters'?: Array<MediaChapter>;
   'description'?: string;
   'duration'?: number;
   'hlsUrl'?: string;
@@ -30,13 +30,13 @@ export default class PlaylistItemMedia {
     {
       name: 'captions',
       baseName: 'captions',
-      type: 'Array<VideoCaption>',
+      type: 'Array<MediaCaption>',
       format: '',
     },
     {
       name: 'chapters',
       baseName: 'chapters',
-      type: 'Array<VideoChapter>',
+      type: 'Array<MediaChapter>',
       format: '',
     },
     {

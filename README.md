@@ -80,6 +80,36 @@ Method | Description | HTTP request
 [**list()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/ApiKeyApi.md#list) | Get list API keys | **GET** `/api_keys`
 
 
+#### MediaApi
+
+Method | Description | HTTP request
+------------- | ------------- | -------------
+[**create()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#create) | Create media object | **POST** `/media/create`
+[**update()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#update) | update media info | **PATCH** `/media/{id}`
+[**delete()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#delete) | Delete media | **DELETE** `/media/{id}`
+[**uploadThumbnail()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#uploadThumbnail) | Upload media thumbnail | **POST** `/media/{id}/thumbnail`
+[**deleteThumbnail()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#deleteThumbnail) | Delete media thumbnail | **DELETE** `/media/{id}/thumbnail`
+[**createCaption()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#createCaption) | Create a new media caption | **POST** `/media/{id}/captions/{lan}`
+[**deleteCaption()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#deleteCaption) | Delete a media caption | **DELETE** `/media/{id}/captions/{lan}`
+[**getCaptions()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#getCaptions) | Get media captions | **GET** `/media/{id}/captions`
+[**getCost()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#getCost) | get media transcoding cost | **GET** `/media/cost`
+[**getDetail()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#getDetail) | get media detail | **GET** `/media/{id}`
+[**getMediaList()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#getMediaList) | Get user videos list | **POST** `/media`
+[**getMediaPlayerInfo()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#getMediaPlayerInfo) | Get media object | **GET** `/media/{id}/player.json`
+[**setDefaultCaption()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#setDefaultCaption) | Set default caption | **PATCH** `/media/{id}/captions/{lan}`
+[**uploadMediaComplete()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#uploadMediaComplete) | Get upload media when complete | **GET** `/media/{id}/complete`
+[**uploadPart()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaApi.md#uploadPart) | Upload part of media | **POST** `/media/{id}/part`
+
+
+#### MediaChapterApi
+
+Method | Description | HTTP request
+------------- | ------------- | -------------
+[**create()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaChapterApi.md#create) | Create a media chapter | **POST** `/media/{id}/chapters/{lan}`
+[**get()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaChapterApi.md#get) | Get media chapters | **GET** `/media/{id}/chapters`
+[**delete()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/MediaChapterApi.md#delete) | Delete a video chapter | **DELETE** `/media/{id}/chapters/{lan}`
+
+
 #### PlayersApi
 
 Method | Description | HTTP request
@@ -111,36 +141,6 @@ Method | Description | HTTP request
 [**updatePlaylist()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/PlaylistApi.md#updatePlaylist) | Update a playlist | **PATCH** `/playlists/{id}`
 
 
-#### VideoApi
-
-Method | Description | HTTP request
-------------- | ------------- | -------------
-[**create()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#create) | Create video object | **POST** `/videos/create`
-[**update()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#update) | update video info | **PATCH** `/videos/{id}`
-[**delete()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#delete) | Delete video | **DELETE** `/videos/{id}`
-[**uploadThumbnail()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#uploadThumbnail) | Upload video thumbnail | **POST** `/videos/{id}/thumbnail`
-[**deleteThumbnail()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#deleteThumbnail) | Delete video thumbnail | **DELETE** `/videos/{id}/thumbnail`
-[**createCaption()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#createCaption) | Create a new video caption | **POST** `/videos/{id}/captions/{lan}`
-[**deleteCaption()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#deleteCaption) | Delete a video caption | **DELETE** `/videos/{id}/captions/{lan}`
-[**getCaptions()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#getCaptions) | Get video captions | **GET** `/videos/{id}/captions`
-[**getCost()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#getCost) | get video transcoding cost | **GET** `/videos/cost`
-[**getDetail()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#getDetail) | get video detail | **GET** `/videos/{id}`
-[**getVideoList()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#getVideoList) | Get user videos list | **POST** `/videos`
-[**getVideoPlayerInfo()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#getVideoPlayerInfo) | Get video object | **GET** `/videos/{id}/player.json`
-[**setDefaultCaption()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#setDefaultCaption) | Set default caption | **PATCH** `/videos/{id}/captions/{lan}`
-[**uploadPart()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#uploadPart) | Upload part of video | **POST** `/videos/{id}/part`
-[**uploadVideoComplete()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoApi.md#uploadVideoComplete) | Get upload video when complete | **GET** `/videos/{id}/complete`
-
-
-#### VideoChapterApi
-
-Method | Description | HTTP request
-------------- | ------------- | -------------
-[**create()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoChapterApi.md#create) | Create a video chapter | **POST** `/videos/{id}/chapters/{lan}`
-[**get()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoChapterApi.md#get) | Get video chapters | **GET** `/videos/{id}/chapters`
-[**delete()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/VideoChapterApi.md#delete) | Delete a video chapter | **DELETE** `/videos/{id}/chapters/{lan}`
-
-
 #### WebhookApi
 
 Method | Description | HTTP request
@@ -165,6 +165,10 @@ Method | Description | HTTP request
  - [CreateApiKeyData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateApiKeyData.md)
  - [CreateApiKeyRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateApiKeyRequest.md)
  - [CreateApiKeyResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateApiKeyResponse.md)
+ - [CreateMediaCaptionData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaCaptionData.md)
+ - [CreateMediaCaptionResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaCaptionResponse.md)
+ - [CreateMediaChapterData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaChapterData.md)
+ - [CreateMediaChapterResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaChapterResponse.md)
  - [CreateMediaRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaRequest.md)
  - [CreateMediaResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaResponse.md)
  - [CreatePlayerThemeRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreatePlayerThemeRequest.md)
@@ -173,15 +177,20 @@ Method | Description | HTTP request
  - [CreatePlaylistData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreatePlaylistData.md)
  - [CreatePlaylistRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreatePlaylistRequest.md)
  - [CreatePlaylistResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreatePlaylistResponse.md)
- - [CreateVideoCaptionData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateVideoCaptionData.md)
- - [CreateVideoCaptionResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateVideoCaptionResponse.md)
- - [CreateVideoChapterData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateVideoChapterData.md)
- - [CreateVideoChapterResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateVideoChapterResponse.md)
  - [CreateWebhookData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateWebhookData.md)
  - [CreateWebhookRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateWebhookRequest.md)
  - [CreateWebhookResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateWebhookResponse.md)
  - [GetApiKeysData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetApiKeysData.md)
  - [GetApiKeysResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetApiKeysResponse.md)
+ - [GetMediaCaptionsData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaCaptionsData.md)
+ - [GetMediaCaptionsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaCaptionsResponse.md)
+ - [GetMediaChaptersData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaChaptersData.md)
+ - [GetMediaChaptersResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaChaptersResponse.md)
+ - [GetMediaDetailResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaDetailResponse.md)
+ - [GetMediaListData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaListData.md)
+ - [GetMediaListRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaListRequest.md)
+ - [GetMediaListResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaListResponse.md)
+ - [GetMediaPlayerInfoResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaPlayerInfoResponse.md)
  - [GetPlayerThemeByIdData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetPlayerThemeByIdData.md)
  - [GetPlayerThemeByIdResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetPlayerThemeByIdResponse.md)
  - [GetPlayerThemeData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetPlayerThemeData.md)
@@ -195,18 +204,12 @@ Method | Description | HTTP request
  - [GetTranscodeCostResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetTranscodeCostResponse.md)
  - [GetUserWebhookData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetUserWebhookData.md)
  - [GetUserWebhookResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetUserWebhookResponse.md)
- - [GetVideoCaptionsData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetVideoCaptionsData.md)
- - [GetVideoCaptionsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetVideoCaptionsResponse.md)
- - [GetVideoChaptersData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetVideoChaptersData.md)
- - [GetVideoChaptersResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetVideoChaptersResponse.md)
- - [GetVideoDetailResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetVideoDetailResponse.md)
- - [GetVideoListData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetVideoListData.md)
- - [GetVideoListRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetVideoListRequest.md)
- - [GetVideoListResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetVideoListResponse.md)
- - [GetVideoPlayerInfoResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetVideoPlayerInfoResponse.md)
  - [GetWebhooksListData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetWebhooksListData.md)
  - [GetWebhooksListResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetWebhooksListResponse.md)
  - [Media](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Media.md)
+ - [MediaAssets](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaAssets.md)
+ - [MediaCaption](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaCaption.md)
+ - [MediaChapter](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaChapter.md)
  - [Metadata](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Metadata.md)
  - [MoveVideoInPlaylistRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MoveVideoInPlaylistRequest.md)
  - [PlayerTheme](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/PlayerTheme.md)
@@ -223,15 +226,12 @@ Method | Description | HTTP request
  - [ResponseError](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ResponseError.md)
  - [ResponseSuccess](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ResponseSuccess.md)
  - [Theme](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Theme.md)
+ - [UpdateMediaInfoRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateMediaInfoRequest.md)
  - [UpdatePlayerThemeRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdatePlayerThemeRequest.md)
  - [UpdatePlayerThemeResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdatePlayerThemeResponse.md)
- - [UpdateVideoInfoRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateVideoInfoRequest.md)
  - [UpdateWebhookRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateWebhookRequest.md)
  - [UploadLogoByIdResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UploadLogoByIdResponse.md)
  - [User](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/User.md)
- - [VideoAssets](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/VideoAssets.md)
- - [VideoCaption](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/VideoCaption.md)
- - [VideoChapter](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/VideoChapter.md)
  - [VideoConfig](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/VideoConfig.md)
  - [VideoWatermark](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/VideoWatermark.md)
  - [Webhook](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Webhook.md)
