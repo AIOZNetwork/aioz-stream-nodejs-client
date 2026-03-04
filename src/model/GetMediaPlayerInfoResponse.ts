@@ -17,7 +17,7 @@ import Metadata from './Metadata.js';
 import PlayerTheme from './PlayerTheme.js';
 import QualityObject from './QualityObject.js';
 
-export default class Media {
+export default class GetMediaPlayerInfoResponse {
   'assets'?: MediaAssets;
   'captions'?: Array<MediaCaption>;
   'chapters'?: Array<MediaChapter>;
@@ -35,10 +35,8 @@ export default class Media {
   'status'?: string;
   'tags'?: Array<string>;
   'title'?: string;
-  'type'?: string;
   'updatedAt'?: string;
   'userId'?: string;
-  'view'?: number;
 
   static readonly discriminator?: string = undefined;
 
@@ -146,12 +144,6 @@ export default class Media {
       format: '',
     },
     {
-      name: 'type',
-      baseName: 'type',
-      type: 'string',
-      format: '',
-    },
-    {
       name: 'updatedAt',
       baseName: 'updated_at',
       type: 'string',
@@ -163,15 +155,9 @@ export default class Media {
       type: 'string',
       format: '',
     },
-    {
-      name: 'view',
-      baseName: 'view',
-      type: 'number',
-      format: '',
-    },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return Media.attributeTypeMap;
+    return GetMediaPlayerInfoResponse.attributeTypeMap;
   }
 }

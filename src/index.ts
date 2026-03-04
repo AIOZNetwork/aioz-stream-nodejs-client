@@ -12,10 +12,10 @@
 import HttpClient from './HttpClient';
 
 import ApiKeyApi from './api/ApiKeyApi';
+import MediaApi from './api/MediaApi';
+import MediaChapterApi from './api/MediaChapterApi';
 import PlayersApi from './api/PlayersApi';
 import PlaylistApi from './api/PlaylistApi';
-import VideoApi from './api/VideoApi';
-import VideoChapterApi from './api/VideoChapterApi';
 import WebhookApi from './api/WebhookApi';
 import { createReadStream, existsSync, statSync } from 'fs';
 import UploadProgressEvent from './model/UploadProgressEvent';
@@ -32,10 +32,10 @@ const MAX_CHUNK_SIZE = 128 * 1024 * 1024;
 class StreamClient {
   private httpClient: HttpClient;
   private _apiKey: ApiKeyApi;
+  private _media: MediaApi;
+  private _mediaChapter: MediaChapterApi;
   private _players: PlayersApi;
   private _playlist: PlaylistApi;
-  private _video: VideoApi;
-  private _videoChapter: VideoChapterApi;
   private _webhook: WebhookApi;
 
   constructor(params: {
@@ -77,10 +77,10 @@ class StreamClient {
     });
 
     this._apiKey = new ApiKeyApi(this.httpClient);
+    this._media = new MediaApi(this.httpClient);
+    this._mediaChapter = new MediaChapterApi(this.httpClient);
     this._players = new PlayersApi(this.httpClient);
     this._playlist = new PlaylistApi(this.httpClient);
-    this._video = new VideoApi(this.httpClient);
-    this._videoChapter = new VideoChapterApi(this.httpClient);
     this._webhook = new WebhookApi(this.httpClient);
   }
 
@@ -90,6 +90,22 @@ class StreamClient {
    */
   public get apiKey(): ApiKeyApi {
     return this._apiKey;
+  }
+
+  /**
+   * Get an MediaApi instance
+   * @return MediaApi
+   */
+  public get media(): MediaApi {
+    return this._media;
+  }
+
+  /**
+   * Get an MediaChapterApi instance
+   * @return MediaChapterApi
+   */
+  public get mediaChapter(): MediaChapterApi {
+    return this._mediaChapter;
   }
 
   /**
@@ -106,22 +122,6 @@ class StreamClient {
    */
   public get playlist(): PlaylistApi {
     return this._playlist;
-  }
-
-  /**
-   * Get an VideoApi instance
-   * @return VideoApi
-   */
-  public get video(): VideoApi {
-    return this._video;
-  }
-
-  /**
-   * Get an VideoChapterApi instance
-   * @return VideoChapterApi
-   */
-  public get videoChapter(): VideoChapterApi {
-    return this._videoChapter;
   }
 
   /**

@@ -19,6 +19,10 @@ import Controls from './model/Controls';
 import CreateApiKeyData from './model/CreateApiKeyData';
 import CreateApiKeyRequest from './model/CreateApiKeyRequest';
 import CreateApiKeyResponse from './model/CreateApiKeyResponse';
+import CreateMediaCaptionData from './model/CreateMediaCaptionData';
+import CreateMediaCaptionResponse from './model/CreateMediaCaptionResponse';
+import CreateMediaChapterData from './model/CreateMediaChapterData';
+import CreateMediaChapterResponse from './model/CreateMediaChapterResponse';
 import CreateMediaRequest from './model/CreateMediaRequest';
 import CreateMediaResponse from './model/CreateMediaResponse';
 import CreatePlayerThemeRequest from './model/CreatePlayerThemeRequest';
@@ -27,15 +31,20 @@ import CreatePlayerThemesResponse from './model/CreatePlayerThemesResponse';
 import CreatePlaylistData from './model/CreatePlaylistData';
 import CreatePlaylistRequest from './model/CreatePlaylistRequest';
 import CreatePlaylistResponse from './model/CreatePlaylistResponse';
-import CreateVideoCaptionData from './model/CreateVideoCaptionData';
-import CreateVideoCaptionResponse from './model/CreateVideoCaptionResponse';
-import CreateVideoChapterData from './model/CreateVideoChapterData';
-import CreateVideoChapterResponse from './model/CreateVideoChapterResponse';
 import CreateWebhookData from './model/CreateWebhookData';
 import CreateWebhookRequest from './model/CreateWebhookRequest';
 import CreateWebhookResponse from './model/CreateWebhookResponse';
 import GetApiKeysData from './model/GetApiKeysData';
 import GetApiKeysResponse from './model/GetApiKeysResponse';
+import GetMediaCaptionsData from './model/GetMediaCaptionsData';
+import GetMediaCaptionsResponse from './model/GetMediaCaptionsResponse';
+import GetMediaChaptersData from './model/GetMediaChaptersData';
+import GetMediaChaptersResponse from './model/GetMediaChaptersResponse';
+import GetMediaDetailResponse from './model/GetMediaDetailResponse';
+import GetMediaListData from './model/GetMediaListData';
+import GetMediaListRequest from './model/GetMediaListRequest';
+import GetMediaListResponse from './model/GetMediaListResponse';
+import GetMediaPlayerInfoResponse from './model/GetMediaPlayerInfoResponse';
 import GetPlayerThemeByIdData from './model/GetPlayerThemeByIdData';
 import GetPlayerThemeByIdResponse from './model/GetPlayerThemeByIdResponse';
 import GetPlayerThemeData from './model/GetPlayerThemeData';
@@ -49,18 +58,12 @@ import GetTranscodeCostData from './model/GetTranscodeCostData';
 import GetTranscodeCostResponse from './model/GetTranscodeCostResponse';
 import GetUserWebhookData from './model/GetUserWebhookData';
 import GetUserWebhookResponse from './model/GetUserWebhookResponse';
-import GetVideoCaptionsData from './model/GetVideoCaptionsData';
-import GetVideoCaptionsResponse from './model/GetVideoCaptionsResponse';
-import GetVideoChaptersData from './model/GetVideoChaptersData';
-import GetVideoChaptersResponse from './model/GetVideoChaptersResponse';
-import GetVideoDetailResponse from './model/GetVideoDetailResponse';
-import GetVideoListData from './model/GetVideoListData';
-import GetVideoListRequest from './model/GetVideoListRequest';
-import GetVideoListResponse from './model/GetVideoListResponse';
-import GetVideoPlayerInfoResponse from './model/GetVideoPlayerInfoResponse';
 import GetWebhooksListData from './model/GetWebhooksListData';
 import GetWebhooksListResponse from './model/GetWebhooksListResponse';
 import Media from './model/Media';
+import MediaAssets from './model/MediaAssets';
+import MediaCaption from './model/MediaCaption';
+import MediaChapter from './model/MediaChapter';
 import Metadata from './model/Metadata';
 import MoveVideoInPlaylistRequest from './model/MoveVideoInPlaylistRequest';
 import PlayerTheme from './model/PlayerTheme';
@@ -77,15 +80,12 @@ import RequestCreateCaption from './model/RequestCreateCaption';
 import ResponseError from './model/ResponseError';
 import ResponseSuccess from './model/ResponseSuccess';
 import Theme from './model/Theme';
+import UpdateMediaInfoRequest from './model/UpdateMediaInfoRequest';
 import UpdatePlayerThemeRequest from './model/UpdatePlayerThemeRequest';
 import UpdatePlayerThemeResponse from './model/UpdatePlayerThemeResponse';
-import UpdateVideoInfoRequest from './model/UpdateVideoInfoRequest';
 import UpdateWebhookRequest from './model/UpdateWebhookRequest';
 import UploadLogoByIdResponse from './model/UploadLogoByIdResponse';
 import User from './model/User';
-import VideoAssets from './model/VideoAssets';
-import VideoCaption from './model/VideoCaption';
-import VideoChapter from './model/VideoChapter';
 import VideoConfig from './model/VideoConfig';
 import VideoWatermark from './model/VideoWatermark';
 import Webhook from './model/Webhook';
@@ -126,6 +126,10 @@ const typeMap: { [index: string]: any } = {
   CreateApiKeyData: CreateApiKeyData,
   CreateApiKeyRequest: CreateApiKeyRequest,
   CreateApiKeyResponse: CreateApiKeyResponse,
+  CreateMediaCaptionData: CreateMediaCaptionData,
+  CreateMediaCaptionResponse: CreateMediaCaptionResponse,
+  CreateMediaChapterData: CreateMediaChapterData,
+  CreateMediaChapterResponse: CreateMediaChapterResponse,
   CreateMediaRequest: CreateMediaRequest,
   CreateMediaResponse: CreateMediaResponse,
   CreatePlayerThemeRequest: CreatePlayerThemeRequest,
@@ -134,15 +138,20 @@ const typeMap: { [index: string]: any } = {
   CreatePlaylistData: CreatePlaylistData,
   CreatePlaylistRequest: CreatePlaylistRequest,
   CreatePlaylistResponse: CreatePlaylistResponse,
-  CreateVideoCaptionData: CreateVideoCaptionData,
-  CreateVideoCaptionResponse: CreateVideoCaptionResponse,
-  CreateVideoChapterData: CreateVideoChapterData,
-  CreateVideoChapterResponse: CreateVideoChapterResponse,
   CreateWebhookData: CreateWebhookData,
   CreateWebhookRequest: CreateWebhookRequest,
   CreateWebhookResponse: CreateWebhookResponse,
   GetApiKeysData: GetApiKeysData,
   GetApiKeysResponse: GetApiKeysResponse,
+  GetMediaCaptionsData: GetMediaCaptionsData,
+  GetMediaCaptionsResponse: GetMediaCaptionsResponse,
+  GetMediaChaptersData: GetMediaChaptersData,
+  GetMediaChaptersResponse: GetMediaChaptersResponse,
+  GetMediaDetailResponse: GetMediaDetailResponse,
+  GetMediaListData: GetMediaListData,
+  GetMediaListRequest: GetMediaListRequest,
+  GetMediaListResponse: GetMediaListResponse,
+  GetMediaPlayerInfoResponse: GetMediaPlayerInfoResponse,
   GetPlayerThemeByIdData: GetPlayerThemeByIdData,
   GetPlayerThemeByIdResponse: GetPlayerThemeByIdResponse,
   GetPlayerThemeData: GetPlayerThemeData,
@@ -156,18 +165,12 @@ const typeMap: { [index: string]: any } = {
   GetTranscodeCostResponse: GetTranscodeCostResponse,
   GetUserWebhookData: GetUserWebhookData,
   GetUserWebhookResponse: GetUserWebhookResponse,
-  GetVideoCaptionsData: GetVideoCaptionsData,
-  GetVideoCaptionsResponse: GetVideoCaptionsResponse,
-  GetVideoChaptersData: GetVideoChaptersData,
-  GetVideoChaptersResponse: GetVideoChaptersResponse,
-  GetVideoDetailResponse: GetVideoDetailResponse,
-  GetVideoListData: GetVideoListData,
-  GetVideoListRequest: GetVideoListRequest,
-  GetVideoListResponse: GetVideoListResponse,
-  GetVideoPlayerInfoResponse: GetVideoPlayerInfoResponse,
   GetWebhooksListData: GetWebhooksListData,
   GetWebhooksListResponse: GetWebhooksListResponse,
   Media: Media,
+  MediaAssets: MediaAssets,
+  MediaCaption: MediaCaption,
+  MediaChapter: MediaChapter,
   Metadata: Metadata,
   MoveVideoInPlaylistRequest: MoveVideoInPlaylistRequest,
   PlayerTheme: PlayerTheme,
@@ -184,15 +187,12 @@ const typeMap: { [index: string]: any } = {
   ResponseError: ResponseError,
   ResponseSuccess: ResponseSuccess,
   Theme: Theme,
+  UpdateMediaInfoRequest: UpdateMediaInfoRequest,
   UpdatePlayerThemeRequest: UpdatePlayerThemeRequest,
   UpdatePlayerThemeResponse: UpdatePlayerThemeResponse,
-  UpdateVideoInfoRequest: UpdateVideoInfoRequest,
   UpdateWebhookRequest: UpdateWebhookRequest,
   UploadLogoByIdResponse: UploadLogoByIdResponse,
   User: User,
-  VideoAssets: VideoAssets,
-  VideoCaption: VideoCaption,
-  VideoChapter: VideoChapter,
   VideoConfig: VideoConfig,
   VideoWatermark: VideoWatermark,
   Webhook: Webhook,
