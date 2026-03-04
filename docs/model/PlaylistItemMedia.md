@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**captions** | [**Array&lt;VideoCaption&gt;**](VideoCaption.md) |  |  [optional]
-**chapters** | [**Array&lt;VideoChapter&gt;**](VideoChapter.md) |  |  [optional]
+**captions** | [**Array&lt;MediaCaption&gt;**](MediaCaption.md) |  |  [optional]
+**chapters** | [**Array&lt;MediaChapter&gt;**](MediaChapter.md) |  |  [optional]
 **description** | **string** |  |  [optional]
 **duration** | **number** |  |  [optional]
 **hlsUrl** | **string** |  |  [optional]

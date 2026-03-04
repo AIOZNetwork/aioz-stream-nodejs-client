@@ -1,9 +1,9 @@
-import { expect } from '@jest/globals';
+import { afterAll, beforeAll, describe, expect, it } from '@jest/globals';
 import StreamError from '../src/StreamError';
 import fs from 'fs';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
-import { openInvalidFile, openTestImageFile } from './Video.spec';
 import { v4 as uuidv4 } from 'uuid';
+import { openInvalidFile, openTestImageFile } from './Video.spec';
 let testPlayerIDForUpdateAndDeleteAndGet: string | undefined;
 const playerName = 'Test Player Theme';
 const logoURL = 'https://example.com/logo.png';
@@ -142,7 +142,7 @@ describe('Players Service', () => {
     it('Valid Add', async () => {
       const response = await testClient.players.addPlayer({
         playerThemeId: testPlayerIDForUpdateAndDeleteAndGet as string,
-        videoId: testVideoForPlayer,
+        mediaId: testVideoForPlayer,
       });
       expect(response).toBeDefined();
     });
@@ -151,7 +151,7 @@ describe('Players Service', () => {
       await expect(
         testClient.players.addPlayer({
           playerThemeId: 'invalid-id',
-          videoId: testVideoForPlayer,
+          mediaId: testVideoForPlayer,
         })
       ).rejects.toThrow(StreamError);
     });
@@ -317,14 +317,14 @@ describe('Players Service', () => {
       await expect(
         anonymousTestClient.players.removePlayer({
           playerThemeId: testPlayerIDForUpdateAndDeleteAndGet as string,
-          videoId: testVideoForPlayer,
+          mediaId: testVideoForPlayer,
         })
       ).rejects.toThrow(StreamError);
     });
     it('Valid Remove', async () => {
       const response = await testClient.players.removePlayer({
         playerThemeId: testPlayerIDForUpdateAndDeleteAndGet as string,
-        videoId: testVideoForPlayer,
+        mediaId: testVideoForPlayer,
       });
       expect(response).toBeDefined();
     });
@@ -333,7 +333,7 @@ describe('Players Service', () => {
       await expect(
         testClient.players.removePlayer({
           playerThemeId: 'invalid-id',
-          videoId: testVideoForPlayer,
+          mediaId: testVideoForPlayer,
         })
       ).rejects.toThrow(StreamError);
     });
@@ -351,7 +351,7 @@ describe('Players Service', () => {
       await expect(
         testClient.players.removePlayer({
           playerThemeId: newId,
-          videoId: newId,
+          mediaId: newId,
         })
       ).rejects.toThrow(StreamError);
     });

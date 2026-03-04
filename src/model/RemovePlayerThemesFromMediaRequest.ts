@@ -12,21 +12,21 @@
 import AttributeType from './AttributeType.js';
 
 export default class RemovePlayerThemesFromMediaRequest {
+  'mediaId'?: string;
   'playerThemeId'?: string;
-  'videoId'?: string;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'playerThemeId',
-      baseName: 'player_theme_id',
+      name: 'mediaId',
+      baseName: 'media_id',
       type: 'string',
       format: '',
     },
     {
-      name: 'videoId',
-      baseName: 'video_id',
+      name: 'playerThemeId',
+      baseName: 'player_theme_id',
       type: 'string',
       format: '',
     },

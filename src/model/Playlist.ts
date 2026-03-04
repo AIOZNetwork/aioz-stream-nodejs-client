@@ -18,6 +18,7 @@ export default class Playlist {
   'id'?: string;
   'iframe'?: string;
   'itemCount'?: number;
+  'items'?: Array<PlaylistItem>;
   'metadata'?: { [key: string]: string };
   'name'?: string;
   'playlistType'?: string;
@@ -27,7 +28,6 @@ export default class Playlist {
   'thumbnailUrl'?: string;
   'updatedAt'?: string;
   'userId'?: string;
-  'videoItems'?: Array<PlaylistItem>;
 
   static readonly discriminator?: string = undefined;
 
@@ -60,6 +60,12 @@ export default class Playlist {
       name: 'itemCount',
       baseName: 'item_count',
       type: 'number',
+      format: '',
+    },
+    {
+      name: 'items',
+      baseName: 'items',
+      type: 'Array<PlaylistItem>',
       format: '',
     },
     {
@@ -114,12 +120,6 @@ export default class Playlist {
       name: 'userId',
       baseName: 'user_id',
       type: 'string',
-      format: '',
-    },
-    {
-      name: 'videoItems',
-      baseName: 'video_items',
-      type: 'Array<PlaylistItem>',
       format: '',
     },
   ];
