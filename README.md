@@ -70,6 +70,17 @@ import StreamClient from "@aiozstream/nodejs-client";
 ### API endpoints
 
 
+#### AnalyticsApi
+
+Method | Description | HTTP request
+------------- | ------------- | -------------
+[**GetAggregatedMetrics()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/AnalyticsApi.md#GetAggregatedMetrics) | Get aggregated metrics | **POST** `/analytics/metrics/data/{metric}/{aggregation}`
+[**GetBreakdownMetrics()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/AnalyticsApi.md#GetBreakdownMetrics) | Get breakdown metrics | **POST** `/analytics/metrics/bucket/{metric}/{breakdown}`
+[**GetDataUsage()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/AnalyticsApi.md#GetDataUsage) | Get data usage | **GET** `/analytics/data`
+[**GetOvertimeMetrics()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/AnalyticsApi.md#GetOvertimeMetrics) | Get overtime metrics | **POST** `/analytics/metrics/timeseries/{metric}/{interval}`
+[**GetStatisticMedias()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/AnalyticsApi.md#GetStatisticMedias) | Get statistic media | **GET** `/analytics/media`
+
+
 #### ApiKeyApi
 
 Method | Description | HTTP request
@@ -166,6 +177,13 @@ Method | Description | HTTP request
 [**updatePlaylist()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/PlaylistApi.md#updatePlaylist) | Update a playlist | **PATCH** `/playlists/{id}`
 
 
+#### UserApi
+
+Method | Description | HTTP request
+------------- | ------------- | -------------
+[**GetMe()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/UserApi.md#GetMe) | Get me | **GET** `/user/me`
+
+
 #### WebhookApi
 
 Method | Description | HTTP request
@@ -209,8 +227,13 @@ Method | Description | HTTP request
  - [CreateWebhookData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateWebhookData.md)
  - [CreateWebhookRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateWebhookRequest.md)
  - [CreateWebhookResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateWebhookResponse.md)
+ - [DataUsage](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/DataUsage.md)
+ - [GetAggregatedMetricsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetAggregatedMetricsResponse.md)
  - [GetApiKeysData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetApiKeysData.md)
  - [GetApiKeysResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetApiKeysResponse.md)
+ - [GetBreakdownMetricsRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetBreakdownMetricsRequest.md)
+ - [GetBreakdownMetricsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetBreakdownMetricsResponse.md)
+ - [GetDataUsageResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetDataUsageResponse.md)
  - [GetLiveStreamKeyData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamKeyData.md)
  - [GetLiveStreamKeyResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamKeyResponse.md)
  - [GetLiveStreamKeysListData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamKeysListData.md)
@@ -221,6 +244,7 @@ Method | Description | HTTP request
  - [GetLiveStreamStatisticResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamStatisticResponse.md)
  - [GetLiveStreamVideoPublicResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamVideoPublicResponse.md)
  - [GetLiveStreamVideoResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamVideoResponse.md)
+ - [GetMeResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMeResponse.md)
  - [GetMediaCaptionsData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaCaptionsData.md)
  - [GetMediaCaptionsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaCaptionsResponse.md)
  - [GetMediaChaptersData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaChaptersData.md)
@@ -230,6 +254,7 @@ Method | Description | HTTP request
  - [GetMediaListRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaListRequest.md)
  - [GetMediaListResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaListResponse.md)
  - [GetMediaPlayerInfoResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaPlayerInfoResponse.md)
+ - [GetOvertimeMetricsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetOvertimeMetricsResponse.md)
  - [GetPlayerThemeByIdData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetPlayerThemeByIdData.md)
  - [GetPlayerThemeByIdResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetPlayerThemeByIdResponse.md)
  - [GetPlayerThemeData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetPlayerThemeData.md)
@@ -239,14 +264,17 @@ Method | Description | HTTP request
  - [GetPlaylistListData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetPlaylistListData.md)
  - [GetPlaylistListRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetPlaylistListRequest.md)
  - [GetPlaylistListResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetPlaylistListResponse.md)
+ - [GetStatisticMediasResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetStatisticMediasResponse.md)
  - [GetStreamingResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetStreamingResponse.md)
  - [GetStreamingsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetStreamingsResponse.md)
  - [GetTranscodeCostData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetTranscodeCostData.md)
  - [GetTranscodeCostResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetTranscodeCostResponse.md)
+ - [GetUserData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetUserData.md)
  - [GetUserWebhookData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetUserWebhookData.md)
  - [GetUserWebhookResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetUserWebhookResponse.md)
  - [GetWebhooksListData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetWebhooksListData.md)
  - [GetWebhooksListResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetWebhooksListResponse.md)
+ - [InternalControllersGetAggreatedMetricsMetricsRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/InternalControllersGetAggreatedMetricsMetricsRequest.md)
  - [LiveStreamAssets](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamAssets.md)
  - [LiveStreamKeyData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamKeyData.md)
  - [LiveStreamMediaData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamMediaData.md)
@@ -259,6 +287,9 @@ Method | Description | HTTP request
  - [MediaCaption](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaCaption.md)
  - [MediaChapter](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaChapter.md)
  - [Metadata](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Metadata.md)
+ - [MetricFilter](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MetricFilter.md)
+ - [MetricItem](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MetricItem.md)
+ - [MetricsContext](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MetricsContext.md)
  - [MoveVideoInPlaylistRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MoveVideoInPlaylistRequest.md)
  - [PlayerTheme](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/PlayerTheme.md)
  - [Playlist](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Playlist.md)
@@ -274,6 +305,7 @@ Method | Description | HTTP request
  - [ResponseError](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ResponseError.md)
  - [ResponseSuccess](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ResponseSuccess.md)
  - [Theme](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Theme.md)
+ - [TimeFrame](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/TimeFrame.md)
  - [UpdateLiveStreamKeyData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateLiveStreamKeyData.md)
  - [UpdateLiveStreamKeyRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateLiveStreamKeyRequest.md)
  - [UpdateLiveStreamKeyResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateLiveStreamKeyResponse.md)
