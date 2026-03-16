@@ -38,8 +38,13 @@ import CreateStreamingResponse from './model/CreateStreamingResponse';
 import CreateWebhookData from './model/CreateWebhookData';
 import CreateWebhookRequest from './model/CreateWebhookRequest';
 import CreateWebhookResponse from './model/CreateWebhookResponse';
+import DataUsage from './model/DataUsage';
+import GetAggregatedMetricsResponse from './model/GetAggregatedMetricsResponse';
 import GetApiKeysData from './model/GetApiKeysData';
 import GetApiKeysResponse from './model/GetApiKeysResponse';
+import GetBreakdownMetricsRequest from './model/GetBreakdownMetricsRequest';
+import GetBreakdownMetricsResponse from './model/GetBreakdownMetricsResponse';
+import GetDataUsageResponse from './model/GetDataUsageResponse';
 import GetLiveStreamKeyData from './model/GetLiveStreamKeyData';
 import GetLiveStreamKeyResponse from './model/GetLiveStreamKeyResponse';
 import GetLiveStreamKeysListData from './model/GetLiveStreamKeysListData';
@@ -50,6 +55,7 @@ import GetLiveStreamMulticastResponse from './model/GetLiveStreamMulticastRespon
 import GetLiveStreamStatisticResponse from './model/GetLiveStreamStatisticResponse';
 import GetLiveStreamVideoPublicResponse from './model/GetLiveStreamVideoPublicResponse';
 import GetLiveStreamVideoResponse from './model/GetLiveStreamVideoResponse';
+import GetMeResponse from './model/GetMeResponse';
 import GetMediaCaptionsData from './model/GetMediaCaptionsData';
 import GetMediaCaptionsResponse from './model/GetMediaCaptionsResponse';
 import GetMediaChaptersData from './model/GetMediaChaptersData';
@@ -59,6 +65,7 @@ import GetMediaListData from './model/GetMediaListData';
 import GetMediaListRequest from './model/GetMediaListRequest';
 import GetMediaListResponse from './model/GetMediaListResponse';
 import GetMediaPlayerInfoResponse from './model/GetMediaPlayerInfoResponse';
+import GetOvertimeMetricsResponse from './model/GetOvertimeMetricsResponse';
 import GetPlayerThemeByIdData from './model/GetPlayerThemeByIdData';
 import GetPlayerThemeByIdResponse from './model/GetPlayerThemeByIdResponse';
 import GetPlayerThemeData from './model/GetPlayerThemeData';
@@ -68,14 +75,17 @@ import GetPlaylistByIdResponse from './model/GetPlaylistByIdResponse';
 import GetPlaylistListData from './model/GetPlaylistListData';
 import GetPlaylistListRequest from './model/GetPlaylistListRequest';
 import GetPlaylistListResponse from './model/GetPlaylistListResponse';
+import GetStatisticMediasResponse from './model/GetStatisticMediasResponse';
 import GetStreamingResponse from './model/GetStreamingResponse';
 import GetStreamingsResponse from './model/GetStreamingsResponse';
 import GetTranscodeCostData from './model/GetTranscodeCostData';
 import GetTranscodeCostResponse from './model/GetTranscodeCostResponse';
+import GetUserData from './model/GetUserData';
 import GetUserWebhookData from './model/GetUserWebhookData';
 import GetUserWebhookResponse from './model/GetUserWebhookResponse';
 import GetWebhooksListData from './model/GetWebhooksListData';
 import GetWebhooksListResponse from './model/GetWebhooksListResponse';
+import InternalControllersGetAggreatedMetricsMetricsRequest from './model/InternalControllersGetAggreatedMetricsMetricsRequest';
 import LiveStreamAssets from './model/LiveStreamAssets';
 import LiveStreamKeyData from './model/LiveStreamKeyData';
 import LiveStreamMediaData from './model/LiveStreamMediaData';
@@ -88,6 +98,9 @@ import MediaAssets from './model/MediaAssets';
 import MediaCaption from './model/MediaCaption';
 import MediaChapter from './model/MediaChapter';
 import Metadata from './model/Metadata';
+import MetricFilter from './model/MetricFilter';
+import MetricItem from './model/MetricItem';
+import MetricsContext from './model/MetricsContext';
 import MoveVideoInPlaylistRequest from './model/MoveVideoInPlaylistRequest';
 import PlayerTheme from './model/PlayerTheme';
 import Playlist from './model/Playlist';
@@ -103,6 +116,7 @@ import RequestCreateCaption from './model/RequestCreateCaption';
 import ResponseError from './model/ResponseError';
 import ResponseSuccess from './model/ResponseSuccess';
 import Theme from './model/Theme';
+import TimeFrame from './model/TimeFrame';
 import UpdateLiveStreamKeyData from './model/UpdateLiveStreamKeyData';
 import UpdateLiveStreamKeyRequest from './model/UpdateLiveStreamKeyRequest';
 import UpdateLiveStreamKeyResponse from './model/UpdateLiveStreamKeyResponse';
@@ -173,8 +187,13 @@ const typeMap: { [index: string]: any } = {
   CreateWebhookData: CreateWebhookData,
   CreateWebhookRequest: CreateWebhookRequest,
   CreateWebhookResponse: CreateWebhookResponse,
+  DataUsage: DataUsage,
+  GetAggregatedMetricsResponse: GetAggregatedMetricsResponse,
   GetApiKeysData: GetApiKeysData,
   GetApiKeysResponse: GetApiKeysResponse,
+  GetBreakdownMetricsRequest: GetBreakdownMetricsRequest,
+  GetBreakdownMetricsResponse: GetBreakdownMetricsResponse,
+  GetDataUsageResponse: GetDataUsageResponse,
   GetLiveStreamKeyData: GetLiveStreamKeyData,
   GetLiveStreamKeyResponse: GetLiveStreamKeyResponse,
   GetLiveStreamKeysListData: GetLiveStreamKeysListData,
@@ -185,6 +204,7 @@ const typeMap: { [index: string]: any } = {
   GetLiveStreamStatisticResponse: GetLiveStreamStatisticResponse,
   GetLiveStreamVideoPublicResponse: GetLiveStreamVideoPublicResponse,
   GetLiveStreamVideoResponse: GetLiveStreamVideoResponse,
+  GetMeResponse: GetMeResponse,
   GetMediaCaptionsData: GetMediaCaptionsData,
   GetMediaCaptionsResponse: GetMediaCaptionsResponse,
   GetMediaChaptersData: GetMediaChaptersData,
@@ -194,6 +214,7 @@ const typeMap: { [index: string]: any } = {
   GetMediaListRequest: GetMediaListRequest,
   GetMediaListResponse: GetMediaListResponse,
   GetMediaPlayerInfoResponse: GetMediaPlayerInfoResponse,
+  GetOvertimeMetricsResponse: GetOvertimeMetricsResponse,
   GetPlayerThemeByIdData: GetPlayerThemeByIdData,
   GetPlayerThemeByIdResponse: GetPlayerThemeByIdResponse,
   GetPlayerThemeData: GetPlayerThemeData,
@@ -203,14 +224,18 @@ const typeMap: { [index: string]: any } = {
   GetPlaylistListData: GetPlaylistListData,
   GetPlaylistListRequest: GetPlaylistListRequest,
   GetPlaylistListResponse: GetPlaylistListResponse,
+  GetStatisticMediasResponse: GetStatisticMediasResponse,
   GetStreamingResponse: GetStreamingResponse,
   GetStreamingsResponse: GetStreamingsResponse,
   GetTranscodeCostData: GetTranscodeCostData,
   GetTranscodeCostResponse: GetTranscodeCostResponse,
+  GetUserData: GetUserData,
   GetUserWebhookData: GetUserWebhookData,
   GetUserWebhookResponse: GetUserWebhookResponse,
   GetWebhooksListData: GetWebhooksListData,
   GetWebhooksListResponse: GetWebhooksListResponse,
+  InternalControllersGetAggreatedMetricsMetricsRequest:
+    InternalControllersGetAggreatedMetricsMetricsRequest,
   LiveStreamAssets: LiveStreamAssets,
   LiveStreamKeyData: LiveStreamKeyData,
   LiveStreamMediaData: LiveStreamMediaData,
@@ -223,6 +248,9 @@ const typeMap: { [index: string]: any } = {
   MediaCaption: MediaCaption,
   MediaChapter: MediaChapter,
   Metadata: Metadata,
+  MetricFilter: MetricFilter,
+  MetricItem: MetricItem,
+  MetricsContext: MetricsContext,
   MoveVideoInPlaylistRequest: MoveVideoInPlaylistRequest,
   PlayerTheme: PlayerTheme,
   Playlist: Playlist,
@@ -238,6 +266,7 @@ const typeMap: { [index: string]: any } = {
   ResponseError: ResponseError,
   ResponseSuccess: ResponseSuccess,
   Theme: Theme,
+  TimeFrame: TimeFrame,
   UpdateLiveStreamKeyData: UpdateLiveStreamKeyData,
   UpdateLiveStreamKeyRequest: UpdateLiveStreamKeyRequest,
   UpdateLiveStreamKeyResponse: UpdateLiveStreamKeyResponse,
