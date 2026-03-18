@@ -10,30 +10,30 @@
  */
 
 import AttributeType from './AttributeType.js';
-import GetStatisticMediasData from './GetStatisticMediasData.js';
+import Media from './Media.js';
 
-export default class GetStatisticMediasResponse {
-  'data'?: GetStatisticMediasData;
-  'status'?: string;
+export default class GetStatisticMediasData {
+  'media'?: Array<Media>;
+  'total'?: number;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'data',
-      baseName: 'data',
-      type: 'GetStatisticMediasData',
+      name: 'media',
+      baseName: 'media',
+      type: 'Array<Media>',
       format: '',
     },
     {
-      name: 'status',
-      baseName: 'status',
-      type: 'string',
+      name: 'total',
+      baseName: 'total',
+      type: 'number',
       format: '',
     },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return GetStatisticMediasResponse.attributeTypeMap;
+    return GetStatisticMediasData.attributeTypeMap;
   }
 }

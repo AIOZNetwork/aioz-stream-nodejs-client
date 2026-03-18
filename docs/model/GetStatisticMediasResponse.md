@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**media** | [**Array&lt;Media&gt;**](Media.md) |  |  [optional]
-**total** | **number** |  |  [optional]
+**data** | [**GetStatisticMediasData**](GetStatisticMediasData.md) |  |  [optional]
+**status** | **string** |  |  [optional]
 
 
 

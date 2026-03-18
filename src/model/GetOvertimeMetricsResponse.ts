@@ -10,33 +10,25 @@
  */
 
 import AttributeType from './AttributeType.js';
-import MetricItem from './MetricItem.js';
-import MetricsContext from './MetricsContext.js';
+import GetOvertimeMetricsData from './GetOvertimeMetricsData.js';
 
 export default class GetOvertimeMetricsResponse {
-  'context'?: MetricsContext;
-  'data'?: Array<MetricItem>;
-  'total'?: number;
+  'data'?: GetOvertimeMetricsData;
+  'status'?: string;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'context',
-      baseName: 'context',
-      type: 'MetricsContext',
-      format: '',
-    },
-    {
       name: 'data',
       baseName: 'data',
-      type: 'Array<MetricItem>',
+      type: 'GetOvertimeMetricsData',
       format: '',
     },
     {
-      name: 'total',
-      baseName: 'total',
-      type: 'number',
+      name: 'status',
+      baseName: 'status',
+      type: 'string',
       format: '',
     },
   ];

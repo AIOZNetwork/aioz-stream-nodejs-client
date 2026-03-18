@@ -10,25 +10,25 @@
  */
 
 import AttributeType from './AttributeType.js';
-import MetricsContext from './MetricsContext.js';
+import GetAggregatedMetricsData from './GetAggregatedMetricsData.js';
 
 export default class GetAggregatedMetricsResponse {
-  'context'?: MetricsContext;
-  'data'?: number;
+  'data'?: GetAggregatedMetricsData;
+  'status'?: string;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'context',
-      baseName: 'context',
-      type: 'MetricsContext',
+      name: 'data',
+      baseName: 'data',
+      type: 'GetAggregatedMetricsData',
       format: '',
     },
     {
-      name: 'data',
-      baseName: 'data',
-      type: 'number',
+      name: 'status',
+      baseName: 'status',
+      type: 'string',
       format: '',
     },
   ];

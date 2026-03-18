@@ -10,11 +10,11 @@
  */
 
 import AttributeType from './AttributeType.js';
-import GetStatisticMediasData from './GetStatisticMediasData.js';
+import DataUsage from './DataUsage.js';
 
-export default class GetStatisticMediasResponse {
-  'data'?: GetStatisticMediasData;
-  'status'?: string;
+export default class GetDataUsageData {
+  'data'?: Array<DataUsage>;
+  'total'?: number;
 
   static readonly discriminator?: string = undefined;
 
@@ -22,18 +22,18 @@ export default class GetStatisticMediasResponse {
     {
       name: 'data',
       baseName: 'data',
-      type: 'GetStatisticMediasData',
+      type: 'Array<DataUsage>',
       format: '',
     },
     {
-      name: 'status',
-      baseName: 'status',
-      type: 'string',
+      name: 'total',
+      baseName: 'total',
+      type: 'number',
       format: '',
     },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return GetStatisticMediasResponse.attributeTypeMap;
+    return GetDataUsageData.attributeTypeMap;
   }
 }

@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**context** | [**MetricsContext**](MetricsContext.md) |  |  [optional]
-**data** | **number** |  |  [optional]
+**data** | [**GetAggregatedMetricsData**](GetAggregatedMetricsData.md) |  |  [optional]
+**status** | **string** |  |  [optional]
 
 
 
