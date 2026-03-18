@@ -10,30 +10,30 @@
  */
 
 import AttributeType from './AttributeType.js';
-import GetStatisticMediasData from './GetStatisticMediasData.js';
+import MetricsContext from './MetricsContext.js';
 
-export default class GetStatisticMediasResponse {
-  'data'?: GetStatisticMediasData;
-  'status'?: string;
+export default class GetAggregatedMetricsData {
+  'context'?: MetricsContext;
+  'data'?: number;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'data',
-      baseName: 'data',
-      type: 'GetStatisticMediasData',
+      name: 'context',
+      baseName: 'context',
+      type: 'MetricsContext',
       format: '',
     },
     {
-      name: 'status',
-      baseName: 'status',
-      type: 'string',
+      name: 'data',
+      baseName: 'data',
+      type: 'number',
       format: '',
     },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return GetStatisticMediasResponse.attributeTypeMap;
+    return GetAggregatedMetricsData.attributeTypeMap;
   }
 }

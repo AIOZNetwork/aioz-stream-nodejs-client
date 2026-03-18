@@ -10,30 +10,38 @@
  */
 
 import AttributeType from './AttributeType.js';
-import GetStatisticMediasData from './GetStatisticMediasData.js';
+import MetricItem from './MetricItem.js';
+import MetricsContext from './MetricsContext.js';
 
-export default class GetStatisticMediasResponse {
-  'data'?: GetStatisticMediasData;
-  'status'?: string;
+export default class GetBreakdownMetricsData {
+  'context'?: MetricsContext;
+  'data'?: Array<MetricItem>;
+  'total'?: number;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
     {
-      name: 'data',
-      baseName: 'data',
-      type: 'GetStatisticMediasData',
+      name: 'context',
+      baseName: 'context',
+      type: 'MetricsContext',
       format: '',
     },
     {
-      name: 'status',
-      baseName: 'status',
-      type: 'string',
+      name: 'data',
+      baseName: 'data',
+      type: 'Array<MetricItem>',
+      format: '',
+    },
+    {
+      name: 'total',
+      baseName: 'total',
+      type: 'number',
       format: '',
     },
   ];
 
   static getAttributeTypeMap(): Array<AttributeType> {
-    return GetStatisticMediasResponse.attributeTypeMap;
+    return GetBreakdownMetricsData.attributeTypeMap;
   }
 }

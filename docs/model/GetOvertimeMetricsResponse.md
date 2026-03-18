@@ -5,9 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**context** | [**MetricsContext**](MetricsContext.md) |  |  [optional]
-**data** | [**Array&lt;MetricItem&gt;**](MetricItem.md) |  |  [optional]
-**total** | **number** |  |  [optional]
+**data** | [**GetOvertimeMetricsData**](GetOvertimeMetricsData.md) |  |  [optional]
+**status** | **string** |  |  [optional]
 
 
 

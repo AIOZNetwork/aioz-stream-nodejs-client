@@ -10,11 +10,11 @@
  */
 
 import AttributeType from './AttributeType.js';
-import DataUsage from './DataUsage.js';
+import GetDataUsageData from './GetDataUsageData.js';
 
 export default class GetDataUsageResponse {
-  'data'?: Array<DataUsage>;
-  'total'?: number;
+  'data'?: GetDataUsageData;
+  'status'?: string;
 
   static readonly discriminator?: string = undefined;
 
@@ -22,13 +22,13 @@ export default class GetDataUsageResponse {
     {
       name: 'data',
       baseName: 'data',
-      type: 'Array<DataUsage>',
+      type: 'GetDataUsageData',
       format: '',
     },
     {
-      name: 'total',
-      baseName: 'total',
-      type: 'number',
+      name: 'status',
+      baseName: 'status',
+      type: 'string',
       format: '',
     },
   ];

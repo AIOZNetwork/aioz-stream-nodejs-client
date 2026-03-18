@@ -76,6 +76,11 @@ export default class AnalyticsApi {
         'Required parameter aggregation was null or undefined when calling GetAggregatedMetrics.'
       );
     }
+    if (request === null || request === undefined) {
+      throw new Error(
+        'Required parameter request was null or undefined when calling GetAggregatedMetrics.'
+      );
+    }
     // Path Params
     const localVarPath = '/analytics/metrics/data/{metric}/{aggregation}'
       .substring(1)
@@ -161,6 +166,11 @@ export default class AnalyticsApi {
     if (breakdown === null || breakdown === undefined) {
       throw new Error(
         'Required parameter breakdown was null or undefined when calling GetBreakdownMetrics.'
+      );
+    }
+    if (request === null || request === undefined) {
+      throw new Error(
+        'Required parameter request was null or undefined when calling GetBreakdownMetrics.'
       );
     }
     // Path Params
@@ -360,6 +370,11 @@ export default class AnalyticsApi {
     if (interval === null || interval === undefined) {
       throw new Error(
         'Required parameter interval was null or undefined when calling GetOvertimeMetrics.'
+      );
+    }
+    if (request === null || request === undefined) {
+      throw new Error(
+        'Required parameter request was null or undefined when calling GetOvertimeMetrics.'
       );
     }
     // Path Params
