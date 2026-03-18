@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**balance** | **number** |  |  [optional]
+**balance** | **string** |  |  [optional]
 **createdAt** | **string** |  |  [optional]
-**debt** | **number** |  |  [optional]
+**debt** | **string** |  |  [optional]
 **email** | **string** |  |  [optional]
 **exclusiveCode** | **string** |  |  [optional]
 **firstName** | **string** |  |  [optional]
