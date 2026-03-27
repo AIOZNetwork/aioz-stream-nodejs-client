@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **name** | **string** |  |  [optional]
 **publicKey** | **string** |  |  [optional]
 **secret** | **string** |  |  [optional]
+**status** | **string** |  |  [optional]
 **truncatedSecret** | **string** |  |  [optional]
 **ttl** | **string** |  |  [optional]
 **type** | **string** |  |  [optional]
