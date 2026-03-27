@@ -217,15 +217,13 @@ export default class AnalyticsApi {
    * @param { number } searchParams.offset offset, allowed values greater than or equal to 0. Default(0)
    * @param { number } searchParams.limit results per page. Allowed values 1-100, default is 25
    */
-  public async GetDataUsage(
-    args: {
-      from: number;
-      to: number;
-      interval: string;
-      offset?: number;
-      limit?: number;
-    } = {}
-  ): Promise<GetDataUsageResponse> {
+  public async GetDataUsage(args: {
+    from: number;
+    to: number;
+    interval: string;
+    offset?: number;
+    limit?: number;
+  }): Promise<GetDataUsageResponse> {
     return this.GetDataUsageWithResponseHeaders(args).then((res) => res.body);
   }
 
@@ -251,7 +249,7 @@ export default class AnalyticsApi {
     interval: string;
     offset?: number;
     limit?: number;
-  } = {}): Promise<{
+  }): Promise<{
     headers: ApiResponseHeaders;
     body: GetDataUsageResponse;
   }> {
