@@ -20,6 +20,7 @@ export default class ApiKey {
   'name'?: string;
   'publicKey'?: string;
   'secret'?: string;
+  'status'?: string;
   'truncatedSecret'?: string;
   'ttl'?: string;
   'type'?: string;
@@ -68,6 +69,12 @@ export default class ApiKey {
     {
       name: 'secret',
       baseName: 'secret',
+      type: 'string',
+      format: '',
+    },
+    {
+      name: 'status',
+      baseName: 'status',
       type: 'string',
       format: '',
     },

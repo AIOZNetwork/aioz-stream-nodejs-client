@@ -125,7 +125,7 @@ export default class Media {
       name: 'size',
       baseName: 'size',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'status',

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **balance** | **string** |  |  [optional]
 **createdAt** | **string** |  |  [optional]
 **debt** | **string** |  |  [optional]
+**deletedAt** | **string** |  |  [optional]
 **email** | **string** |  |  [optional]
 **exclusiveCode** | **string** |  |  [optional]
 **firstName** | **string** |  |  [optional]

@@ -15,6 +15,7 @@ export default class User {
   'balance'?: string;
   'createdAt'?: string;
   'debt'?: string;
+  'deletedAt'?: string;
   'email'?: string;
   'exclusiveCode'?: string;
   'firstName'?: string;
@@ -44,6 +45,12 @@ export default class User {
     {
       name: 'debt',
       baseName: 'debt',
+      type: 'string',
+      format: '',
+    },
+    {
+      name: 'deletedAt',
+      baseName: 'deleted_at',
       type: 'string',
       format: '',
     },
