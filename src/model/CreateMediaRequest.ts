@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -10,11 +10,13 @@
  */
 
 import AttributeType from './AttributeType.js';
+import MediaWatermark from './MediaWatermark.js';
 import Metadata from './Metadata.js';
 import QualityConfig from './QualityConfig.js';
-import VideoWatermark from './VideoWatermark.js';
+import VideoCropInfo from './VideoCropInfo.js';
 
 export default class CreateMediaRequest {
+  'cropInfo'?: VideoCropInfo;
   /**
    * Description of the media
    */
@@ -36,6 +38,10 @@ export default class CreateMediaRequest {
    */
   'segmentDuration'?: number;
   /**
+   * Import an existing HLS manifest instead of uploading a file. When set, the renditions are mirrored from that manifest and the part-upload flow is skipped, so `qualities` and `watermark` must be omitted.
+   */
+  'sourceUrl'?: string;
+  /**
    * Tags of the media (max: 50 items, max length: 255)
    */
   'tags'?: Array<string>;
@@ -47,14 +53,17 @@ export default class CreateMediaRequest {
    * Type of the media (default: video, allowed: video, audio)
    */
   'type'?: string;
-  /**
-   * Media thumbnailConfig
-   */
-  'watermark'?: VideoWatermark;
+  'watermark'?: MediaWatermark;
 
   static readonly discriminator?: string = undefined;
 
   static readonly attributeTypeMap: Array<AttributeType> = [
+    {
+      name: 'cropInfo',
+      baseName: 'crop_info',
+      type: 'VideoCropInfo',
+      format: '',
+    },
     {
       name: 'description',
       baseName: 'description',
@@ -86,6 +95,12 @@ export default class CreateMediaRequest {
       format: '',
     },
     {
+      name: 'sourceUrl',
+      baseName: 'source_url',
+      type: 'string',
+      format: '',
+    },
+    {
       name: 'tags',
       baseName: 'tags',
       type: 'Array<string>',
@@ -106,7 +121,7 @@ export default class CreateMediaRequest {
     {
       name: 'watermark',
       baseName: 'watermark',
-      type: 'VideoWatermark',
+      type: 'MediaWatermark',
       format: '',
     },
   ];

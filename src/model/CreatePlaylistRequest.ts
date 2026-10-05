@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -15,7 +15,7 @@ import Metadata from './Metadata.js';
 export default class CreatePlaylistRequest {
   'metadata'?: Array<Metadata>;
   'name'?: string;
-  'playlistType'?: string;
+  'playlistType'?: CreatePlaylistRequestPlaylistTypeEnum;
   'tags'?: Array<string>;
 
   static readonly discriminator?: string = undefined;
@@ -36,7 +36,7 @@ export default class CreatePlaylistRequest {
     {
       name: 'playlistType',
       baseName: 'playlist_type',
-      type: 'string',
+      type: 'CreatePlaylistRequestPlaylistTypeEnum',
       format: '',
     },
     {
@@ -51,3 +51,5 @@ export default class CreatePlaylistRequest {
     return CreatePlaylistRequest.attributeTypeMap;
   }
 }
+
+export type CreatePlaylistRequestPlaylistTypeEnum = 'video' | 'audio';

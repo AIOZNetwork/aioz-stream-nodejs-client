@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -14,6 +14,7 @@ import AttributeType from './AttributeType.js';
 export default class MediaCaption {
   'description'?: string;
   'isDefault'?: boolean;
+  'isGenerated'?: boolean;
   'language'?: string;
   'status'?: string;
   'url'?: string;
@@ -30,6 +31,12 @@ export default class MediaCaption {
     {
       name: 'isDefault',
       baseName: 'is_default',
+      type: 'boolean',
+      format: '',
+    },
+    {
+      name: 'isGenerated',
+      baseName: 'is_generated',
       type: 'boolean',
       format: '',
     },

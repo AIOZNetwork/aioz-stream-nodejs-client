@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -19,7 +19,7 @@ export default class Playlist {
   'iframe'?: string;
   'itemCount'?: number;
   'items'?: Array<PlaylistItem>;
-  'metadata'?: { [key: string]: string };
+  'metadata'?: { [key: string]: any };
   'name'?: string;
   'playlistType'?: string;
   'playlistUrl'?: string;
@@ -71,7 +71,7 @@ export default class Playlist {
     {
       name: 'metadata',
       baseName: 'metadata',
-      type: '{ [key: string]: string; }',
+      type: '{ [key: string]: any; }',
       format: '',
     },
     {

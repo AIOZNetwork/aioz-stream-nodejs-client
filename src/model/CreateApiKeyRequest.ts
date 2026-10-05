@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -14,7 +14,7 @@ import AttributeType from './AttributeType.js';
 export default class CreateApiKeyRequest {
   'apiKeyName'?: string;
   'ttl'?: string;
-  'type'?: string;
+  'type'?: CreateApiKeyRequestTypeEnum;
 
   static readonly discriminator?: string = undefined;
 
@@ -34,7 +34,7 @@ export default class CreateApiKeyRequest {
     {
       name: 'type',
       baseName: 'type',
-      type: 'string',
+      type: 'CreateApiKeyRequestTypeEnum',
       format: '',
     },
   ];
@@ -43,3 +43,5 @@ export default class CreateApiKeyRequest {
     return CreateApiKeyRequest.attributeTypeMap;
   }
 }
+
+export type CreateApiKeyRequestTypeEnum = 'full_access' | 'only_upload';

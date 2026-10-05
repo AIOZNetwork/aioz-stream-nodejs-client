@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -19,6 +19,9 @@ export default class ApiKey {
   'lastRequestedAt'?: string;
   'name'?: string;
   'publicKey'?: string;
+  /**
+   * The API key's secret. It is returned once, in the response that creates the key, and never again: store it when you receive it.  (Not a database column: only the secret's hash is stored.)
+   */
   'secret'?: string;
   'status'?: string;
   'truncatedSecret'?: string;

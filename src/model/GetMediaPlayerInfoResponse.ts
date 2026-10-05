@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -123,7 +123,7 @@ export default class GetMediaPlayerInfoResponse {
       name: 'size',
       baseName: 'size',
       type: 'number',
-      format: 'int64',
+      format: '',
     },
     {
       name: 'status',

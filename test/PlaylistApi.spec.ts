@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import { expect } from '@jest/globals';
 import StreamError from '../src/StreamError';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { openInvalidFile, openTestImageFile } from './Video.spec';
@@ -149,7 +149,7 @@ describe('Playlist Service', () => {
         anonymousTestClient.playlist.addVideoToPlaylist(
           testPlaylistID as string,
           {
-            mediaId: testVideoIDOne,
+            videoId: testVideoIDOne,
           }
         )
       ).rejects.toThrow(StreamError);
@@ -158,7 +158,7 @@ describe('Playlist Service', () => {
       const response = await testClient.playlist.addVideoToPlaylist(
         testPlaylistID as string,
         {
-          mediaId: testVideoIDOne,
+          videoId: testVideoIDOne,
         }
       );
       expect(response).toBeDefined();
@@ -168,7 +168,7 @@ describe('Playlist Service', () => {
       const response = await testClient.playlist.addVideoToPlaylist(
         testPlaylistID as string,
         {
-          mediaId: testVideoIDTwo,
+          videoId: testVideoIDTwo,
         }
       );
       expect(response).toBeDefined();
@@ -178,7 +178,7 @@ describe('Playlist Service', () => {
       const response = await testClient.playlist.addVideoToPlaylist(
         testPlaylistID as string,
         {
-          mediaId: testVideoIDThree,
+          videoId: testVideoIDThree,
         }
       );
       expect(response).toBeDefined();
@@ -187,7 +187,7 @@ describe('Playlist Service', () => {
     it('Missing Video ID', async () => {
       await expect(
         testClient.playlist.addVideoToPlaylist(testPlaylistID as string, {
-          mediaId: '',
+          videoId: '',
         })
       ).rejects.toThrow(StreamError);
     });
@@ -202,7 +202,7 @@ describe('Playlist Service', () => {
       const newId = uuidv4();
       await expect(
         testClient.playlist.addVideoToPlaylist(newId, {
-          mediaId: testVideoIDOne,
+          videoId: testVideoIDOne,
         })
       ).rejects.toThrow(StreamError);
     });
@@ -220,9 +220,9 @@ describe('Playlist Service', () => {
       const response = await testClient.playlist.getPlaylistById({
         id: testPlaylistID as string,
       });
-      testFirstItemID = response.data?.playlist?.items?.[1]?.id;
-      testSecondItemID = response.data?.playlist?.items?.[1]?.nextId;
-      testThirdItemID = response.data?.playlist?.items?.[1]?.previousId;
+      testFirstItemID = response.data?.playlist?.videoItems?.[1]?.id;
+      testSecondItemID = response.data?.playlist?.videoItems?.[1]?.nextId;
+      testThirdItemID = response.data?.playlist?.videoItems?.[1]?.previousId;
       expect(response).toBeDefined();
     });
 
@@ -332,14 +332,14 @@ describe('Playlist Service', () => {
   describe('Remove Video from Playlist', () => {
     it('Remove other', async () => {
       await expect(
-        anonymousTestClient.playlist.removeMediaFromPlaylist(
+        anonymousTestClient.playlist.removeVideoFromPlaylist(
           testPlaylistID as string,
           testFirstItemID as string
         )
       ).rejects.toThrow(StreamError);
     });
     it('Valid Remove First Video Request', async () => {
-      const response = await testClient.playlist.removeMediaFromPlaylist(
+      const response = await testClient.playlist.removeVideoFromPlaylist(
         testPlaylistID as string,
         testFirstItemID as string
       );
@@ -347,7 +347,7 @@ describe('Playlist Service', () => {
     });
 
     it('Valid Remove Second Video Request', async () => {
-      const response = await testClient.playlist.removeMediaFromPlaylist(
+      const response = await testClient.playlist.removeVideoFromPlaylist(
         testPlaylistID as string,
         testSecondItemID as string
       );
@@ -355,7 +355,7 @@ describe('Playlist Service', () => {
     });
 
     it('Valid Remove Third Video Request', async () => {
-      const response = await testClient.playlist.removeMediaFromPlaylist(
+      const response = await testClient.playlist.removeVideoFromPlaylist(
         testPlaylistID as string,
         testThirdItemID as string
       );
@@ -364,13 +364,13 @@ describe('Playlist Service', () => {
 
     it('Invalid Playlist ID', async () => {
       await expect(
-        testClient.playlist.removeMediaFromPlaylist('', testVideoIDOne)
+        testClient.playlist.removeVideoFromPlaylist('', testVideoIDOne)
       ).rejects.toThrow(StreamError);
     });
 
     it('Missing Item ID', async () => {
       await expect(
-        testClient.playlist.removeMediaFromPlaylist(
+        testClient.playlist.removeVideoFromPlaylist(
           testPlaylistID as string,
           ''
         )
@@ -380,7 +380,7 @@ describe('Playlist Service', () => {
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
-        testClient.playlist.removeMediaFromPlaylist(newId, newId)
+        testClient.playlist.removeVideoFromPlaylist(newId, newId)
       ).rejects.toThrow(StreamError);
     });
   });

@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -11,14 +11,11 @@
 
 import HttpClient from './HttpClient';
 
-import AnalyticsApi from './api/AnalyticsApi';
 import ApiKeyApi from './api/ApiKeyApi';
-import LiveStreamApi from './api/LiveStreamApi';
 import MediaApi from './api/MediaApi';
 import MediaChapterApi from './api/MediaChapterApi';
 import PlayersApi from './api/PlayersApi';
 import PlaylistApi from './api/PlaylistApi';
-import UserApi from './api/UserApi';
 import WebhookApi from './api/WebhookApi';
 import { createReadStream, existsSync, statSync } from 'fs';
 import UploadProgressEvent from './model/UploadProgressEvent';
@@ -34,14 +31,11 @@ const MAX_CHUNK_SIZE = 128 * 1024 * 1024;
 
 class StreamClient {
   private httpClient: HttpClient;
-  private _analytics: AnalyticsApi;
   private _apiKey: ApiKeyApi;
-  private _liveStream: LiveStreamApi;
   private _media: MediaApi;
   private _mediaChapter: MediaChapterApi;
   private _players: PlayersApi;
   private _playlist: PlaylistApi;
-  private _user: UserApi;
   private _webhook: WebhookApi;
 
   constructor(params: {
@@ -82,23 +76,12 @@ class StreamClient {
       chunkSize: params.chunkSize || DEFAULT_CHUNK_SIZE,
     });
 
-    this._analytics = new AnalyticsApi(this.httpClient);
     this._apiKey = new ApiKeyApi(this.httpClient);
-    this._liveStream = new LiveStreamApi(this.httpClient);
     this._media = new MediaApi(this.httpClient);
     this._mediaChapter = new MediaChapterApi(this.httpClient);
     this._players = new PlayersApi(this.httpClient);
     this._playlist = new PlaylistApi(this.httpClient);
-    this._user = new UserApi(this.httpClient);
     this._webhook = new WebhookApi(this.httpClient);
-  }
-
-  /**
-   * Get an AnalyticsApi instance
-   * @return AnalyticsApi
-   */
-  public get analytics(): AnalyticsApi {
-    return this._analytics;
   }
 
   /**
@@ -107,14 +90,6 @@ class StreamClient {
    */
   public get apiKey(): ApiKeyApi {
     return this._apiKey;
-  }
-
-  /**
-   * Get an LiveStreamApi instance
-   * @return LiveStreamApi
-   */
-  public get liveStream(): LiveStreamApi {
-    return this._liveStream;
   }
 
   /**
@@ -147,14 +122,6 @@ class StreamClient {
    */
   public get playlist(): PlaylistApi {
     return this._playlist;
-  }
-
-  /**
-   * Get an UserApi instance
-   * @return UserApi
-   */
-  public get user(): UserApi {
-    return this._user;
   }
 
   /**
@@ -207,7 +174,7 @@ class StreamClient {
       throw new Error(`${file} is empty`);
     }
 
-    const localVarPath = `media/${encodeURIComponent(id)}/part`;
+    const localVarPath = `videos/${encodeURIComponent(id)}/part`;
     const chunkSize = this.httpClient.getChunkSize();
     const filename = path.basename(file);
 
@@ -277,7 +244,7 @@ class StreamClient {
       }
     }
 
-    const uploadCompleteLocalVarPath = `media/${encodeURIComponent(
+    const uploadCompleteLocalVarPath = `videos/${encodeURIComponent(
       id
     )}/complete`;
     await this.httpClient.call(uploadCompleteLocalVarPath, { method: 'GET' });

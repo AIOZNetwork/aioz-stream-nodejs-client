@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -12,12 +12,10 @@
 import { URLSearchParams } from 'url';
 import ObjectSerializer from '../ObjectSerializer';
 import HttpClient, { QueryOptions, ApiResponseHeaders } from '../HttpClient';
-import CreateWebhookRequest from '../model/CreateWebhookRequest';
-import CreateWebhookResponse from '../model/CreateWebhookResponse';
-import GetUserWebhookResponse from '../model/GetUserWebhookResponse';
-import GetWebhooksListResponse from '../model/GetWebhooksListResponse';
+import ListWebhooksResponse from '../model/ListWebhooksResponse';
 import ResponseSuccess from '../model/ResponseSuccess';
-import UpdateWebhookRequest from '../model/UpdateWebhookRequest';
+import WebhookResponse from '../model/WebhookResponse';
+import WriteWebhookRequest from '../model/WriteWebhookRequest';
 
 /**
  * no description
@@ -30,29 +28,31 @@ export default class WebhookApi {
   }
 
   /**
-   * Webhooks can push notifications to your server, rather than polling streaming service for changes
-   * Create webhook
-   * @param request Create Webhook input
+   * Registers a URL to be notified of media events, so your server does not have to poll.
+   * Create a webhook
+   * @param writeWebhookRequest Webhook
    */
   public async create(
-    request: CreateWebhookRequest = {}
-  ): Promise<CreateWebhookResponse> {
-    return this.createWithResponseHeaders(request).then((res) => res.body);
+    writeWebhookRequest: WriteWebhookRequest = {}
+  ): Promise<WebhookResponse> {
+    return this.createWithResponseHeaders(writeWebhookRequest).then(
+      (res) => res.body
+    );
   }
 
   /**
-   * Webhooks can push notifications to your server, rather than polling streaming service for changes
-   * Create webhook
-   * @param request Create Webhook input
+   * Registers a URL to be notified of media events, so your server does not have to poll.
+   * Create a webhook
+   * @param writeWebhookRequest Webhook
    */
   public async createWithResponseHeaders(
-    request: CreateWebhookRequest = {}
-  ): Promise<{ headers: ApiResponseHeaders; body: CreateWebhookResponse }> {
+    writeWebhookRequest: WriteWebhookRequest = {}
+  ): Promise<{ headers: ApiResponseHeaders; body: WebhookResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
-    if (request === null || request === undefined) {
+    if (writeWebhookRequest === null || writeWebhookRequest === undefined) {
       throw new Error(
-        'Required parameter request was null or undefined when calling create.'
+        'Required parameter writeWebhookRequest was null or undefined when calling create.'
       );
     }
     // Path Params
@@ -67,7 +67,11 @@ export default class WebhookApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(request, 'CreateWebhookRequest', ''),
+      ObjectSerializer.serialize(
+        writeWebhookRequest,
+        'WriteWebhookRequest',
+        ''
+      ),
       contentType
     );
 
@@ -81,30 +85,30 @@ export default class WebhookApi {
             response.body,
             response.headers['content-type']
           ),
-          'CreateWebhookResponse',
+          'WebhookResponse',
           ''
-        ) as CreateWebhookResponse,
+        ) as WebhookResponse,
       };
     });
   }
 
   /**
-   * Retrieve webhook details by id.
-   * Get user's webhook by id
-   * @param id webhook&#39;s id
+   * Returns one webhook by id.
+   * Get a webhook
+   * @param id Webhook ID
    */
-  public async get(id: string): Promise<GetUserWebhookResponse> {
+  public async get(id: string): Promise<WebhookResponse> {
     return this.getWithResponseHeaders(id).then((res) => res.body);
   }
 
   /**
-   * Retrieve webhook details by id.
-   * Get user's webhook by id
-   * @param id webhook&#39;s id
+   * Returns one webhook by id.
+   * Get a webhook
+   * @param id Webhook ID
    */
   public async getWithResponseHeaders(
     id: string
-  ): Promise<{ headers: ApiResponseHeaders; body: GetUserWebhookResponse }> {
+  ): Promise<{ headers: ApiResponseHeaders; body: WebhookResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
@@ -127,35 +131,37 @@ export default class WebhookApi {
             response.body,
             response.headers['content-type']
           ),
-          'GetUserWebhookResponse',
+          'WebhookResponse',
           ''
-        ) as GetUserWebhookResponse,
+        ) as WebhookResponse,
       };
     });
   }
 
   /**
-   * This endpoint will update the indicated webhook.
-   * Update event webhook
-   * @param id webhook&#39;s id
-   * @param request Update Webhook input, events example: media.encoding.quality.completed
+   * Changes a webhook's URL, name or events.
+   * Update a webhook
+   * @param id Webhook ID
+   * @param writeWebhookRequest Fields to change
    */
   public async update(
     id: string,
-    request: UpdateWebhookRequest = {}
+    writeWebhookRequest: WriteWebhookRequest = {}
   ): Promise<ResponseSuccess> {
-    return this.updateWithResponseHeaders(id, request).then((res) => res.body);
+    return this.updateWithResponseHeaders(id, writeWebhookRequest).then(
+      (res) => res.body
+    );
   }
 
   /**
-   * This endpoint will update the indicated webhook.
-   * Update event webhook
-   * @param id webhook&#39;s id
-   * @param request Update Webhook input, events example: media.encoding.quality.completed
+   * Changes a webhook's URL, name or events.
+   * Update a webhook
+   * @param id Webhook ID
+   * @param writeWebhookRequest Fields to change
    */
   public async updateWithResponseHeaders(
     id: string,
-    request: UpdateWebhookRequest = {}
+    writeWebhookRequest: WriteWebhookRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
@@ -164,9 +170,9 @@ export default class WebhookApi {
         'Required parameter id was null or undefined when calling update.'
       );
     }
-    if (request === null || request === undefined) {
+    if (writeWebhookRequest === null || writeWebhookRequest === undefined) {
       throw new Error(
-        'Required parameter request was null or undefined when calling update.'
+        'Required parameter writeWebhookRequest was null or undefined when calling update.'
       );
     }
     // Path Params
@@ -177,13 +183,15 @@ export default class WebhookApi {
     // Body Params
     const contentType = ObjectSerializer.getPreferredMediaType([
       'application/json',
-
-      'application/x-www-form-urlencoded',
     ]);
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(request, 'UpdateWebhookRequest', ''),
+      ObjectSerializer.serialize(
+        writeWebhookRequest,
+        'WriteWebhookRequest',
+        ''
+      ),
       contentType
     );
 
@@ -205,8 +213,8 @@ export default class WebhookApi {
   }
 
   /**
-   * This endpoint will delete the indicated webhook.
-   * Delete webhook
+   * Removes a webhook. No further events are pushed to it.
+   * Delete a webhook
    * @param id Webhook ID
    */
   public async delete(id: string): Promise<ResponseSuccess> {
@@ -214,8 +222,8 @@ export default class WebhookApi {
   }
 
   /**
-   * This endpoint will delete the indicated webhook.
-   * Delete webhook
+   * Removes a webhook. No further events are pushed to it.
+   * Delete a webhook
    * @param id Webhook ID
    */
   public async deleteWithResponseHeaders(
@@ -251,72 +259,73 @@ export default class WebhookApi {
   }
 
   /**
-   * This method returns a list of your webhooks (with all their details). 
-
-You can filter what the webhook list that the API returns using the parameters described below.
-   * Get list webhooks
+   * Returns a page of the webhooks configured for your workspace.
+   * List webhooks
    * @param {Object} searchParams
-   * @param { string } searchParams.search only support search by name
-   * @param { &#39;created_at&#39; | &#39;name&#39; } searchParams.sortBy sort by
-   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy allowed: asc, desc. Default: asc
-   * @param { number } searchParams.offset offset, allowed values greater than or equal to 0. Default(0)
-   * @param { number } searchParams.limit results per page. Allowed values 1-100, default is 25
-   * @param { boolean } searchParams.encodingFinished search by event encoding finished
-   * @param { boolean } searchParams.encodingStarted search by event encoding started
-   * @param { boolean } searchParams.fileReceived search by event file received
+   * @param { boolean } searchParams.encodingFailed
+   * @param { boolean } searchParams.encodingFinished
+   * @param { boolean } searchParams.encodingStarted
+   * @param { boolean } searchParams.fileReceived
+   * @param { number } searchParams.limit
+   * @param { number } searchParams.offset
+   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy
+   * @param { boolean } searchParams.partialFinished
+   * @param { string } searchParams.search
+   * @param { &#39;created_at&#39; | &#39;name&#39; | &#39;url&#39; } searchParams.sortBy
    */
-  public async list(
-    args: {
-      search?: string;
-      sortBy?: 'created_at' | 'name';
-      orderBy?: 'asc' | 'desc';
-      offset?: number;
-      limit?: number;
-      encodingFinished?: boolean;
-      encodingStarted?: boolean;
-      fileReceived?: boolean;
-    } = {}
-  ): Promise<GetWebhooksListResponse> {
+  public async list(args: {
+    encodingFailed?: boolean;
+    encodingFinished?: boolean;
+    encodingStarted?: boolean;
+    fileReceived?: boolean;
+    limit?: number;
+    offset?: number;
+    orderBy?: 'asc' | 'desc';
+    partialFinished?: boolean;
+    search?: string;
+    sortBy?: 'created_at' | 'name' | 'url';
+  }): Promise<ListWebhooksResponse> {
     return this.listWithResponseHeaders(args).then((res) => res.body);
   }
 
   /**
-   * This method returns a list of your webhooks (with all their details). 
-
-You can filter what the webhook list that the API returns using the parameters described below.
-   * Get list webhooks
+   * Returns a page of the webhooks configured for your workspace.
+   * List webhooks
    * @param {Object} searchParams
-   * @param { string } searchParams.search only support search by name
-   * @param { &#39;created_at&#39; | &#39;name&#39; } searchParams.sortBy sort by
-   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy allowed: asc, desc. Default: asc
-   * @param { number } searchParams.offset offset, allowed values greater than or equal to 0. Default(0)
-   * @param { number } searchParams.limit results per page. Allowed values 1-100, default is 25
-   * @param { boolean } searchParams.encodingFinished search by event encoding finished
-   * @param { boolean } searchParams.encodingStarted search by event encoding started
-   * @param { boolean } searchParams.fileReceived search by event file received
+   * @param { boolean } searchParams.encodingFailed
+   * @param { boolean } searchParams.encodingFinished
+   * @param { boolean } searchParams.encodingStarted
+   * @param { boolean } searchParams.fileReceived
+   * @param { number } searchParams.limit
+   * @param { number } searchParams.offset
+   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy
+   * @param { boolean } searchParams.partialFinished
+   * @param { string } searchParams.search
+   * @param { &#39;created_at&#39; | &#39;name&#39; | &#39;url&#39; } searchParams.sortBy
    */
   public async listWithResponseHeaders({
-    search,
-    sortBy,
-    orderBy,
-    offset,
-    limit,
+    encodingFailed,
     encodingFinished,
     encodingStarted,
     fileReceived,
+    limit,
+    offset,
+    orderBy,
+    partialFinished,
+    search,
+    sortBy,
   }: {
-    search?: string;
-    sortBy?: 'created_at' | 'name';
-    orderBy?: 'asc' | 'desc';
-    offset?: number;
-    limit?: number;
+    encodingFailed?: boolean;
     encodingFinished?: boolean;
     encodingStarted?: boolean;
     fileReceived?: boolean;
-  } = {}): Promise<{
-    headers: ApiResponseHeaders;
-    body: GetWebhooksListResponse;
-  }> {
+    limit?: number;
+    offset?: number;
+    orderBy?: 'asc' | 'desc';
+    partialFinished?: boolean;
+    search?: string;
+    sortBy?: 'created_at' | 'name' | 'url';
+  }): Promise<{ headers: ApiResponseHeaders; body: ListWebhooksResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     // Path Params
@@ -325,34 +334,10 @@ You can filter what the webhook list that the API returns using the parameters d
     // Query Params
     const urlSearchParams = new URLSearchParams();
 
-    if (search !== undefined) {
+    if (encodingFailed !== undefined) {
       urlSearchParams.append(
-        'search',
-        ObjectSerializer.serialize(search, 'string', '')
-      );
-    }
-    if (sortBy !== undefined) {
-      urlSearchParams.append(
-        'sort_by',
-        ObjectSerializer.serialize(sortBy, "'created_at' | 'name'", '')
-      );
-    }
-    if (orderBy !== undefined) {
-      urlSearchParams.append(
-        'order_by',
-        ObjectSerializer.serialize(orderBy, "'asc' | 'desc'", '')
-      );
-    }
-    if (offset !== undefined) {
-      urlSearchParams.append(
-        'offset',
-        ObjectSerializer.serialize(offset, 'number', '')
-      );
-    }
-    if (limit !== undefined) {
-      urlSearchParams.append(
-        'limit',
-        ObjectSerializer.serialize(limit, 'number', '')
+        'encoding_failed',
+        ObjectSerializer.serialize(encodingFailed, 'boolean', '')
       );
     }
     if (encodingFinished !== undefined) {
@@ -373,6 +358,42 @@ You can filter what the webhook list that the API returns using the parameters d
         ObjectSerializer.serialize(fileReceived, 'boolean', '')
       );
     }
+    if (limit !== undefined) {
+      urlSearchParams.append(
+        'limit',
+        ObjectSerializer.serialize(limit, 'number', '')
+      );
+    }
+    if (offset !== undefined) {
+      urlSearchParams.append(
+        'offset',
+        ObjectSerializer.serialize(offset, 'number', '')
+      );
+    }
+    if (orderBy !== undefined) {
+      urlSearchParams.append(
+        'order_by',
+        ObjectSerializer.serialize(orderBy, "'asc' | 'desc'", '')
+      );
+    }
+    if (partialFinished !== undefined) {
+      urlSearchParams.append(
+        'partial_finished',
+        ObjectSerializer.serialize(partialFinished, 'boolean', '')
+      );
+    }
+    if (search !== undefined) {
+      urlSearchParams.append(
+        'search',
+        ObjectSerializer.serialize(search, 'string', '')
+      );
+    }
+    if (sortBy !== undefined) {
+      urlSearchParams.append(
+        'sort_by',
+        ObjectSerializer.serialize(sortBy, "'created_at' | 'name' | 'url'", '')
+      );
+    }
 
     queryParams.searchParams = urlSearchParams;
 
@@ -386,26 +407,26 @@ You can filter what the webhook list that the API returns using the parameters d
             response.body,
             response.headers['content-type']
           ),
-          'GetWebhooksListResponse',
+          'ListWebhooksResponse',
           ''
-        ) as GetWebhooksListResponse,
+        ) as ListWebhooksResponse,
       };
     });
   }
 
   /**
-   * This endpoint will check the indicated webhook.
-   * Check webhook by id
-   * @param id webhook&#39;s id
+   * Delivers a test event to a webhook, so you can confirm your endpoint accepts it.
+   * Send a test event
+   * @param id Webhook ID
    */
   public async check(id: string): Promise<ResponseSuccess> {
     return this.checkWithResponseHeaders(id).then((res) => res.body);
   }
 
   /**
-   * This endpoint will check the indicated webhook.
-   * Check webhook by id
-   * @param id webhook&#39;s id
+   * Delivers a test event to a webhook, so you can confirm your endpoint accepts it.
+   * Send a test event
+   * @param id Webhook ID
    */
   public async checkWithResponseHeaders(
     id: string

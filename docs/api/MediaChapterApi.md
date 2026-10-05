@@ -1,12 +1,12 @@
 # MediaChapterApi
 
-All URIs are relative to *http://localhost/api*
+All URIs are relative to *https://api.aiozstream.network/api*
 
 | Method | Description | HTTP request |
 | ------------- | ------------- | ------------- |
 | [**create()**](MediaChapterApi.md#create) | Create a media chapter | **POST** /media/{id}/chapters/{lan} |
 | [**get()**](MediaChapterApi.md#get) | Get media chapters | **GET** /media/{id}/chapters |
-| [**delete()**](MediaChapterApi.md#delete) | Delete a video chapter | **DELETE** /media/{id}/chapters/{lan} |
+| [**delete()**](MediaChapterApi.md#delete) | Delete a media chapter | **DELETE** /media/{id}/chapters/{lan} |
 
 
 <a name="create"></a>
@@ -58,16 +58,16 @@ Promise<[**GetMediaChaptersResponse**](../model/GetMediaChaptersResponse.md)>.
 ---
 
 <a name="delete"></a>
-## **`delete()` - Delete a video chapter**
+## **`delete()` - Delete a media chapter**
 
 
-Delete a chapter in a specific language by providing the video ID for the video you want to delete the chapter from and the language the chapter is in.
+Delete a chapter in a specific language by providing the media ID for the media you want to delete the chapter from and the language the chapter is in.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| Video ID |
+ | **id** | **string**| **yes**| Media ID |
  | **lan** | **string**| **yes**| Language |
 
 

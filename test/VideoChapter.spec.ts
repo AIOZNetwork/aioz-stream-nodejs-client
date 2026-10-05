@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from '@jest/globals';
+import { expect } from '@jest/globals';
 import StreamError from '../src/StreamError';
 import fs from 'fs';
 import path from 'path';
@@ -33,7 +33,7 @@ describe('VideoChapter Service', () => {
   describe('CreateVideoChapter', () => {
     it('Valid Create', async () => {
       const tmpFilePath = await createTempVTTFile();
-      const response = await testClient.mediaChapter.create(
+      const response = await testClient.videoChapter.create(
         testVideoIDForChapter,
         testLang,
         tmpFilePath
@@ -45,7 +45,7 @@ describe('VideoChapter Service', () => {
     it('Invalid Video ID', async () => {
       const tmpFilePath = await createTempVTTFile();
       await expect(
-        testClient.mediaChapter.create('invalid-id', testLang, tmpFilePath)
+        testClient.videoChapter.create('invalid-id', testLang, tmpFilePath)
       ).rejects.toThrow(StreamError);
       tmpFilePath.close();
     });
@@ -53,7 +53,7 @@ describe('VideoChapter Service', () => {
     it('Invalid Language', async () => {
       const tmpFilePath = await createTempVTTFile();
       await expect(
-        testClient.mediaChapter.create(
+        testClient.videoChapter.create(
           testVideoIDForChapter,
           'invalid',
           tmpFilePath
@@ -66,7 +66,7 @@ describe('VideoChapter Service', () => {
       const tmpFilePath = await createTempVTTFile();
       const newId = uuidv4();
       await expect(
-        testClient.mediaChapter.create(newId, testLang, tmpFilePath)
+        testClient.videoChapter.create(newId, testLang, tmpFilePath)
       ).rejects.toThrow(StreamError);
       tmpFilePath.close();
     });
@@ -78,7 +78,7 @@ describe('VideoChapter Service', () => {
 
   describe('GetVideoChapters', () => {
     it('Valid Get', async () => {
-      const response = await testClient.mediaChapter.get({
+      const response = await testClient.videoChapter.get({
         id: testVideoIDForChapter,
         limit: 10,
         offset: 0,
@@ -89,7 +89,7 @@ describe('VideoChapter Service', () => {
 
     it('Invalid Video ID', async () => {
       await expect(
-        testClient.mediaChapter.get({
+        testClient.videoChapter.get({
           id: 'invalid-id',
           limit: 10,
           offset: 0,
@@ -99,7 +99,7 @@ describe('VideoChapter Service', () => {
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
-        testClient.mediaChapter.get({
+        testClient.videoChapter.get({
           id: newId,
           limit: 10,
           offset: 0,
@@ -110,7 +110,7 @@ describe('VideoChapter Service', () => {
 
   describe('DeleteVideoChapter', () => {
     it('Valid Delete', async () => {
-      const response = await testClient.mediaChapter.delete(
+      const response = await testClient.videoChapter.delete(
         testVideoIDForChapter,
         testLang
       );
@@ -119,26 +119,26 @@ describe('VideoChapter Service', () => {
 
     it('Invalid Video ID', async () => {
       await expect(
-        testClient.mediaChapter.delete('invalid-id', testLang)
+        testClient.videoChapter.delete('invalid-id', testLang)
       ).rejects.toThrow(StreamError);
     });
 
     it('Empty Video ID', async () => {
       await expect(
-        testClient.mediaChapter.delete('', testLang)
+        testClient.videoChapter.delete('', testLang)
       ).rejects.toThrow(StreamError);
     });
 
     it('Empty Language', async () => {
       await expect(
-        testClient.mediaChapter.delete(testVideoIDForChapter, '')
+        testClient.videoChapter.delete(testVideoIDForChapter, '')
       ).rejects.toThrow(StreamError);
     });
 
     it('Not exist ID', async () => {
       const newId = uuidv4();
       await expect(
-        testClient.mediaChapter.delete(newId, testLang)
+        testClient.videoChapter.delete(newId, testLang)
       ).rejects.toThrow(StreamError);
     });
   });

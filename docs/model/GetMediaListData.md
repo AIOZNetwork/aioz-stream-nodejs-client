@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**media** | [**Array&lt;Media&gt;**](Media.md) |  |  [optional]
+**media** | [**Array&lt;MediaObject&gt;**](MediaObject.md) |  |  [optional]
 **total** | **number** |  |  [optional]
 
 

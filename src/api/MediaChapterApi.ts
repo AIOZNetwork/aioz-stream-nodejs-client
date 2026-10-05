@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -194,9 +194,9 @@ export default class MediaChapterApi {
   }
 
   /**
-   * Delete a chapter in a specific language by providing the video ID for the video you want to delete the chapter from and the language the chapter is in.
-   * Delete a video chapter
-   * @param id Video ID
+   * Delete a chapter in a specific language by providing the media ID for the media you want to delete the chapter from and the language the chapter is in.
+   * Delete a media chapter
+   * @param id Media ID
    * @param lan Language
    */
   public async delete(id: string, lan: string): Promise<ResponseSuccess> {
@@ -204,9 +204,9 @@ export default class MediaChapterApi {
   }
 
   /**
-   * Delete a chapter in a specific language by providing the video ID for the video you want to delete the chapter from and the language the chapter is in.
-   * Delete a video chapter
-   * @param id Video ID
+   * Delete a chapter in a specific language by providing the media ID for the media you want to delete the chapter from and the language the chapter is in.
+   * Delete a media chapter
+   * @param id Media ID
    * @param lan Language
    */
   public async deleteWithResponseHeaders(

@@ -1,33 +1,33 @@
 # WebhookApi
 
-All URIs are relative to *http://localhost/api*
+All URIs are relative to *https://api.aiozstream.network/api*
 
 | Method | Description | HTTP request |
 | ------------- | ------------- | ------------- |
-| [**create()**](WebhookApi.md#create) | Create webhook | **POST** /webhooks |
-| [**get()**](WebhookApi.md#get) | Get user&#39;s webhook by id | **GET** /webhooks/{id} |
-| [**update()**](WebhookApi.md#update) | Update event webhook | **PATCH** /webhooks/{id} |
-| [**delete()**](WebhookApi.md#delete) | Delete webhook | **DELETE** /webhooks/{id} |
-| [**list()**](WebhookApi.md#list) | Get list webhooks | **GET** /webhooks |
-| [**check()**](WebhookApi.md#check) | Check webhook by id | **POST** /webhooks/check/{id} |
+| [**create()**](WebhookApi.md#create) | Create a webhook | **POST** /webhooks |
+| [**get()**](WebhookApi.md#get) | Get a webhook | **GET** /webhooks/{id} |
+| [**update()**](WebhookApi.md#update) | Update a webhook | **PATCH** /webhooks/{id} |
+| [**delete()**](WebhookApi.md#delete) | Delete a webhook | **DELETE** /webhooks/{id} |
+| [**list()**](WebhookApi.md#list) | List webhooks | **GET** /webhooks |
+| [**check()**](WebhookApi.md#check) | Send a test event | **POST** /webhooks/check/{id} |
 
 
 <a name="create"></a>
-## **`create()` - Create webhook**
+## **`create()` - Create a webhook**
 
 
-Webhooks can push notifications to your server, rather than polling streaming service for changes
+Registers a URL to be notified of media events, so your server does not have to poll.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**CreateWebhookRequest**](../model/CreateWebhookRequest.md)| **yes**| Create Webhook input |
+ | **writeWebhookRequest** | [**WriteWebhookRequest**](../model/WriteWebhookRequest.md)| **yes**| Webhook |
 
 
 ### Return type
 
-Promise<[**CreateWebhookResponse**](../model/CreateWebhookResponse.md)>.
+Promise<[**WebhookResponse**](../model/WebhookResponse.md)>.
 
 
 
@@ -35,21 +35,21 @@ Promise<[**CreateWebhookResponse**](../model/CreateWebhookResponse.md)>.
 ---
 
 <a name="get"></a>
-## **`get()` - Get user&#39;s webhook by id**
+## **`get()` - Get a webhook**
 
 
-Retrieve webhook details by id.
+Returns one webhook by id.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| webhook&#39;s id |
+ | **id** | **string**| **yes**| Webhook ID |
 
 
 ### Return type
 
-Promise<[**GetUserWebhookResponse**](../model/GetUserWebhookResponse.md)>.
+Promise<[**WebhookResponse**](../model/WebhookResponse.md)>.
 
 
 
@@ -57,17 +57,17 @@ Promise<[**GetUserWebhookResponse**](../model/GetUserWebhookResponse.md)>.
 ---
 
 <a name="update"></a>
-## **`update()` - Update event webhook**
+## **`update()` - Update a webhook**
 
 
-This endpoint will update the indicated webhook.
+Changes a webhook's URL, name or events.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| webhook&#39;s id |
- | **request** | [**UpdateWebhookRequest**](../model/UpdateWebhookRequest.md)| **yes**| Update Webhook input, events example: media.encoding.quality.completed |
+ | **id** | **string**| **yes**| Webhook ID |
+ | **writeWebhookRequest** | [**WriteWebhookRequest**](../model/WriteWebhookRequest.md)| **yes**| Fields to change |
 
 
 ### Return type
@@ -80,10 +80,10 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 ---
 
 <a name="delete"></a>
-## **`delete()` - Delete webhook**
+## **`delete()` - Delete a webhook**
 
 
-This endpoint will delete the indicated webhook.
+Removes a webhook. No further events are pushed to it.
 
 ### Parameters
 
@@ -102,30 +102,30 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 ---
 
 <a name="list"></a>
-## **`list()` - Get list webhooks**
+## **`list()` - List webhooks**
 
 
-This method returns a list of your webhooks (with all their details). 
-
-You can filter what the webhook list that the API returns using the parameters described below.
+Returns a page of the webhooks configured for your workspace.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **search** | **string**| no| only support search by name |
- | **sortBy** | **&#39;created_at&#39; \| &#39;name&#39;**| no| sort by |
- | **orderBy** | **&#39;asc&#39; \| &#39;desc&#39;**| no| allowed: asc, desc. Default: asc |
- | **offset** | **number**| no| offset, allowed values greater than or equal to 0. Default(0) |
- | **limit** | **number**| no| results per page. Allowed values 1-100, default is 25 |
- | **encodingFinished** | **boolean**| no| search by event encoding finished |
- | **encodingStarted** | **boolean**| no| search by event encoding started |
- | **fileReceived** | **boolean**| no| search by event file received |
+ | **encodingFailed** | **boolean**| no|  |
+ | **encodingFinished** | **boolean**| no|  |
+ | **encodingStarted** | **boolean**| no|  |
+ | **fileReceived** | **boolean**| no|  |
+ | **limit** | **number**| no|  |
+ | **offset** | **number**| no|  |
+ | **orderBy** | **&#39;asc&#39; \| &#39;desc&#39;**| no|  |
+ | **partialFinished** | **boolean**| no|  |
+ | **search** | **string**| no|  |
+ | **sortBy** | **&#39;created_at&#39; \| &#39;name&#39; \| &#39;url&#39;**| no|  |
 
 
 ### Return type
 
-Promise<[**GetWebhooksListResponse**](../model/GetWebhooksListResponse.md)>.
+Promise<[**ListWebhooksResponse**](../model/ListWebhooksResponse.md)>.
 
 
 
@@ -133,16 +133,16 @@ Promise<[**GetWebhooksListResponse**](../model/GetWebhooksListResponse.md)>.
 ---
 
 <a name="check"></a>
-## **`check()` - Check webhook by id**
+## **`check()` - Send a test event**
 
 
-This endpoint will check the indicated webhook.
+Delivers a test event to a webhook, so you can confirm your endpoint accepts it.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| webhook&#39;s id |
+ | **id** | **string**| **yes**| Webhook ID |
 
 
 ### Return type

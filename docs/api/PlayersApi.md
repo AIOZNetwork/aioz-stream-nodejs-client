@@ -1,36 +1,36 @@
 # PlayersApi
 
-All URIs are relative to *http://localhost/api*
+All URIs are relative to *https://api.aiozstream.network/api*
 
 | Method | Description | HTTP request |
 | ------------- | ------------- | ------------- |
 | [**create()**](PlayersApi.md#create) | Create a player theme | **POST** /players |
-| [**get()**](PlayersApi.md#get) | Get a player theme by ID | **GET** /players/{id} |
-| [**update()**](PlayersApi.md#update) | Update a player theme by ID | **PATCH** /players/{id} |
-| [**delete()**](PlayersApi.md#delete) | Delete a player theme by ID | **DELETE** /players/{id} |
-| [**list()**](PlayersApi.md#list) | List all player themes | **GET** /players |
-| [**uploadLogo()**](PlayersApi.md#uploadLogo) | Upload a logo for a player theme by ID | **POST** /players/{id}/logo |
-| [**deleteLogo()**](PlayersApi.md#deleteLogo) | Delete a logo for a player theme by ID | **DELETE** /players/{id}/logo |
-| [**addPlayer()**](PlayersApi.md#addPlayer) | Add a player theme to a video | **POST** /players/add-player |
-| [**removePlayer()**](PlayersApi.md#removePlayer) | Remove a player theme from a video | **POST** /players/remove-player |
+| [**get()**](PlayersApi.md#get) | Get a player theme | **GET** /players/{id} |
+| [**update()**](PlayersApi.md#update) | Update a player theme | **PATCH** /players/{id} |
+| [**delete()**](PlayersApi.md#delete) | Delete a player theme | **DELETE** /players/{id} |
+| [**list()**](PlayersApi.md#list) | List player themes | **GET** /players |
+| [**uploadLogo()**](PlayersApi.md#uploadLogo) | Upload a player theme logo | **POST** /players/{id}/logo |
+| [**deleteLogo()**](PlayersApi.md#deleteLogo) | Delete a player theme logo | **DELETE** /players/{id}/logo |
+| [**attach()**](PlayersApi.md#attach) | Add a player theme to a media | **POST** /players/add-player |
+| [**detach()**](PlayersApi.md#detach) | Remove a player theme from a media | **POST** /players/remove-player |
 
 
 <a name="create"></a>
 ## **`create()` - Create a player theme**
 
 
-Create a player for your video, and customize it.
+Creates a player theme for your media and customizes how it looks.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**CreatePlayerThemeRequest**](../model/CreatePlayerThemeRequest.md)| **yes**| Player theme input |
+ | **playerThemeInput** | [**PlayerThemeInput**](../model/PlayerThemeInput.md)| **yes**| Player theme |
 
 
 ### Return type
 
-Promise<[**CreatePlayerThemesResponse**](../model/CreatePlayerThemesResponse.md)>.
+Promise<[**ThemeResponse**](../model/ThemeResponse.md)>.
 
 
 
@@ -38,10 +38,10 @@ Promise<[**CreatePlayerThemesResponse**](../model/CreatePlayerThemesResponse.md)
 ---
 
 <a name="get"></a>
-## **`get()` - Get a player theme by ID**
+## **`get()` - Get a player theme**
 
 
-Retrieve a player theme by its ID, as well as details about it.
+Returns one player theme by id.
 
 ### Parameters
 
@@ -52,7 +52,7 @@ Retrieve a player theme by its ID, as well as details about it.
 
 ### Return type
 
-Promise<[**GetPlayerThemeByIdResponse**](../model/GetPlayerThemeByIdResponse.md)>.
+Promise<[**ThemeResponse**](../model/ThemeResponse.md)>.
 
 
 
@@ -60,22 +60,22 @@ Promise<[**GetPlayerThemeByIdResponse**](../model/GetPlayerThemeByIdResponse.md)
 ---
 
 <a name="update"></a>
-## **`update()` - Update a player theme by ID**
+## **`update()` - Update a player theme**
 
 
-Use a player ID to update specific details for a player.
+Applies the fields you send and leaves the rest of the theme alone.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Player theme ID |
- | **input** | [**UpdatePlayerThemeRequest**](../model/UpdatePlayerThemeRequest.md)| **yes**| Player theme input |
+ | **playerThemeInput** | [**PlayerThemeInput**](../model/PlayerThemeInput.md)| **yes**| Fields to change |
 
 
 ### Return type
 
-Promise<[**UpdatePlayerThemeResponse**](../model/UpdatePlayerThemeResponse.md)>.
+Promise<[**ThemeResponse**](../model/ThemeResponse.md)>.
 
 
 
@@ -83,10 +83,10 @@ Promise<[**UpdatePlayerThemeResponse**](../model/UpdatePlayerThemeResponse.md)>.
 ---
 
 <a name="delete"></a>
-## **`delete()` - Delete a player theme by ID**
+## **`delete()` - Delete a player theme**
 
 
-Delete a player if you no longer need it. You can delete any player that you have the player ID for.
+Deletes a player theme and its logo. A theme still applied to media cannot be deleted.
 
 ### Parameters
 
@@ -105,25 +105,25 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 ---
 
 <a name="list"></a>
-## **`list()` - List all player themes**
+## **`list()` - List player themes**
 
 
-Retrieve a list of all the player themes you created, as well as details about each one.
+Returns a page of the player themes in your workspace.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **search** | **string**| no| only support search by name |
- | **sortBy** | **&#39;created_at&#39; \| &#39;name&#39;**| no| sort by |
- | **orderBy** | **&#39;asc&#39; \| &#39;desc&#39;**| no| allowed: asc, desc. Default: asc |
- | **offset** | **number**| no| offset, allowed values greater than or equal to 0. Default(0) |
- | **limit** | **number**| no| results per page. Allowed values 1-100, default is 25 |
+ | **limit** | **number**| no|  |
+ | **offset** | **number**| no|  |
+ | **orderBy** | **&#39;asc&#39; \| &#39;desc&#39;**| no|  |
+ | **search** | **string**| no|  |
+ | **sortBy** | **&#39;created_at&#39; \| &#39;name&#39;**| no|  |
 
 
 ### Return type
 
-Promise<[**GetPlayerThemeResponse**](../model/GetPlayerThemeResponse.md)>.
+Promise<[**ListThemesResponse**](../model/ListThemesResponse.md)>.
 
 
 
@@ -131,23 +131,23 @@ Promise<[**GetPlayerThemeResponse**](../model/GetPlayerThemeResponse.md)>.
 ---
 
 <a name="uploadLogo"></a>
-## **`uploadLogo()` - Upload a logo for a player theme by ID**
+## **`uploadLogo()` - Upload a player theme logo**
 
 
-Upload a logo for a player theme by its ID.
+Stores a JPG or PNG logo against a player theme, replacing whatever was there.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Player theme ID |
- | **file** | **string \| Readable \| Buffer**| **yes**| The uploaded file (JPG or PNG) |
- | **link** | **string**| **yes**| The link to the logo (optional if a file is provided) |
+ | **file** | **string \| Readable \| Buffer**| **yes**| Logo image |
+ | **link** | **string**| no| Where clicking the logo takes the viewer |
 
 
 ### Return type
 
-Promise<[**UploadLogoByIdResponse**](../model/UploadLogoByIdResponse.md)>.
+Promise<[**ThemeResponse**](../model/ThemeResponse.md)>.
 
 
 
@@ -155,10 +155,10 @@ Promise<[**UploadLogoByIdResponse**](../model/UploadLogoByIdResponse.md)>.
 ---
 
 <a name="deleteLogo"></a>
-## **`deleteLogo()` - Delete a logo for a player theme by ID**
+## **`deleteLogo()` - Delete a player theme logo**
 
 
-Delete the logo associated to a player.
+Removes the logo from a player theme.
 
 ### Parameters
 
@@ -176,17 +176,17 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 
 ---
 
-<a name="addPlayer"></a>
-## **`addPlayer()` - Add a player theme to a video**
+<a name="attach"></a>
+## **`attach()` - Add a player theme to a media**
 
 
-Add a player theme to a video by Id.
+Binds a player theme to a piece of media.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**AddPlayerThemesToVideoRequest**](../model/AddPlayerThemesToVideoRequest.md)| **yes**| Add player theme to video request |
+ | **attachThemeRequest** | [**AttachThemeRequest**](../model/AttachThemeRequest.md)| **yes**| Media and theme |
 
 
 ### Return type
@@ -198,17 +198,17 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 
 ---
 
-<a name="removePlayer"></a>
-## **`removePlayer()` - Remove a player theme from a video**
+<a name="detach"></a>
+## **`detach()` - Remove a player theme from a media**
 
 
-Remove a player theme from a video by Id.
+Releases a player theme from a piece of media.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**RemovePlayerThemesFromMediaRequest**](../model/RemovePlayerThemesFromMediaRequest.md)| **yes**| Remove player theme from video request |
+ | **attachThemeRequest** | [**AttachThemeRequest**](../model/AttachThemeRequest.md)| **yes**| Media and theme |
 
 
 ### Return type

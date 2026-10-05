@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -26,6 +26,7 @@ import GetMediaListResponse from '../model/GetMediaListResponse';
 import GetMediaPlayerInfoResponse from '../model/GetMediaPlayerInfoResponse';
 import GetTranscodeCostResponse from '../model/GetTranscodeCostResponse';
 import ResponseSuccess from '../model/ResponseSuccess';
+import SetDefaultCaptionRequest from '../model/SetDefaultCaptionRequest';
 import UpdateMediaInfoRequest from '../model/UpdateMediaInfoRequest';
 import UploadProgressEvent from '../model/UploadProgressEvent';
 import { Readable } from 'stream';
@@ -45,27 +46,29 @@ export default class MediaApi {
   /**
    * Create a media object
    * Create media object
-   * @param request media&#39;s info
+   * @param createMediaRequest media&#39;s info
    */
   public async create(
-    request: CreateMediaRequest = {}
+    createMediaRequest: CreateMediaRequest = {}
   ): Promise<CreateMediaResponse> {
-    return this.createWithResponseHeaders(request).then((res) => res.body);
+    return this.createWithResponseHeaders(createMediaRequest).then(
+      (res) => res.body
+    );
   }
 
   /**
    * Create a media object
    * Create media object
-   * @param request media&#39;s info
+   * @param createMediaRequest media&#39;s info
    */
   public async createWithResponseHeaders(
-    request: CreateMediaRequest = {}
+    createMediaRequest: CreateMediaRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: CreateMediaResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
-    if (request === null || request === undefined) {
+    if (createMediaRequest === null || createMediaRequest === undefined) {
       throw new Error(
-        'Required parameter request was null or undefined when calling create.'
+        'Required parameter createMediaRequest was null or undefined when calling create.'
       );
     }
     // Path Params
@@ -80,7 +83,7 @@ export default class MediaApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(request, 'CreateMediaRequest', ''),
+      ObjectSerializer.serialize(createMediaRequest, 'CreateMediaRequest', ''),
       contentType
     );
 
@@ -104,23 +107,25 @@ export default class MediaApi {
   /**
    * update media info
    * @param id media&#39;s id
-   * @param input input
+   * @param updateMediaInfoRequest input
    */
   public async update(
     id: string,
-    input: UpdateMediaInfoRequest = {}
+    updateMediaInfoRequest: UpdateMediaInfoRequest = {}
   ): Promise<ResponseSuccess> {
-    return this.updateWithResponseHeaders(id, input).then((res) => res.body);
+    return this.updateWithResponseHeaders(id, updateMediaInfoRequest).then(
+      (res) => res.body
+    );
   }
 
   /**
    * update media info
    * @param id media&#39;s id
-   * @param input input
+   * @param updateMediaInfoRequest input
    */
   public async updateWithResponseHeaders(
     id: string,
-    input: UpdateMediaInfoRequest = {}
+    updateMediaInfoRequest: UpdateMediaInfoRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
@@ -129,9 +134,12 @@ export default class MediaApi {
         'Required parameter id was null or undefined when calling update.'
       );
     }
-    if (input === null || input === undefined) {
+    if (
+      updateMediaInfoRequest === null ||
+      updateMediaInfoRequest === undefined
+    ) {
       throw new Error(
-        'Required parameter input was null or undefined when calling update.'
+        'Required parameter updateMediaInfoRequest was null or undefined when calling update.'
       );
     }
     // Path Params
@@ -146,7 +154,11 @@ export default class MediaApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(input, 'UpdateMediaInfoRequest', ''),
+      ObjectSerializer.serialize(
+        updateMediaInfoRequest,
+        'UpdateMediaInfoRequest',
+        ''
+      ),
       contentType
     );
 
@@ -330,15 +342,20 @@ export default class MediaApi {
    * @param id Media ID
    * @param lan Language
    * @param file VTT File
+   * @param description
    */
   public async createCaption(
     id: string,
     lan: string,
-    file: string | Readable | Buffer
+    file: string | Readable | Buffer,
+    description?: string
   ): Promise<CreateMediaCaptionResponse> {
-    return this.createCaptionWithResponseHeaders(id, lan, file).then(
-      (res) => res.body
-    );
+    return this.createCaptionWithResponseHeaders(
+      id,
+      lan,
+      file,
+      description
+    ).then((res) => res.body);
   }
 
   /**
@@ -347,11 +364,13 @@ export default class MediaApi {
    * @param id Media ID
    * @param lan Language
    * @param file VTT File
+   * @param description
    */
   public async createCaptionWithResponseHeaders(
     id: string,
     lan: string,
-    file: string | Readable | Buffer
+    file: string | Readable | Buffer,
+    description?: string
   ): Promise<{
     headers: ApiResponseHeaders;
     body: CreateMediaCaptionResponse;
@@ -387,6 +406,10 @@ export default class MediaApi {
     queryParams.method = 'POST';
 
     const formData = new FormData();
+
+    if (typeof description !== undefined) {
+      formData.append('description', description);
+    }
 
     formData.append(fileName, fileBuffer, fileName);
 
@@ -613,7 +636,7 @@ export default class MediaApi {
     if (duration !== undefined) {
       urlSearchParams.append(
         'duration',
-        ObjectSerializer.serialize(duration, 'number', '')
+        ObjectSerializer.serialize(duration, 'number', 'float64')
       );
     }
 
@@ -639,7 +662,7 @@ export default class MediaApi {
   /**
    * Retrieve the media details by media id.
    * get media detail
-   * @param id mediav&#39;s id
+   * @param id media&#39;s id
    */
   public async getDetail(id: string): Promise<GetMediaDetailResponse> {
     return this.getDetailWithResponseHeaders(id).then((res) => res.body);
@@ -648,7 +671,7 @@ export default class MediaApi {
   /**
    * Retrieve the media details by media id.
    * get media detail
-   * @param id mediav&#39;s id
+   * @param id media&#39;s id
    */
   public async getDetailWithResponseHeaders(
     id: string
@@ -683,31 +706,31 @@ export default class MediaApi {
   }
 
   /**
-   * Retrieve a list of videos for the authenticated user.
-   * Get user videos list
-   * @param request video&#39;s info
+   * Retrieve a list of media for the authenticated user.
+   * Get user media list
+   * @param getMediaListRequest media&#39;s info
    */
   public async getMediaList(
-    request: GetMediaListRequest = {}
+    getMediaListRequest: GetMediaListRequest = {}
   ): Promise<GetMediaListResponse> {
-    return this.getMediaListWithResponseHeaders(request).then(
+    return this.getMediaListWithResponseHeaders(getMediaListRequest).then(
       (res) => res.body
     );
   }
 
   /**
-   * Retrieve a list of videos for the authenticated user.
-   * Get user videos list
-   * @param request video&#39;s info
+   * Retrieve a list of media for the authenticated user.
+   * Get user media list
+   * @param getMediaListRequest media&#39;s info
    */
   public async getMediaListWithResponseHeaders(
-    request: GetMediaListRequest = {}
+    getMediaListRequest: GetMediaListRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: GetMediaListResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
-    if (request === null || request === undefined) {
+    if (getMediaListRequest === null || getMediaListRequest === undefined) {
       throw new Error(
-        'Required parameter request was null or undefined when calling getMediaList.'
+        'Required parameter getMediaListRequest was null or undefined when calling getMediaList.'
       );
     }
     // Path Params
@@ -720,7 +743,11 @@ export default class MediaApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(request, 'GetMediaListRequest', ''),
+      ObjectSerializer.serialize(
+        getMediaListRequest,
+        'GetMediaListRequest',
+        ''
+      ),
       contentType
     );
 
@@ -742,10 +769,10 @@ export default class MediaApi {
   }
 
   /**
-   * Get media object
-   * Get media object
+   * Get media player info
+   * Get media player info
    * @param {Object} searchParams
-   * @param { string } searchParams.id media ID
+   * @param { string } searchParams.id Media ID
    * @param { string } searchParams.token Token
    */
   public async getMediaPlayerInfo(args: {
@@ -758,10 +785,10 @@ export default class MediaApi {
   }
 
   /**
-   * Get media object
-   * Get media object
+   * Get media player info
+   * Get media player info
    * @param {Object} searchParams
-   * @param { string } searchParams.id media ID
+   * @param { string } searchParams.id Media ID
    * @param { string } searchParams.token Token
    */
   public async getMediaPlayerInfoWithResponseHeaders({
@@ -816,29 +843,35 @@ export default class MediaApi {
   }
 
   /**
-   * Set default caption for a media
-   * Set default caption
+   * Mark or unmark the caption in a specific language as the one the player shows by default for this media.
+   * Set the default caption
    * @param id Media ID
    * @param lan Language
+   * @param setDefaultCaptionRequest Whether this caption is the default
    */
   public async setDefaultCaption(
     id: string,
-    lan: string
+    lan: string,
+    setDefaultCaptionRequest: SetDefaultCaptionRequest = {}
   ): Promise<ResponseSuccess> {
-    return this.setDefaultCaptionWithResponseHeaders(id, lan).then(
-      (res) => res.body
-    );
+    return this.setDefaultCaptionWithResponseHeaders(
+      id,
+      lan,
+      setDefaultCaptionRequest
+    ).then((res) => res.body);
   }
 
   /**
-   * Set default caption for a media
-   * Set default caption
+   * Mark or unmark the caption in a specific language as the one the player shows by default for this media.
+   * Set the default caption
    * @param id Media ID
    * @param lan Language
+   * @param setDefaultCaptionRequest Whether this caption is the default
    */
   public async setDefaultCaptionWithResponseHeaders(
     id: string,
-    lan: string
+    lan: string,
+    setDefaultCaptionRequest: SetDefaultCaptionRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
@@ -852,11 +885,34 @@ export default class MediaApi {
         'Required parameter lan was null or undefined when calling setDefaultCaption.'
       );
     }
+    if (
+      setDefaultCaptionRequest === null ||
+      setDefaultCaptionRequest === undefined
+    ) {
+      throw new Error(
+        'Required parameter setDefaultCaptionRequest was null or undefined when calling setDefaultCaption.'
+      );
+    }
     // Path Params
     const localVarPath = '/media/{id}/captions/{lan}'
       .substring(1)
       .replace('{' + 'id' + '}', encodeURIComponent(String(id)))
       .replace('{' + 'lan' + '}', encodeURIComponent(String(lan)));
+
+    // Body Params
+    const contentType = ObjectSerializer.getPreferredMediaType([
+      'application/json',
+    ]);
+    queryParams.headers['Content-Type'] = contentType;
+
+    queryParams.body = ObjectSerializer.stringify(
+      ObjectSerializer.serialize(
+        setDefaultCaptionRequest,
+        'SetDefaultCaptionRequest',
+        ''
+      ),
+      contentType
+    );
 
     queryParams.method = 'PATCH';
 
@@ -926,7 +982,7 @@ export default class MediaApi {
   /**
    * Upload part of media
    * This will create a progressive upload session.
-   * @param id video&#39;s id
+   * @param id media&#39;s id
    * @param hash Md5 hash of part
    * @param index Index of the part
    */
@@ -1051,7 +1107,7 @@ export default class MediaApi {
   /**
    * Upload part of media
    * Upload part of media
-   * @param id video&#39;s id
+   * @param id media&#39;s id
    * @param file File media to be uploaded
    * @param hash Md5 hash of part
    * @param index Index of the part
@@ -1075,7 +1131,7 @@ export default class MediaApi {
   /**
    * Upload part of media
    * Upload part of media
-   * @param id video&#39;s id
+   * @param id media&#39;s id
    * @param file File media to be uploaded
    * @param hash Md5 hash of part
    * @param index Index of the part

@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import { expect } from '@jest/globals';
 import StreamError from '../src/StreamError';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { v4 as uuidv4 } from 'uuid';
@@ -97,6 +97,14 @@ describe('Webhook Service', () => {
         }
       );
       expect(response).toBeDefined();
+    });
+
+    it('Update Partial Fields, only Name', async () => {
+      await expect(
+        testClient.webhook.update(testWebhookForUpdateAndDelete as string, {
+          name: 'Updated Name Only',
+        })
+      ).rejects.toThrow(StreamError);
     });
 
     it('Invalid URL', async () => {

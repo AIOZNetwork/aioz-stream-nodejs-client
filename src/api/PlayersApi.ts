@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -15,16 +15,11 @@ import { URLSearchParams } from 'url';
 import FormData from 'form-data';
 import ObjectSerializer from '../ObjectSerializer';
 import HttpClient, { QueryOptions, ApiResponseHeaders } from '../HttpClient';
-import AddPlayerThemesToVideoRequest from '../model/AddPlayerThemesToVideoRequest';
-import CreatePlayerThemeRequest from '../model/CreatePlayerThemeRequest';
-import CreatePlayerThemesResponse from '../model/CreatePlayerThemesResponse';
-import GetPlayerThemeByIdResponse from '../model/GetPlayerThemeByIdResponse';
-import GetPlayerThemeResponse from '../model/GetPlayerThemeResponse';
-import RemovePlayerThemesFromMediaRequest from '../model/RemovePlayerThemesFromMediaRequest';
+import AttachThemeRequest from '../model/AttachThemeRequest';
+import ListThemesResponse from '../model/ListThemesResponse';
+import PlayerThemeInput from '../model/PlayerThemeInput';
 import ResponseSuccess from '../model/ResponseSuccess';
-import UpdatePlayerThemeRequest from '../model/UpdatePlayerThemeRequest';
-import UpdatePlayerThemeResponse from '../model/UpdatePlayerThemeResponse';
-import UploadLogoByIdResponse from '../model/UploadLogoByIdResponse';
+import ThemeResponse from '../model/ThemeResponse';
 import { Readable } from 'stream';
 import { readableToBuffer } from '../HttpClient';
 
@@ -39,32 +34,31 @@ export default class PlayersApi {
   }
 
   /**
-   * Create a player for your video, and customize it.
+   * Creates a player theme for your media and customizes how it looks.
    * Create a player theme
-   * @param request Player theme input
+   * @param playerThemeInput Player theme
    */
   public async create(
-    request: CreatePlayerThemeRequest = {}
-  ): Promise<CreatePlayerThemesResponse> {
-    return this.createWithResponseHeaders(request).then((res) => res.body);
+    playerThemeInput: PlayerThemeInput = {}
+  ): Promise<ThemeResponse> {
+    return this.createWithResponseHeaders(playerThemeInput).then(
+      (res) => res.body
+    );
   }
 
   /**
-   * Create a player for your video, and customize it.
+   * Creates a player theme for your media and customizes how it looks.
    * Create a player theme
-   * @param request Player theme input
+   * @param playerThemeInput Player theme
    */
   public async createWithResponseHeaders(
-    request: CreatePlayerThemeRequest = {}
-  ): Promise<{
-    headers: ApiResponseHeaders;
-    body: CreatePlayerThemesResponse;
-  }> {
+    playerThemeInput: PlayerThemeInput = {}
+  ): Promise<{ headers: ApiResponseHeaders; body: ThemeResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
-    if (request === null || request === undefined) {
+    if (playerThemeInput === null || playerThemeInput === undefined) {
       throw new Error(
-        'Required parameter request was null or undefined when calling create.'
+        'Required parameter playerThemeInput was null or undefined when calling create.'
       );
     }
     // Path Params
@@ -77,7 +71,7 @@ export default class PlayersApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(request, 'CreatePlayerThemeRequest', ''),
+      ObjectSerializer.serialize(playerThemeInput, 'PlayerThemeInput', ''),
       contentType
     );
 
@@ -91,31 +85,30 @@ export default class PlayersApi {
             response.body,
             response.headers['content-type']
           ),
-          'CreatePlayerThemesResponse',
+          'ThemeResponse',
           ''
-        ) as CreatePlayerThemesResponse,
+        ) as ThemeResponse,
       };
     });
   }
 
   /**
-   * Retrieve a player theme by its ID, as well as details about it.
-   * Get a player theme by ID
+   * Returns one player theme by id.
+   * Get a player theme
    * @param id Player theme ID
    */
-  public async get(id: string): Promise<GetPlayerThemeByIdResponse> {
+  public async get(id: string): Promise<ThemeResponse> {
     return this.getWithResponseHeaders(id).then((res) => res.body);
   }
 
   /**
-   * Retrieve a player theme by its ID, as well as details about it.
-   * Get a player theme by ID
+   * Returns one player theme by id.
+   * Get a player theme
    * @param id Player theme ID
    */
-  public async getWithResponseHeaders(id: string): Promise<{
-    headers: ApiResponseHeaders;
-    body: GetPlayerThemeByIdResponse;
-  }> {
+  public async getWithResponseHeaders(
+    id: string
+  ): Promise<{ headers: ApiResponseHeaders; body: ThemeResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
@@ -138,36 +131,38 @@ export default class PlayersApi {
             response.body,
             response.headers['content-type']
           ),
-          'GetPlayerThemeByIdResponse',
+          'ThemeResponse',
           ''
-        ) as GetPlayerThemeByIdResponse,
+        ) as ThemeResponse,
       };
     });
   }
 
   /**
-   * Use a player ID to update specific details for a player.
-   * Update a player theme by ID
+   * Applies the fields you send and leaves the rest of the theme alone.
+   * Update a player theme
    * @param id Player theme ID
-   * @param input Player theme input
+   * @param playerThemeInput Fields to change
    */
   public async update(
     id: string,
-    input: UpdatePlayerThemeRequest = {}
-  ): Promise<UpdatePlayerThemeResponse> {
-    return this.updateWithResponseHeaders(id, input).then((res) => res.body);
+    playerThemeInput: PlayerThemeInput = {}
+  ): Promise<ThemeResponse> {
+    return this.updateWithResponseHeaders(id, playerThemeInput).then(
+      (res) => res.body
+    );
   }
 
   /**
-   * Use a player ID to update specific details for a player.
-   * Update a player theme by ID
+   * Applies the fields you send and leaves the rest of the theme alone.
+   * Update a player theme
    * @param id Player theme ID
-   * @param input Player theme input
+   * @param playerThemeInput Fields to change
    */
   public async updateWithResponseHeaders(
     id: string,
-    input: UpdatePlayerThemeRequest = {}
-  ): Promise<{ headers: ApiResponseHeaders; body: UpdatePlayerThemeResponse }> {
+    playerThemeInput: PlayerThemeInput = {}
+  ): Promise<{ headers: ApiResponseHeaders; body: ThemeResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
@@ -175,9 +170,9 @@ export default class PlayersApi {
         'Required parameter id was null or undefined when calling update.'
       );
     }
-    if (input === null || input === undefined) {
+    if (playerThemeInput === null || playerThemeInput === undefined) {
       throw new Error(
-        'Required parameter input was null or undefined when calling update.'
+        'Required parameter playerThemeInput was null or undefined when calling update.'
       );
     }
     // Path Params
@@ -192,7 +187,7 @@ export default class PlayersApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(input, 'UpdatePlayerThemeRequest', ''),
+      ObjectSerializer.serialize(playerThemeInput, 'PlayerThemeInput', ''),
       contentType
     );
 
@@ -206,16 +201,16 @@ export default class PlayersApi {
             response.body,
             response.headers['content-type']
           ),
-          'UpdatePlayerThemeResponse',
+          'ThemeResponse',
           ''
-        ) as UpdatePlayerThemeResponse,
+        ) as ThemeResponse,
       };
     });
   }
 
   /**
-   * Delete a player if you no longer need it. You can delete any player that you have the player ID for.
-   * Delete a player theme by ID
+   * Deletes a player theme and its logo. A theme still applied to media cannot be deleted.
+   * Delete a player theme
    * @param id Player theme ID
    */
   public async delete(id: string): Promise<ResponseSuccess> {
@@ -223,8 +218,8 @@ export default class PlayersApi {
   }
 
   /**
-   * Delete a player if you no longer need it. You can delete any player that you have the player ID for.
-   * Delete a player theme by ID
+   * Deletes a player theme and its logo. A theme still applied to media cannot be deleted.
+   * Delete a player theme
    * @param id Player theme ID
    */
   public async deleteWithResponseHeaders(
@@ -260,53 +255,48 @@ export default class PlayersApi {
   }
 
   /**
-   * Retrieve a list of all the player themes you created, as well as details about each one.
-   * List all player themes
+   * Returns a page of the player themes in your workspace.
+   * List player themes
    * @param {Object} searchParams
-   * @param { string } searchParams.search only support search by name
-   * @param { &#39;created_at&#39; | &#39;name&#39; } searchParams.sortBy sort by
-   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy allowed: asc, desc. Default: asc
-   * @param { number } searchParams.offset offset, allowed values greater than or equal to 0. Default(0)
-   * @param { number } searchParams.limit results per page. Allowed values 1-100, default is 25
+   * @param { number } searchParams.limit
+   * @param { number } searchParams.offset
+   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy
+   * @param { string } searchParams.search
+   * @param { &#39;created_at&#39; | &#39;name&#39; } searchParams.sortBy
    */
-  public async list(
-    args: {
-      search?: string;
-      sortBy?: 'created_at' | 'name';
-      orderBy?: 'asc' | 'desc';
-      offset?: number;
-      limit?: number;
-    } = {}
-  ): Promise<GetPlayerThemeResponse> {
+  public async list(args: {
+    limit?: number;
+    offset?: number;
+    orderBy?: 'asc' | 'desc';
+    search?: string;
+    sortBy?: 'created_at' | 'name';
+  }): Promise<ListThemesResponse> {
     return this.listWithResponseHeaders(args).then((res) => res.body);
   }
 
   /**
-   * Retrieve a list of all the player themes you created, as well as details about each one.
-   * List all player themes
+   * Returns a page of the player themes in your workspace.
+   * List player themes
    * @param {Object} searchParams
-   * @param { string } searchParams.search only support search by name
-   * @param { &#39;created_at&#39; | &#39;name&#39; } searchParams.sortBy sort by
-   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy allowed: asc, desc. Default: asc
-   * @param { number } searchParams.offset offset, allowed values greater than or equal to 0. Default(0)
-   * @param { number } searchParams.limit results per page. Allowed values 1-100, default is 25
+   * @param { number } searchParams.limit
+   * @param { number } searchParams.offset
+   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy
+   * @param { string } searchParams.search
+   * @param { &#39;created_at&#39; | &#39;name&#39; } searchParams.sortBy
    */
   public async listWithResponseHeaders({
+    limit,
+    offset,
+    orderBy,
     search,
     sortBy,
-    orderBy,
-    offset,
-    limit,
   }: {
+    limit?: number;
+    offset?: number;
+    orderBy?: 'asc' | 'desc';
     search?: string;
     sortBy?: 'created_at' | 'name';
-    orderBy?: 'asc' | 'desc';
-    offset?: number;
-    limit?: number;
-  } = {}): Promise<{
-    headers: ApiResponseHeaders;
-    body: GetPlayerThemeResponse;
-  }> {
+  }): Promise<{ headers: ApiResponseHeaders; body: ListThemesResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     // Path Params
@@ -315,6 +305,24 @@ export default class PlayersApi {
     // Query Params
     const urlSearchParams = new URLSearchParams();
 
+    if (limit !== undefined) {
+      urlSearchParams.append(
+        'limit',
+        ObjectSerializer.serialize(limit, 'number', '')
+      );
+    }
+    if (offset !== undefined) {
+      urlSearchParams.append(
+        'offset',
+        ObjectSerializer.serialize(offset, 'number', '')
+      );
+    }
+    if (orderBy !== undefined) {
+      urlSearchParams.append(
+        'order_by',
+        ObjectSerializer.serialize(orderBy, "'asc' | 'desc'", '')
+      );
+    }
     if (search !== undefined) {
       urlSearchParams.append(
         'search',
@@ -325,24 +333,6 @@ export default class PlayersApi {
       urlSearchParams.append(
         'sort_by',
         ObjectSerializer.serialize(sortBy, "'created_at' | 'name'", '')
-      );
-    }
-    if (orderBy !== undefined) {
-      urlSearchParams.append(
-        'order_by',
-        ObjectSerializer.serialize(orderBy, "'asc' | 'desc'", '')
-      );
-    }
-    if (offset !== undefined) {
-      urlSearchParams.append(
-        'offset',
-        ObjectSerializer.serialize(offset, 'number', '')
-      );
-    }
-    if (limit !== undefined) {
-      urlSearchParams.append(
-        'limit',
-        ObjectSerializer.serialize(limit, 'number', '')
       );
     }
 
@@ -358,42 +348,42 @@ export default class PlayersApi {
             response.body,
             response.headers['content-type']
           ),
-          'GetPlayerThemeResponse',
+          'ListThemesResponse',
           ''
-        ) as GetPlayerThemeResponse,
+        ) as ListThemesResponse,
       };
     });
   }
 
   /**
-   * Upload a logo for a player theme by its ID.
-   * Upload a logo for a player theme by ID
+   * Stores a JPG or PNG logo against a player theme, replacing whatever was there.
+   * Upload a player theme logo
    * @param id Player theme ID
-   * @param file The uploaded file (JPG or PNG)
-   * @param link The link to the logo (optional if a file is provided)
+   * @param file Logo image
+   * @param link Where clicking the logo takes the viewer
    */
   public async uploadLogo(
     id: string,
     file: string | Readable | Buffer,
-    link: string
-  ): Promise<UploadLogoByIdResponse> {
+    link?: string
+  ): Promise<ThemeResponse> {
     return this.uploadLogoWithResponseHeaders(id, file, link).then(
       (res) => res.body
     );
   }
 
   /**
-   * Upload a logo for a player theme by its ID.
-   * Upload a logo for a player theme by ID
+   * Stores a JPG or PNG logo against a player theme, replacing whatever was there.
+   * Upload a player theme logo
    * @param id Player theme ID
-   * @param file The uploaded file (JPG or PNG)
-   * @param link The link to the logo (optional if a file is provided)
+   * @param file Logo image
+   * @param link Where clicking the logo takes the viewer
    */
   public async uploadLogoWithResponseHeaders(
     id: string,
     file: string | Readable | Buffer,
-    link: string
-  ): Promise<{ headers: ApiResponseHeaders; body: UploadLogoByIdResponse }> {
+    link?: string
+  ): Promise<{ headers: ApiResponseHeaders; body: ThemeResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
@@ -411,11 +401,6 @@ export default class PlayersApi {
       fileBuffer = await readableToBuffer(file);
     }
 
-    if (link === null || link === undefined) {
-      throw new Error(
-        'Required parameter link was null or undefined when calling uploadLogo.'
-      );
-    }
     // Path Params
     const localVarPath = '/players/{id}/logo'
       .substring(1)
@@ -440,16 +425,16 @@ export default class PlayersApi {
             response.body,
             response.headers['content-type']
           ),
-          'UploadLogoByIdResponse',
+          'ThemeResponse',
           ''
-        ) as UploadLogoByIdResponse,
+        ) as ThemeResponse,
       };
     });
   }
 
   /**
-   * Delete the logo associated to a player.
-   * Delete a logo for a player theme by ID
+   * Removes the logo from a player theme.
+   * Delete a player theme logo
    * @param id Player theme ID
    */
   public async deleteLogo(id: string): Promise<ResponseSuccess> {
@@ -457,8 +442,8 @@ export default class PlayersApi {
   }
 
   /**
-   * Delete the logo associated to a player.
-   * Delete a logo for a player theme by ID
+   * Removes the logo from a player theme.
+   * Delete a player theme logo
    * @param id Player theme ID
    */
   public async deleteLogoWithResponseHeaders(
@@ -494,29 +479,31 @@ export default class PlayersApi {
   }
 
   /**
-   * Add a player theme to a video by Id.
-   * Add a player theme to a video
-   * @param request Add player theme to video request
+   * Binds a player theme to a piece of media.
+   * Add a player theme to a media
+   * @param attachThemeRequest Media and theme
    */
-  public async addPlayer(
-    request: AddPlayerThemesToVideoRequest = {}
+  public async attach(
+    attachThemeRequest: AttachThemeRequest = {}
   ): Promise<ResponseSuccess> {
-    return this.addPlayerWithResponseHeaders(request).then((res) => res.body);
+    return this.attachWithResponseHeaders(attachThemeRequest).then(
+      (res) => res.body
+    );
   }
 
   /**
-   * Add a player theme to a video by Id.
-   * Add a player theme to a video
-   * @param request Add player theme to video request
+   * Binds a player theme to a piece of media.
+   * Add a player theme to a media
+   * @param attachThemeRequest Media and theme
    */
-  public async addPlayerWithResponseHeaders(
-    request: AddPlayerThemesToVideoRequest = {}
+  public async attachWithResponseHeaders(
+    attachThemeRequest: AttachThemeRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
-    if (request === null || request === undefined) {
+    if (attachThemeRequest === null || attachThemeRequest === undefined) {
       throw new Error(
-        'Required parameter request was null or undefined when calling addPlayer.'
+        'Required parameter attachThemeRequest was null or undefined when calling attach.'
       );
     }
     // Path Params
@@ -529,7 +516,7 @@ export default class PlayersApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(request, 'AddPlayerThemesToVideoRequest', ''),
+      ObjectSerializer.serialize(attachThemeRequest, 'AttachThemeRequest', ''),
       contentType
     );
 
@@ -551,31 +538,31 @@ export default class PlayersApi {
   }
 
   /**
-   * Remove a player theme from a video by Id.
-   * Remove a player theme from a video
-   * @param request Remove player theme from video request
+   * Releases a player theme from a piece of media.
+   * Remove a player theme from a media
+   * @param attachThemeRequest Media and theme
    */
-  public async removePlayer(
-    request: RemovePlayerThemesFromMediaRequest = {}
+  public async detach(
+    attachThemeRequest: AttachThemeRequest = {}
   ): Promise<ResponseSuccess> {
-    return this.removePlayerWithResponseHeaders(request).then(
+    return this.detachWithResponseHeaders(attachThemeRequest).then(
       (res) => res.body
     );
   }
 
   /**
-   * Remove a player theme from a video by Id.
-   * Remove a player theme from a video
-   * @param request Remove player theme from video request
+   * Releases a player theme from a piece of media.
+   * Remove a player theme from a media
+   * @param attachThemeRequest Media and theme
    */
-  public async removePlayerWithResponseHeaders(
-    request: RemovePlayerThemesFromMediaRequest = {}
+  public async detachWithResponseHeaders(
+    attachThemeRequest: AttachThemeRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
-    if (request === null || request === undefined) {
+    if (attachThemeRequest === null || attachThemeRequest === undefined) {
       throw new Error(
-        'Required parameter request was null or undefined when calling removePlayer.'
+        'Required parameter attachThemeRequest was null or undefined when calling detach.'
       );
     }
     // Path Params
@@ -588,11 +575,7 @@ export default class PlayersApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(
-        request,
-        'RemovePlayerThemesFromMediaRequest',
-        ''
-      ),
+      ObjectSerializer.serialize(attachThemeRequest, 'AttachThemeRequest', ''),
       contentType
     );
 

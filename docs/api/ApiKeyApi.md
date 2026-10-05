@@ -1,26 +1,26 @@
 # ApiKeyApi
 
-All URIs are relative to *http://localhost/api*
+All URIs are relative to *https://api.aiozstream.network/api*
 
 | Method | Description | HTTP request |
 | ------------- | ------------- | ------------- |
 | [**create()**](ApiKeyApi.md#create) | Create API key | **POST** /api_keys |
-| [**update()**](ApiKeyApi.md#update) | Rename api key | **PATCH** /api_keys/{id} |
-| [**delete()**](ApiKeyApi.md#delete) | Delete API key | **DELETE** /api_keys/{id} |
-| [**list()**](ApiKeyApi.md#list) | Get list API keys | **GET** /api_keys |
+| [**update()**](ApiKeyApi.md#update) | Rename an API key | **PATCH** /api_keys/{id} |
+| [**delete()**](ApiKeyApi.md#delete) | Delete an API key | **DELETE** /api_keys/{id} |
+| [**list()**](ApiKeyApi.md#list) | List API keys | **GET** /api_keys |
 
 
 <a name="create"></a>
 ## **`create()` - Create API key**
 
 
-This endpoint enables you to create a new API key for a specific project.
+Creates a new API key for the caller's workspace. The secret is returned once, here, and never again.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**CreateApiKeyRequest**](../model/CreateApiKeyRequest.md)| **yes**| api key&#39;s data |
+ | **createApiKeyRequest** | [**CreateApiKeyRequest**](../model/CreateApiKeyRequest.md)| **yes**| api key&#39;s data |
 
 
 ### Return type
@@ -33,17 +33,17 @@ Promise<[**CreateApiKeyResponse**](../model/CreateApiKeyResponse.md)>.
 ---
 
 <a name="update"></a>
-## **`update()` - Rename api key**
+## **`update()` - Rename an API key**
 
 
-This endpoint enables you to rename an API key from a specific project.
+Changes an API key's display name. The key and its secret are unchanged.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| api key id |
- | **request** | [**RenameAPIKeyRequest**](../model/RenameAPIKeyRequest.md)| **yes**| new api key name |
+ | **id** | **string**| **yes**| API key ID |
+ | **renameApiKeyRequest** | [**RenameApiKeyRequest**](../model/RenameApiKeyRequest.md)| **yes**| new name |
 
 
 ### Return type
@@ -56,16 +56,16 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 ---
 
 <a name="delete"></a>
-## **`delete()` - Delete API key**
+## **`delete()` - Delete an API key**
 
 
-This endpoint enables you to delete an API key from a specific project.
+Revokes an API key. Requests presenting it stop working immediately.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| API key&#39;s ID |
+ | **id** | **string**| **yes**| API key ID |
 
 
 ### Return type
@@ -78,25 +78,26 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 ---
 
 <a name="list"></a>
-## **`list()` - Get list API keys**
+## **`list()` - List API keys**
 
 
-Retrieve a list of all API keys for the current workspace.
+Returns a page of the API keys for the caller's workspace.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **search** | **string**| no| only support search by name |
- | **sortBy** | **&#39;created_at&#39; \| &#39;name&#39;**| no| sort by |
- | **orderBy** | **&#39;asc&#39; \| &#39;desc&#39;**| no| allowed: asc, desc. Default: asc |
- | **offset** | **number**| no| offset, allowed values greater than or equal to 0. Default(0) |
- | **limit** | **number**| no| results per page. Allowed values 1-100, default is 25 |
+ | **limit** | **number**| no|  |
+ | **offset** | **number**| no|  |
+ | **orderBy** | **&#39;asc&#39; \| &#39;desc&#39;**| no|  |
+ | **search** | **string**| no|  |
+ | **sortBy** | **&#39;created_at&#39; \| &#39;name&#39;**| no|  |
+ | **type** | **&#39;full_access&#39; \| &#39;only_upload&#39;**| no|  |
 
 
 ### Return type
 
-Promise<[**GetApiKeysResponse**](../model/GetApiKeysResponse.md)>.
+Promise<[**ListApiKeysResponse**](../model/ListApiKeysResponse.md)>.
 
 
 

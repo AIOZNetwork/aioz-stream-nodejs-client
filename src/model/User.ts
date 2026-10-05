@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -10,12 +10,14 @@
  */
 
 import AttributeType from './AttributeType.js';
+import EditorProject from './EditorProject.js';
 
 export default class User {
-  'balance'?: string;
+  'balance'?: number;
   'createdAt'?: string;
-  'debt'?: string;
+  'debt'?: number;
   'deletedAt'?: string;
+  'editorProjects'?: Array<EditorProject>;
   'email'?: string;
   'exclusiveCode'?: string;
   'firstName'?: string;
@@ -33,7 +35,7 @@ export default class User {
     {
       name: 'balance',
       baseName: 'balance',
-      type: 'string',
+      type: 'number',
       format: '',
     },
     {
@@ -45,13 +47,19 @@ export default class User {
     {
       name: 'debt',
       baseName: 'debt',
-      type: 'string',
+      type: 'number',
       format: '',
     },
     {
       name: 'deletedAt',
       baseName: 'deleted_at',
       type: 'string',
+      format: '',
+    },
+    {
+      name: 'editorProjects',
+      baseName: 'editor_projects',
+      type: 'Array<EditorProject>',
       format: '',
     },
     {

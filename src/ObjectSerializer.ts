@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any, @typescript-eslint/explicit-module-boundary-types, @typescript-eslint/no-non-null-assertion */
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -10,55 +10,25 @@
  * Do not edit the class manually.
  */
 
-import AddMediaToPlaylistRequest from './model/AddMediaToPlaylistRequest';
-import AddPlayerThemesToVideoRequest from './model/AddPlayerThemesToVideoRequest';
+import AddMediaRequest from './model/AddMediaRequest';
 import ApiKey from './model/ApiKey';
 import Asset from './model/Asset';
+import AttachThemeRequest from './model/AttachThemeRequest';
 import AudioConfig from './model/AudioConfig';
 import Controls from './model/Controls';
 import CreateApiKeyData from './model/CreateApiKeyData';
 import CreateApiKeyRequest from './model/CreateApiKeyRequest';
 import CreateApiKeyResponse from './model/CreateApiKeyResponse';
-import CreateLiveStreamKeyRequest from './model/CreateLiveStreamKeyRequest';
-import CreateLiveStreamKeyResponse from './model/CreateLiveStreamKeyResponse';
 import CreateMediaCaptionData from './model/CreateMediaCaptionData';
 import CreateMediaCaptionResponse from './model/CreateMediaCaptionResponse';
 import CreateMediaChapterData from './model/CreateMediaChapterData';
 import CreateMediaChapterResponse from './model/CreateMediaChapterResponse';
 import CreateMediaRequest from './model/CreateMediaRequest';
 import CreateMediaResponse from './model/CreateMediaResponse';
-import CreatePlayerThemeRequest from './model/CreatePlayerThemeRequest';
-import CreatePlayerThemesData from './model/CreatePlayerThemesData';
-import CreatePlayerThemesResponse from './model/CreatePlayerThemesResponse';
-import CreatePlaylistData from './model/CreatePlaylistData';
 import CreatePlaylistRequest from './model/CreatePlaylistRequest';
-import CreatePlaylistResponse from './model/CreatePlaylistResponse';
-import CreateStreamingRequest from './model/CreateStreamingRequest';
-import CreateStreamingResponse from './model/CreateStreamingResponse';
-import CreateWebhookData from './model/CreateWebhookData';
-import CreateWebhookRequest from './model/CreateWebhookRequest';
-import CreateWebhookResponse from './model/CreateWebhookResponse';
-import DataUsage from './model/DataUsage';
-import GetAggregatedMetricsData from './model/GetAggregatedMetricsData';
-import GetAggregatedMetricsResponse from './model/GetAggregatedMetricsResponse';
-import GetApiKeysData from './model/GetApiKeysData';
-import GetApiKeysResponse from './model/GetApiKeysResponse';
-import GetBreakdownMetricsData from './model/GetBreakdownMetricsData';
-import GetBreakdownMetricsRequest from './model/GetBreakdownMetricsRequest';
-import GetBreakdownMetricsResponse from './model/GetBreakdownMetricsResponse';
-import GetDataUsageData from './model/GetDataUsageData';
-import GetDataUsageResponse from './model/GetDataUsageResponse';
-import GetLiveStreamKeyData from './model/GetLiveStreamKeyData';
-import GetLiveStreamKeyResponse from './model/GetLiveStreamKeyResponse';
-import GetLiveStreamKeysListData from './model/GetLiveStreamKeysListData';
-import GetLiveStreamKeysListResponse from './model/GetLiveStreamKeysListResponse';
-import GetLiveStreamMediasRequest from './model/GetLiveStreamMediasRequest';
-import GetLiveStreamMediasResponse from './model/GetLiveStreamMediasResponse';
-import GetLiveStreamMulticastResponse from './model/GetLiveStreamMulticastResponse';
-import GetLiveStreamStatisticResponse from './model/GetLiveStreamStatisticResponse';
-import GetLiveStreamVideoPublicResponse from './model/GetLiveStreamVideoPublicResponse';
-import GetLiveStreamVideoResponse from './model/GetLiveStreamVideoResponse';
-import GetMeResponse from './model/GetMeResponse';
+import DeletedAt from './model/DeletedAt';
+import EditorProject from './model/EditorProject';
+import ErrorBody from './model/ErrorBody';
 import GetMediaCaptionsData from './model/GetMediaCaptionsData';
 import GetMediaCaptionsResponse from './model/GetMediaCaptionsResponse';
 import GetMediaChaptersData from './model/GetMediaChaptersData';
@@ -68,74 +38,57 @@ import GetMediaListData from './model/GetMediaListData';
 import GetMediaListRequest from './model/GetMediaListRequest';
 import GetMediaListResponse from './model/GetMediaListResponse';
 import GetMediaPlayerInfoResponse from './model/GetMediaPlayerInfoResponse';
-import GetOvertimeMetricsData from './model/GetOvertimeMetricsData';
-import GetOvertimeMetricsResponse from './model/GetOvertimeMetricsResponse';
-import GetPlayerThemeByIdData from './model/GetPlayerThemeByIdData';
-import GetPlayerThemeByIdResponse from './model/GetPlayerThemeByIdResponse';
-import GetPlayerThemeData from './model/GetPlayerThemeData';
-import GetPlayerThemeResponse from './model/GetPlayerThemeResponse';
-import GetPlaylistByIdData from './model/GetPlaylistByIdData';
-import GetPlaylistByIdResponse from './model/GetPlaylistByIdResponse';
-import GetPlaylistListData from './model/GetPlaylistListData';
-import GetPlaylistListRequest from './model/GetPlaylistListRequest';
-import GetPlaylistListResponse from './model/GetPlaylistListResponse';
-import GetStatisticMediasData from './model/GetStatisticMediasData';
-import GetStatisticMediasResponse from './model/GetStatisticMediasResponse';
-import GetStreamingResponse from './model/GetStreamingResponse';
-import GetStreamingsResponse from './model/GetStreamingsResponse';
 import GetTranscodeCostData from './model/GetTranscodeCostData';
 import GetTranscodeCostResponse from './model/GetTranscodeCostResponse';
-import GetUserData from './model/GetUserData';
-import GetUserWebhookData from './model/GetUserWebhookData';
-import GetUserWebhookResponse from './model/GetUserWebhookResponse';
-import GetWebhooksListData from './model/GetWebhooksListData';
-import GetWebhooksListResponse from './model/GetWebhooksListResponse';
-import InternalControllersGetAggreatedMetricsMetricsRequest from './model/InternalControllersGetAggreatedMetricsMetricsRequest';
-import LiveStreamAssets from './model/LiveStreamAssets';
-import LiveStreamKeyData from './model/LiveStreamKeyData';
-import LiveStreamMediaData from './model/LiveStreamMediaData';
-import LiveStreamMediaResponse from './model/LiveStreamMediaResponse';
-import LiveStreamMediasResponse from './model/LiveStreamMediasResponse';
-import LiveStreamMulticast from './model/LiveStreamMulticast';
-import LiveStreamStatisticResp from './model/LiveStreamStatisticResp';
-import Media from './model/Media';
+import HighlightChunk from './model/HighlightChunk';
+import HighlightClip from './model/HighlightClip';
+import HighlightManifest from './model/HighlightManifest';
+import HighlightMedia from './model/HighlightMedia';
+import ListApiKeysData from './model/ListApiKeysData';
+import ListApiKeysRequest from './model/ListApiKeysRequest';
+import ListApiKeysResponse from './model/ListApiKeysResponse';
+import ListPlaylistsData from './model/ListPlaylistsData';
+import ListPlaylistsRequest from './model/ListPlaylistsRequest';
+import ListPlaylistsResponse from './model/ListPlaylistsResponse';
+import ListThemesData from './model/ListThemesData';
+import ListThemesRequest from './model/ListThemesRequest';
+import ListThemesResponse from './model/ListThemesResponse';
+import ListWebhooksData from './model/ListWebhooksData';
+import ListWebhooksRequest from './model/ListWebhooksRequest';
+import ListWebhooksResponse from './model/ListWebhooksResponse';
 import MediaAssets from './model/MediaAssets';
 import MediaCaption from './model/MediaCaption';
 import MediaChapter from './model/MediaChapter';
+import MediaObject from './model/MediaObject';
+import MediaSummary from './model/MediaSummary';
+import MediaWatermark from './model/MediaWatermark';
 import Metadata from './model/Metadata';
-import MetricFilter from './model/MetricFilter';
-import MetricItem from './model/MetricItem';
-import MetricsContext from './model/MetricsContext';
-import MoveVideoInPlaylistRequest from './model/MoveVideoInPlaylistRequest';
+import MoveItemRequest from './model/MoveItemRequest';
 import PlayerTheme from './model/PlayerTheme';
+import PlayerThemeInput from './model/PlayerThemeInput';
 import Playlist from './model/Playlist';
+import PlaylistData from './model/PlaylistData';
 import PlaylistItem from './model/PlaylistItem';
 import PlaylistItemMedia from './model/PlaylistItemMedia';
-import PublicPlaylistObject from './model/PublicPlaylistObject';
+import PlaylistResponse from './model/PlaylistResponse';
 import QualityConfig from './model/QualityConfig';
 import QualityObject from './model/QualityObject';
-import RemoveMediasFromPlaylistRequest from './model/RemoveMediasFromPlaylistRequest';
-import RemovePlayerThemesFromMediaRequest from './model/RemovePlayerThemesFromMediaRequest';
-import RenameAPIKeyRequest from './model/RenameAPIKeyRequest';
-import RequestCreateCaption from './model/RequestCreateCaption';
+import RemoveMediaRequest from './model/RemoveMediaRequest';
+import RenameApiKeyRequest from './model/RenameApiKeyRequest';
 import ResponseError from './model/ResponseError';
 import ResponseSuccess from './model/ResponseSuccess';
+import SetDefaultCaptionRequest from './model/SetDefaultCaptionRequest';
 import Theme from './model/Theme';
-import TimeFrame from './model/TimeFrame';
-import UpdateLiveStreamKeyData from './model/UpdateLiveStreamKeyData';
-import UpdateLiveStreamKeyRequest from './model/UpdateLiveStreamKeyRequest';
-import UpdateLiveStreamKeyResponse from './model/UpdateLiveStreamKeyResponse';
-import UpdateLiveStreamMediaRequest from './model/UpdateLiveStreamMediaRequest';
+import ThemeData from './model/ThemeData';
+import ThemeResponse from './model/ThemeResponse';
 import UpdateMediaInfoRequest from './model/UpdateMediaInfoRequest';
-import UpdatePlayerThemeRequest from './model/UpdatePlayerThemeRequest';
-import UpdatePlayerThemeResponse from './model/UpdatePlayerThemeResponse';
-import UpdateWebhookRequest from './model/UpdateWebhookRequest';
-import UploadLogoByIdResponse from './model/UploadLogoByIdResponse';
-import UpsertLiveStreamMulticastInput from './model/UpsertLiveStreamMulticastInput';
 import User from './model/User';
 import VideoConfig from './model/VideoConfig';
-import VideoWatermark from './model/VideoWatermark';
+import VideoCropInfo from './model/VideoCropInfo';
 import Webhook from './model/Webhook';
+import WebhookData from './model/WebhookData';
+import WebhookResponse from './model/WebhookResponse';
+import WriteWebhookRequest from './model/WriteWebhookRequest';
 
 /* tslint:disable:no-unused-variable */
 const primitives = [
@@ -161,58 +114,45 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
   'application/octet-stream': 0,
 };
 
-const enumsMap: Set<string> = new Set<string>([]);
+const enumsMap: Set<string> = new Set<string>([
+  'CreateApiKeyRequestTypeEnum',
+  'CreatePlaylistRequestPlaylistTypeEnum',
+  'HighlightChunkStatus',
+  'HighlightMediaStatus',
+  'ListApiKeysRequestOrderByEnum',
+  'ListApiKeysRequestSortByEnum',
+  'ListApiKeysRequestTypeEnum',
+  'ListPlaylistsRequestOrderByEnum',
+  'ListPlaylistsRequestPlaylistTypeEnum',
+  'ListPlaylistsRequestSortByEnum',
+  'ListThemesRequestOrderByEnum',
+  'ListThemesRequestSortByEnum',
+  'ListWebhooksRequestOrderByEnum',
+  'ListWebhooksRequestSortByEnum',
+  'ManifestType',
+  'MediaType',
+]);
 
 const typeMap: { [index: string]: any } = {
-  AddMediaToPlaylistRequest: AddMediaToPlaylistRequest,
-  AddPlayerThemesToVideoRequest: AddPlayerThemesToVideoRequest,
+  AddMediaRequest: AddMediaRequest,
   ApiKey: ApiKey,
   Asset: Asset,
+  AttachThemeRequest: AttachThemeRequest,
   AudioConfig: AudioConfig,
   Controls: Controls,
   CreateApiKeyData: CreateApiKeyData,
   CreateApiKeyRequest: CreateApiKeyRequest,
   CreateApiKeyResponse: CreateApiKeyResponse,
-  CreateLiveStreamKeyRequest: CreateLiveStreamKeyRequest,
-  CreateLiveStreamKeyResponse: CreateLiveStreamKeyResponse,
   CreateMediaCaptionData: CreateMediaCaptionData,
   CreateMediaCaptionResponse: CreateMediaCaptionResponse,
   CreateMediaChapterData: CreateMediaChapterData,
   CreateMediaChapterResponse: CreateMediaChapterResponse,
   CreateMediaRequest: CreateMediaRequest,
   CreateMediaResponse: CreateMediaResponse,
-  CreatePlayerThemeRequest: CreatePlayerThemeRequest,
-  CreatePlayerThemesData: CreatePlayerThemesData,
-  CreatePlayerThemesResponse: CreatePlayerThemesResponse,
-  CreatePlaylistData: CreatePlaylistData,
   CreatePlaylistRequest: CreatePlaylistRequest,
-  CreatePlaylistResponse: CreatePlaylistResponse,
-  CreateStreamingRequest: CreateStreamingRequest,
-  CreateStreamingResponse: CreateStreamingResponse,
-  CreateWebhookData: CreateWebhookData,
-  CreateWebhookRequest: CreateWebhookRequest,
-  CreateWebhookResponse: CreateWebhookResponse,
-  DataUsage: DataUsage,
-  GetAggregatedMetricsData: GetAggregatedMetricsData,
-  GetAggregatedMetricsResponse: GetAggregatedMetricsResponse,
-  GetApiKeysData: GetApiKeysData,
-  GetApiKeysResponse: GetApiKeysResponse,
-  GetBreakdownMetricsData: GetBreakdownMetricsData,
-  GetBreakdownMetricsRequest: GetBreakdownMetricsRequest,
-  GetBreakdownMetricsResponse: GetBreakdownMetricsResponse,
-  GetDataUsageData: GetDataUsageData,
-  GetDataUsageResponse: GetDataUsageResponse,
-  GetLiveStreamKeyData: GetLiveStreamKeyData,
-  GetLiveStreamKeyResponse: GetLiveStreamKeyResponse,
-  GetLiveStreamKeysListData: GetLiveStreamKeysListData,
-  GetLiveStreamKeysListResponse: GetLiveStreamKeysListResponse,
-  GetLiveStreamMediasRequest: GetLiveStreamMediasRequest,
-  GetLiveStreamMediasResponse: GetLiveStreamMediasResponse,
-  GetLiveStreamMulticastResponse: GetLiveStreamMulticastResponse,
-  GetLiveStreamStatisticResponse: GetLiveStreamStatisticResponse,
-  GetLiveStreamVideoPublicResponse: GetLiveStreamVideoPublicResponse,
-  GetLiveStreamVideoResponse: GetLiveStreamVideoResponse,
-  GetMeResponse: GetMeResponse,
+  DeletedAt: DeletedAt,
+  EditorProject: EditorProject,
+  ErrorBody: ErrorBody,
   GetMediaCaptionsData: GetMediaCaptionsData,
   GetMediaCaptionsResponse: GetMediaCaptionsResponse,
   GetMediaChaptersData: GetMediaChaptersData,
@@ -222,75 +162,57 @@ const typeMap: { [index: string]: any } = {
   GetMediaListRequest: GetMediaListRequest,
   GetMediaListResponse: GetMediaListResponse,
   GetMediaPlayerInfoResponse: GetMediaPlayerInfoResponse,
-  GetOvertimeMetricsData: GetOvertimeMetricsData,
-  GetOvertimeMetricsResponse: GetOvertimeMetricsResponse,
-  GetPlayerThemeByIdData: GetPlayerThemeByIdData,
-  GetPlayerThemeByIdResponse: GetPlayerThemeByIdResponse,
-  GetPlayerThemeData: GetPlayerThemeData,
-  GetPlayerThemeResponse: GetPlayerThemeResponse,
-  GetPlaylistByIdData: GetPlaylistByIdData,
-  GetPlaylistByIdResponse: GetPlaylistByIdResponse,
-  GetPlaylistListData: GetPlaylistListData,
-  GetPlaylistListRequest: GetPlaylistListRequest,
-  GetPlaylistListResponse: GetPlaylistListResponse,
-  GetStatisticMediasData: GetStatisticMediasData,
-  GetStatisticMediasResponse: GetStatisticMediasResponse,
-  GetStreamingResponse: GetStreamingResponse,
-  GetStreamingsResponse: GetStreamingsResponse,
   GetTranscodeCostData: GetTranscodeCostData,
   GetTranscodeCostResponse: GetTranscodeCostResponse,
-  GetUserData: GetUserData,
-  GetUserWebhookData: GetUserWebhookData,
-  GetUserWebhookResponse: GetUserWebhookResponse,
-  GetWebhooksListData: GetWebhooksListData,
-  GetWebhooksListResponse: GetWebhooksListResponse,
-  InternalControllersGetAggreatedMetricsMetricsRequest:
-    InternalControllersGetAggreatedMetricsMetricsRequest,
-  LiveStreamAssets: LiveStreamAssets,
-  LiveStreamKeyData: LiveStreamKeyData,
-  LiveStreamMediaData: LiveStreamMediaData,
-  LiveStreamMediaResponse: LiveStreamMediaResponse,
-  LiveStreamMediasResponse: LiveStreamMediasResponse,
-  LiveStreamMulticast: LiveStreamMulticast,
-  LiveStreamStatisticResp: LiveStreamStatisticResp,
-  Media: Media,
+  HighlightChunk: HighlightChunk,
+  HighlightClip: HighlightClip,
+  HighlightManifest: HighlightManifest,
+  HighlightMedia: HighlightMedia,
+  ListApiKeysData: ListApiKeysData,
+  ListApiKeysRequest: ListApiKeysRequest,
+  ListApiKeysResponse: ListApiKeysResponse,
+  ListPlaylistsData: ListPlaylistsData,
+  ListPlaylistsRequest: ListPlaylistsRequest,
+  ListPlaylistsResponse: ListPlaylistsResponse,
+  ListThemesData: ListThemesData,
+  ListThemesRequest: ListThemesRequest,
+  ListThemesResponse: ListThemesResponse,
+  ListWebhooksData: ListWebhooksData,
+  ListWebhooksRequest: ListWebhooksRequest,
+  ListWebhooksResponse: ListWebhooksResponse,
   MediaAssets: MediaAssets,
   MediaCaption: MediaCaption,
   MediaChapter: MediaChapter,
+  MediaObject: MediaObject,
+  MediaSummary: MediaSummary,
+  MediaWatermark: MediaWatermark,
   Metadata: Metadata,
-  MetricFilter: MetricFilter,
-  MetricItem: MetricItem,
-  MetricsContext: MetricsContext,
-  MoveVideoInPlaylistRequest: MoveVideoInPlaylistRequest,
+  MoveItemRequest: MoveItemRequest,
   PlayerTheme: PlayerTheme,
+  PlayerThemeInput: PlayerThemeInput,
   Playlist: Playlist,
+  PlaylistData: PlaylistData,
   PlaylistItem: PlaylistItem,
   PlaylistItemMedia: PlaylistItemMedia,
-  PublicPlaylistObject: PublicPlaylistObject,
+  PlaylistResponse: PlaylistResponse,
   QualityConfig: QualityConfig,
   QualityObject: QualityObject,
-  RemoveMediasFromPlaylistRequest: RemoveMediasFromPlaylistRequest,
-  RemovePlayerThemesFromMediaRequest: RemovePlayerThemesFromMediaRequest,
-  RenameAPIKeyRequest: RenameAPIKeyRequest,
-  RequestCreateCaption: RequestCreateCaption,
+  RemoveMediaRequest: RemoveMediaRequest,
+  RenameApiKeyRequest: RenameApiKeyRequest,
   ResponseError: ResponseError,
   ResponseSuccess: ResponseSuccess,
+  SetDefaultCaptionRequest: SetDefaultCaptionRequest,
   Theme: Theme,
-  TimeFrame: TimeFrame,
-  UpdateLiveStreamKeyData: UpdateLiveStreamKeyData,
-  UpdateLiveStreamKeyRequest: UpdateLiveStreamKeyRequest,
-  UpdateLiveStreamKeyResponse: UpdateLiveStreamKeyResponse,
-  UpdateLiveStreamMediaRequest: UpdateLiveStreamMediaRequest,
+  ThemeData: ThemeData,
+  ThemeResponse: ThemeResponse,
   UpdateMediaInfoRequest: UpdateMediaInfoRequest,
-  UpdatePlayerThemeRequest: UpdatePlayerThemeRequest,
-  UpdatePlayerThemeResponse: UpdatePlayerThemeResponse,
-  UpdateWebhookRequest: UpdateWebhookRequest,
-  UploadLogoByIdResponse: UploadLogoByIdResponse,
-  UpsertLiveStreamMulticastInput: UpsertLiveStreamMulticastInput,
   User: User,
   VideoConfig: VideoConfig,
-  VideoWatermark: VideoWatermark,
+  VideoCropInfo: VideoCropInfo,
   Webhook: Webhook,
+  WebhookData: WebhookData,
+  WebhookResponse: WebhookResponse,
+  WriteWebhookRequest: WriteWebhookRequest,
 };
 
 export default class ObjectSerializer {

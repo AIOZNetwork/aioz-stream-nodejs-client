@@ -5,10 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**balance** | **string** |  |  [optional]
+**balance** | **number** |  |  [optional]
 **createdAt** | **string** |  |  [optional]
-**debt** | **string** |  |  [optional]
+**debt** | **number** |  |  [optional]
 **deletedAt** | **string** |  |  [optional]
+**editorProjects** | [**Array&lt;EditorProject&gt;**](EditorProject.md) |  |  [optional]
 **email** | **string** |  |  [optional]
 **exclusiveCode** | **string** |  |  [optional]
 **firstName** | **string** |  |  [optional]

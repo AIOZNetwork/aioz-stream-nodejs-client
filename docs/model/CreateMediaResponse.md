@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**data** | [**Media**](Media.md) |  |  [optional]
+**data** | [**MediaObject**](MediaObject.md) |  |  [optional]
 **status** | **string** |  |  [optional]
 
 

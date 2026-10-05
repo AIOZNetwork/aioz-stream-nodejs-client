@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -14,6 +14,7 @@ import CreateApiKeyData from './CreateApiKeyData.js';
 
 export default class CreateApiKeyResponse {
   'data'?: CreateApiKeyData;
+  'requestId'?: string;
   'status'?: string;
 
   static readonly discriminator?: string = undefined;
@@ -23,6 +24,12 @@ export default class CreateApiKeyResponse {
       name: 'data',
       baseName: 'data',
       type: 'CreateApiKeyData',
+      format: '',
+    },
+    {
+      name: 'requestId',
+      baseName: 'request_id',
+      type: 'string',
       format: '',
     },
     {

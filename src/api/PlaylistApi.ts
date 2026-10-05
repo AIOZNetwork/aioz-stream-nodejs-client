@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -15,16 +15,13 @@ import { URLSearchParams } from 'url';
 import FormData from 'form-data';
 import ObjectSerializer, { COLLECTION_FORMATS } from '../ObjectSerializer';
 import HttpClient, { QueryOptions, ApiResponseHeaders } from '../HttpClient';
-import AddMediaToPlaylistRequest from '../model/AddMediaToPlaylistRequest';
+import AddMediaRequest from '../model/AddMediaRequest';
 import CreatePlaylistRequest from '../model/CreatePlaylistRequest';
-import CreatePlaylistResponse from '../model/CreatePlaylistResponse';
-import GetPlaylistByIdResponse from '../model/GetPlaylistByIdResponse';
-import GetPlaylistListRequest from '../model/GetPlaylistListRequest';
-import GetPlaylistListResponse from '../model/GetPlaylistListResponse';
-import Metadata from '../model/Metadata';
-import MoveVideoInPlaylistRequest from '../model/MoveVideoInPlaylistRequest';
-import PublicPlaylistObject from '../model/PublicPlaylistObject';
-import RemoveMediasFromPlaylistRequest from '../model/RemoveMediasFromPlaylistRequest';
+import ListPlaylistsRequest from '../model/ListPlaylistsRequest';
+import ListPlaylistsResponse from '../model/ListPlaylistsResponse';
+import MoveItemRequest from '../model/MoveItemRequest';
+import PlaylistResponse from '../model/PlaylistResponse';
+import RemoveMediaRequest from '../model/RemoveMediaRequest';
 import ResponseSuccess from '../model/ResponseSuccess';
 import { Readable } from 'stream';
 import { readableToBuffer } from '../HttpClient';
@@ -40,46 +37,35 @@ export default class PlaylistApi {
   }
 
   /**
-   * Add a specific video to a playlist for the authenticated user
-   * Add a video to a playlist
-   * @param id Playlist ID
-   * @param payload Video details
+   * Creates an empty playlist in your workspace.
+   * Create a playlist
+   * @param createPlaylistRequest Playlist
    */
-  public async addVideoToPlaylist(
-    id: string,
-    payload: AddMediaToPlaylistRequest = {}
-  ): Promise<ResponseSuccess> {
-    return this.addVideoToPlaylistWithResponseHeaders(id, payload).then(
+  public async create(
+    createPlaylistRequest: CreatePlaylistRequest = {}
+  ): Promise<PlaylistResponse> {
+    return this.createWithResponseHeaders(createPlaylistRequest).then(
       (res) => res.body
     );
   }
 
   /**
-   * Add a specific video to a playlist for the authenticated user
-   * Add a video to a playlist
-   * @param id Playlist ID
-   * @param payload Video details
+   * Creates an empty playlist in your workspace.
+   * Create a playlist
+   * @param createPlaylistRequest Playlist
    */
-  public async addVideoToPlaylistWithResponseHeaders(
-    id: string,
-    payload: AddMediaToPlaylistRequest = {}
-  ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
+  public async createWithResponseHeaders(
+    createPlaylistRequest: CreatePlaylistRequest = {}
+  ): Promise<{ headers: ApiResponseHeaders; body: PlaylistResponse }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
-    if (id === null || id === undefined) {
+    if (createPlaylistRequest === null || createPlaylistRequest === undefined) {
       throw new Error(
-        'Required parameter id was null or undefined when calling addVideoToPlaylist.'
-      );
-    }
-    if (payload === null || payload === undefined) {
-      throw new Error(
-        'Required parameter payload was null or undefined when calling addVideoToPlaylist.'
+        'Required parameter createPlaylistRequest was null or undefined when calling create.'
       );
     }
     // Path Params
-    const localVarPath = '/playlists/{id}/items'
-      .substring(1)
-      .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+    const localVarPath = '/playlists/create'.substring(1);
 
     // Body Params
     const contentType = ObjectSerializer.getPreferredMediaType([
@@ -88,12 +74,198 @@ export default class PlaylistApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(payload, 'AddMediaToPlaylistRequest', ''),
+      ObjectSerializer.serialize(
+        createPlaylistRequest,
+        'CreatePlaylistRequest',
+        ''
+      ),
       contentType
     );
 
     queryParams.method = 'POST';
 
+    return this.httpClient.call(localVarPath, queryParams).then((response) => {
+      return {
+        headers: response.headers,
+        body: ObjectSerializer.deserialize(
+          ObjectSerializer.parse(
+            response.body,
+            response.headers['content-type']
+          ),
+          'PlaylistResponse',
+          ''
+        ) as PlaylistResponse,
+      };
+    });
+  }
+
+  /**
+   * Returns one playlist and its items, ordered as you ask.
+   * Get a playlist
+   * @param {Object} searchParams
+   * @param { string } searchParams.id Playlist ID
+   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy
+   * @param { string } searchParams.search
+   * @param { &#39;created_at&#39; | &#39;title&#39; | &#39;duration&#39; | &#39;status&#39; } searchParams.sortBy
+   */
+  public async get(args: {
+    id: string;
+    orderBy?: 'asc' | 'desc';
+    search?: string;
+    sortBy?: 'created_at' | 'title' | 'duration' | 'status';
+  }): Promise<PlaylistResponse> {
+    return this.getWithResponseHeaders(args).then((res) => res.body);
+  }
+
+  /**
+   * Returns one playlist and its items, ordered as you ask.
+   * Get a playlist
+   * @param {Object} searchParams
+   * @param { string } searchParams.id Playlist ID
+   * @param { &#39;asc&#39; | &#39;desc&#39; } searchParams.orderBy
+   * @param { string } searchParams.search
+   * @param { &#39;created_at&#39; | &#39;title&#39; | &#39;duration&#39; | &#39;status&#39; } searchParams.sortBy
+   */
+  public async getWithResponseHeaders({
+    id,
+    orderBy,
+    search,
+    sortBy,
+  }: {
+    id: string;
+    orderBy?: 'asc' | 'desc';
+    search?: string;
+    sortBy?: 'created_at' | 'title' | 'duration' | 'status';
+  }): Promise<{ headers: ApiResponseHeaders; body: PlaylistResponse }> {
+    const queryParams: QueryOptions = {};
+    queryParams.headers = {};
+    if (id === null || id === undefined) {
+      throw new Error(
+        'Required parameter id was null or undefined when calling get.'
+      );
+    }
+    // Path Params
+    const localVarPath = '/playlists/{id}'
+      .substring(1)
+      .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+
+    // Query Params
+    const urlSearchParams = new URLSearchParams();
+
+    if (orderBy !== undefined) {
+      urlSearchParams.append(
+        'order_by',
+        ObjectSerializer.serialize(orderBy, "'asc' | 'desc'", '')
+      );
+    }
+    if (search !== undefined) {
+      urlSearchParams.append(
+        'search',
+        ObjectSerializer.serialize(search, 'string', '')
+      );
+    }
+    if (sortBy !== undefined) {
+      urlSearchParams.append(
+        'sort_by',
+        ObjectSerializer.serialize(
+          sortBy,
+          "'created_at' | 'title' | 'duration' | 'status'",
+          ''
+        )
+      );
+    }
+
+    queryParams.searchParams = urlSearchParams;
+
+    queryParams.method = 'GET';
+
+    return this.httpClient.call(localVarPath, queryParams).then((response) => {
+      return {
+        headers: response.headers,
+        body: ObjectSerializer.deserialize(
+          ObjectSerializer.parse(
+            response.body,
+            response.headers['content-type']
+          ),
+          'PlaylistResponse',
+          ''
+        ) as PlaylistResponse,
+      };
+    });
+  }
+
+  /**
+   * Changes a playlist's name, tags or thumbnail, sent as multipart/form-data. The file field is the new thumbnail: a PNG or JPEG, judged by its content, whose name, if it has an extension, must agree with it. The handler also takes a JSON body (name, tags, metadata); metadata can only be changed that way, since a form cannot carry its key/value list.
+   * Update a playlist
+   * @param id Playlist ID
+   * @param file New thumbnail
+   * @param name New name
+   * @param tags New tags, one field per tag
+   */
+  public async update(
+    id: string,
+    file?: string | Readable | Buffer,
+    name?: string,
+    tags?: Array<string>
+  ): Promise<ResponseSuccess> {
+    return this.updateWithResponseHeaders(id, file, name, tags).then(
+      (res) => res.body
+    );
+  }
+
+  /**
+   * Changes a playlist's name, tags or thumbnail, sent as multipart/form-data. The file field is the new thumbnail: a PNG or JPEG, judged by its content, whose name, if it has an extension, must agree with it. The handler also takes a JSON body (name, tags, metadata); metadata can only be changed that way, since a form cannot carry its key/value list.
+   * Update a playlist
+   * @param id Playlist ID
+   * @param file New thumbnail
+   * @param name New name
+   * @param tags New tags, one field per tag
+   */
+  public async updateWithResponseHeaders(
+    id: string,
+    file?: string | Readable | Buffer,
+    name?: string,
+    tags?: Array<string>
+  ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
+    const queryParams: QueryOptions = {};
+    queryParams.headers = {};
+    if (id === null || id === undefined) {
+      throw new Error(
+        'Required parameter id was null or undefined when calling update.'
+      );
+    }
+    // Path Params
+    const localVarPath = '/playlists/{id}'
+      .substring(1)
+      .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
+
+    queryParams.method = 'PATCH';
+
+    const formData = new FormData();
+
+    // The Name/Buffer pair is only declared up front for a required file
+    // (see the allParams block), so an optional one declares its own.
+    if (file !== undefined) {
+      let fileName = 'file';
+      let fileBuffer: string | Readable | Buffer = file;
+      if (typeof file === 'string') {
+        fileName = path.basename(file);
+        fileBuffer = createReadStream(file);
+      }
+      if (file instanceof Readable) {
+        fileBuffer = await readableToBuffer(file);
+      }
+      formData.append(fileName, fileBuffer, fileName);
+    }
+
+    if (typeof name !== undefined) {
+      formData.append('name', name);
+    }
+    if (tags) {
+      formData.append('tags', tags.join(COLLECTION_FORMATS['csv']));
+    }
+
+    queryParams.body = formData;
     return this.httpClient.call(localVarPath, queryParams).then((response) => {
       return {
         headers: response.headers,
@@ -110,88 +282,27 @@ export default class PlaylistApi {
   }
 
   /**
-   * Create a playlist for the authenticated user
-   * Create a playlist
-   * @param request Playlist input
-   */
-  public async createPlaylist(
-    request: CreatePlaylistRequest = {}
-  ): Promise<CreatePlaylistResponse> {
-    return this.createPlaylistWithResponseHeaders(request).then(
-      (res) => res.body
-    );
-  }
-
-  /**
-   * Create a playlist for the authenticated user
-   * Create a playlist
-   * @param request Playlist input
-   */
-  public async createPlaylistWithResponseHeaders(
-    request: CreatePlaylistRequest = {}
-  ): Promise<{ headers: ApiResponseHeaders; body: CreatePlaylistResponse }> {
-    const queryParams: QueryOptions = {};
-    queryParams.headers = {};
-    if (request === null || request === undefined) {
-      throw new Error(
-        'Required parameter request was null or undefined when calling createPlaylist.'
-      );
-    }
-    // Path Params
-    const localVarPath = '/playlists/create'.substring(1);
-
-    // Body Params
-    const contentType = ObjectSerializer.getPreferredMediaType([
-      'application/json',
-    ]);
-    queryParams.headers['Content-Type'] = contentType;
-
-    queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(request, 'CreatePlaylistRequest', ''),
-      contentType
-    );
-
-    queryParams.method = 'POST';
-
-    return this.httpClient.call(localVarPath, queryParams).then((response) => {
-      return {
-        headers: response.headers,
-        body: ObjectSerializer.deserialize(
-          ObjectSerializer.parse(
-            response.body,
-            response.headers['content-type']
-          ),
-          'CreatePlaylistResponse',
-          ''
-        ) as CreatePlaylistResponse,
-      };
-    });
-  }
-
-  /**
-   * Delete a specific playlist by its ID for the authenticated user
-   * Delete a playlist by ID
+   * Deletes a playlist. The media in it is not deleted.
+   * Delete a playlist
    * @param id Playlist ID
    */
-  public async deletePlaylistById(id: string): Promise<ResponseSuccess> {
-    return this.deletePlaylistByIdWithResponseHeaders(id).then(
-      (res) => res.body
-    );
+  public async delete(id: string): Promise<ResponseSuccess> {
+    return this.deleteWithResponseHeaders(id).then((res) => res.body);
   }
 
   /**
-   * Delete a specific playlist by its ID for the authenticated user
-   * Delete a playlist by ID
+   * Deletes a playlist. The media in it is not deleted.
+   * Delete a playlist
    * @param id Playlist ID
    */
-  public async deletePlaylistByIdWithResponseHeaders(
+  public async deleteWithResponseHeaders(
     id: string
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter id was null or undefined when calling deletePlaylistById.'
+        'Required parameter id was null or undefined when calling delete.'
       );
     }
     // Path Params
@@ -217,29 +328,90 @@ export default class PlaylistApi {
   }
 
   /**
-   * Delete the thumbnail of a specific playlist for the authenticated user
-   * Delete a playlist thumbnail
-   * @param id Playlist ID
+   * Returns a page of the playlists in your workspace.
+   * List playlists
+   * @param listPlaylistsRequest Filter and paging
    */
-  public async deletePlaylistThumbnail(id: string): Promise<ResponseSuccess> {
-    return this.deletePlaylistThumbnailWithResponseHeaders(id).then(
+  public async list(
+    listPlaylistsRequest: ListPlaylistsRequest = {}
+  ): Promise<ListPlaylistsResponse> {
+    return this.listWithResponseHeaders(listPlaylistsRequest).then(
       (res) => res.body
     );
   }
 
   /**
-   * Delete the thumbnail of a specific playlist for the authenticated user
+   * Returns a page of the playlists in your workspace.
+   * List playlists
+   * @param listPlaylistsRequest Filter and paging
+   */
+  public async listWithResponseHeaders(
+    listPlaylistsRequest: ListPlaylistsRequest = {}
+  ): Promise<{ headers: ApiResponseHeaders; body: ListPlaylistsResponse }> {
+    const queryParams: QueryOptions = {};
+    queryParams.headers = {};
+    if (listPlaylistsRequest === null || listPlaylistsRequest === undefined) {
+      throw new Error(
+        'Required parameter listPlaylistsRequest was null or undefined when calling list.'
+      );
+    }
+    // Path Params
+    const localVarPath = '/playlists'.substring(1);
+
+    // Body Params
+    const contentType = ObjectSerializer.getPreferredMediaType([
+      'application/json',
+    ]);
+    queryParams.headers['Content-Type'] = contentType;
+
+    queryParams.body = ObjectSerializer.stringify(
+      ObjectSerializer.serialize(
+        listPlaylistsRequest,
+        'ListPlaylistsRequest',
+        ''
+      ),
+      contentType
+    );
+
+    queryParams.method = 'POST';
+
+    return this.httpClient.call(localVarPath, queryParams).then((response) => {
+      return {
+        headers: response.headers,
+        body: ObjectSerializer.deserialize(
+          ObjectSerializer.parse(
+            response.body,
+            response.headers['content-type']
+          ),
+          'ListPlaylistsResponse',
+          ''
+        ) as ListPlaylistsResponse,
+      };
+    });
+  }
+
+  /**
+   * Removes the thumbnail from a playlist.
    * Delete a playlist thumbnail
    * @param id Playlist ID
    */
-  public async deletePlaylistThumbnailWithResponseHeaders(
+  public async deleteThumbnail(id: string): Promise<ResponseSuccess> {
+    return this.deleteThumbnailWithResponseHeaders(id).then((res) => res.body);
+  }
+
+  /**
+   * Removes the thumbnail from a playlist.
+   * Delete a playlist thumbnail
+   * @param id Playlist ID
+   */
+  public async deleteThumbnailWithResponseHeaders(
     id: string
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter id was null or undefined when calling deletePlaylistThumbnail.'
+        'Required parameter id was null or undefined when calling deleteThumbnail.'
       );
     }
     // Path Params
@@ -265,82 +437,59 @@ export default class PlaylistApi {
   }
 
   /**
-   * Retrieve a specific playlist by its ID for the current user.
-   * Get playlist by ID
-   * @param {Object} searchParams
-   * @param { string } searchParams.id Playlist ID
-   * @param { string } searchParams.sortBy Sort by field (created_at, title, duration)
-   * @param { string } searchParams.orderBy Order by (asc, desc)
-   * @param { string } searchParams.search Search term
+   * Adds one or more media to one or more of your playlists.
+   * Add media to playlists
+   * @param id Playlist ID
+   * @param addMediaRequest Media and playlists
    */
-  public async getPlaylistById(args: {
-    id: string;
-    sortBy?: string;
-    orderBy?: string;
-    search?: string;
-  }): Promise<GetPlaylistByIdResponse> {
-    return this.getPlaylistByIdWithResponseHeaders(args).then(
+  public async addMedia(
+    id: string,
+    addMediaRequest: AddMediaRequest = {}
+  ): Promise<ResponseSuccess> {
+    return this.addMediaWithResponseHeaders(id, addMediaRequest).then(
       (res) => res.body
     );
   }
 
   /**
-   * Retrieve a specific playlist by its ID for the current user.
-   * Get playlist by ID
-   * @param {Object} searchParams
-   * @param { string } searchParams.id Playlist ID
-   * @param { string } searchParams.sortBy Sort by field (created_at, title, duration)
-   * @param { string } searchParams.orderBy Order by (asc, desc)
-   * @param { string } searchParams.search Search term
+   * Adds one or more media to one or more of your playlists.
+   * Add media to playlists
+   * @param id Playlist ID
+   * @param addMediaRequest Media and playlists
    */
-  public async getPlaylistByIdWithResponseHeaders({
-    id,
-    sortBy,
-    orderBy,
-    search,
-  }: {
-    id: string;
-    sortBy?: string;
-    orderBy?: string;
-    search?: string;
-  }): Promise<{ headers: ApiResponseHeaders; body: GetPlaylistByIdResponse }> {
+  public async addMediaWithResponseHeaders(
+    id: string,
+    addMediaRequest: AddMediaRequest = {}
+  ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter id was null or undefined when calling getPlaylistById.'
+        'Required parameter id was null or undefined when calling addMedia.'
+      );
+    }
+    if (addMediaRequest === null || addMediaRequest === undefined) {
+      throw new Error(
+        'Required parameter addMediaRequest was null or undefined when calling addMedia.'
       );
     }
     // Path Params
-    const localVarPath = '/playlists/{id}'
+    const localVarPath = '/playlists/{id}/items'
       .substring(1)
       .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
 
-    // Query Params
-    const urlSearchParams = new URLSearchParams();
+    // Body Params
+    const contentType = ObjectSerializer.getPreferredMediaType([
+      'application/json',
+    ]);
+    queryParams.headers['Content-Type'] = contentType;
 
-    if (sortBy !== undefined) {
-      urlSearchParams.append(
-        'sort_by',
-        ObjectSerializer.serialize(sortBy, 'string', '')
-      );
-    }
-    if (orderBy !== undefined) {
-      urlSearchParams.append(
-        'order_by',
-        ObjectSerializer.serialize(orderBy, 'string', '')
-      );
-    }
-    if (search !== undefined) {
-      urlSearchParams.append(
-        'search',
-        ObjectSerializer.serialize(search, 'string', '')
-      );
-    }
+    queryParams.body = ObjectSerializer.stringify(
+      ObjectSerializer.serialize(addMediaRequest, 'AddMediaRequest', ''),
+      contentType
+    );
 
-    queryParams.searchParams = urlSearchParams;
-
-    queryParams.method = 'GET';
+    queryParams.method = 'POST';
 
     return this.httpClient.call(localVarPath, queryParams).then((response) => {
       return {
@@ -350,39 +499,35 @@ export default class PlaylistApi {
             response.body,
             response.headers['content-type']
           ),
-          'GetPlaylistByIdResponse',
+          'ResponseSuccess',
           ''
-        ) as GetPlaylistByIdResponse,
+        ) as ResponseSuccess,
       };
     });
   }
 
   /**
-   * Get a specific playlist public by its ID
-   * Get a playlist public
+   * Returns the payload the player needs to play a playlist, including its theme. No account required.
+   * Get a playlist for the player
    * @param id Playlist ID
    */
-  public async getPlaylistPublicInfo(
-    id: string
-  ): Promise<PublicPlaylistObject> {
-    return this.getPlaylistPublicInfoWithResponseHeaders(id).then(
-      (res) => res.body
-    );
+  public async getPublic(id: string): Promise<ResponseSuccess> {
+    return this.getPublicWithResponseHeaders(id).then((res) => res.body);
   }
 
   /**
-   * Get a specific playlist public by its ID
-   * Get a playlist public
+   * Returns the payload the player needs to play a playlist, including its theme. No account required.
+   * Get a playlist for the player
    * @param id Playlist ID
    */
-  public async getPlaylistPublicInfoWithResponseHeaders(
+  public async getPublicWithResponseHeaders(
     id: string
-  ): Promise<{ headers: ApiResponseHeaders; body: PublicPlaylistObject }> {
+  ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter id was null or undefined when calling getPlaylistPublicInfo.'
+        'Required parameter id was null or undefined when calling getPublic.'
       );
     }
     // Path Params
@@ -400,107 +545,48 @@ export default class PlaylistApi {
             response.body,
             response.headers['content-type']
           ),
-          'PublicPlaylistObject',
+          'ResponseSuccess',
           ''
-        ) as PublicPlaylistObject,
+        ) as ResponseSuccess,
       };
     });
   }
 
   /**
-   * Retrieve a list of playlists for the authenticated user
-   * Get user's playlists
-   * @param request Playlist filter
-   */
-  public async getPlaylists(
-    request: GetPlaylistListRequest = {}
-  ): Promise<GetPlaylistListResponse> {
-    return this.getPlaylistsWithResponseHeaders(request).then(
-      (res) => res.body
-    );
-  }
-
-  /**
-   * Retrieve a list of playlists for the authenticated user
-   * Get user's playlists
-   * @param request Playlist filter
-   */
-  public async getPlaylistsWithResponseHeaders(
-    request: GetPlaylistListRequest = {}
-  ): Promise<{ headers: ApiResponseHeaders; body: GetPlaylistListResponse }> {
-    const queryParams: QueryOptions = {};
-    queryParams.headers = {};
-    if (request === null || request === undefined) {
-      throw new Error(
-        'Required parameter request was null or undefined when calling getPlaylists.'
-      );
-    }
-    // Path Params
-    const localVarPath = '/playlists'.substring(1);
-
-    // Body Params
-    const contentType = ObjectSerializer.getPreferredMediaType([
-      'application/json',
-    ]);
-    queryParams.headers['Content-Type'] = contentType;
-
-    queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(request, 'GetPlaylistListRequest', ''),
-      contentType
-    );
-
-    queryParams.method = 'POST';
-
-    return this.httpClient.call(localVarPath, queryParams).then((response) => {
-      return {
-        headers: response.headers,
-        body: ObjectSerializer.deserialize(
-          ObjectSerializer.parse(
-            response.body,
-            response.headers['content-type']
-          ),
-          'GetPlaylistListResponse',
-          ''
-        ) as GetPlaylistListResponse,
-      };
-    });
-  }
-
-  /**
-   * Move a specific video in a playlist for the authenticated user
-   * Move a video in a playlist
+   * Moves one item within a playlist. Send next_id to move it to the start, previous_id to move it to the end, or both to move it between two items.
+   * Reorder a playlist
    * @param id Playlist ID
-   * @param payload Video details
+   * @param moveItemRequest Where to move it
    */
-  public async moveVideoInPlaylist(
+  public async moveItem(
     id: string,
-    payload: MoveVideoInPlaylistRequest = {}
+    moveItemRequest: MoveItemRequest = {}
   ): Promise<ResponseSuccess> {
-    return this.moveVideoInPlaylistWithResponseHeaders(id, payload).then(
+    return this.moveItemWithResponseHeaders(id, moveItemRequest).then(
       (res) => res.body
     );
   }
 
   /**
-   * Move a specific video in a playlist for the authenticated user
-   * Move a video in a playlist
+   * Moves one item within a playlist. Send next_id to move it to the start, previous_id to move it to the end, or both to move it between two items.
+   * Reorder a playlist
    * @param id Playlist ID
-   * @param payload Video details
+   * @param moveItemRequest Where to move it
    */
-  public async moveVideoInPlaylistWithResponseHeaders(
+  public async moveItemWithResponseHeaders(
     id: string,
-    payload: MoveVideoInPlaylistRequest = {}
+    moveItemRequest: MoveItemRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter id was null or undefined when calling moveVideoInPlaylist.'
+        'Required parameter id was null or undefined when calling moveItem.'
       );
     }
-    if (payload === null || payload === undefined) {
+    if (moveItemRequest === null || moveItemRequest === undefined) {
       throw new Error(
-        'Required parameter payload was null or undefined when calling moveVideoInPlaylist.'
+        'Required parameter moveItemRequest was null or undefined when calling moveItem.'
       );
     }
     // Path Params
@@ -515,7 +601,7 @@ export default class PlaylistApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(payload, 'MoveVideoInPlaylistRequest', ''),
+      ObjectSerializer.serialize(moveItemRequest, 'MoveItemRequest', ''),
       contentType
     );
 
@@ -537,51 +623,51 @@ export default class PlaylistApi {
   }
 
   /**
-   * Remove a specific media from a playlist for the authenticated user
-   * Remove a media from a playlist
+   * Removes one item from one or more of your playlists.
+   * Remove an item from playlists
    * @param id Playlist ID
-   * @param itemId Playlist Item ID
-   * @param payload Optional payload
+   * @param itemId Playlist item ID
+   * @param removeMediaRequest Other playlists
    */
-  public async removeMediaFromPlaylist(
+  public async removeMedia(
     id: string,
     itemId: string,
-    payload: RemoveMediasFromPlaylistRequest = {}
+    removeMediaRequest: RemoveMediaRequest = {}
   ): Promise<ResponseSuccess> {
-    return this.removeMediaFromPlaylistWithResponseHeaders(
+    return this.removeMediaWithResponseHeaders(
       id,
       itemId,
-      payload
+      removeMediaRequest
     ).then((res) => res.body);
   }
 
   /**
-   * Remove a specific media from a playlist for the authenticated user
-   * Remove a media from a playlist
+   * Removes one item from one or more of your playlists.
+   * Remove an item from playlists
    * @param id Playlist ID
-   * @param itemId Playlist Item ID
-   * @param payload Optional payload
+   * @param itemId Playlist item ID
+   * @param removeMediaRequest Other playlists
    */
-  public async removeMediaFromPlaylistWithResponseHeaders(
+  public async removeMediaWithResponseHeaders(
     id: string,
     itemId: string,
-    payload: RemoveMediasFromPlaylistRequest = {}
+    removeMediaRequest: RemoveMediaRequest = {}
   ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
     const queryParams: QueryOptions = {};
     queryParams.headers = {};
     if (id === null || id === undefined) {
       throw new Error(
-        'Required parameter id was null or undefined when calling removeMediaFromPlaylist.'
+        'Required parameter id was null or undefined when calling removeMedia.'
       );
     }
     if (itemId === null || itemId === undefined) {
       throw new Error(
-        'Required parameter itemId was null or undefined when calling removeMediaFromPlaylist.'
+        'Required parameter itemId was null or undefined when calling removeMedia.'
       );
     }
-    if (payload === null || payload === undefined) {
+    if (removeMediaRequest === null || removeMediaRequest === undefined) {
       throw new Error(
-        'Required parameter payload was null or undefined when calling removeMediaFromPlaylist.'
+        'Required parameter removeMediaRequest was null or undefined when calling removeMedia.'
       );
     }
     // Path Params
@@ -597,111 +683,12 @@ export default class PlaylistApi {
     queryParams.headers['Content-Type'] = contentType;
 
     queryParams.body = ObjectSerializer.stringify(
-      ObjectSerializer.serialize(
-        payload,
-        'RemoveMediasFromPlaylistRequest',
-        ''
-      ),
+      ObjectSerializer.serialize(removeMediaRequest, 'RemoveMediaRequest', ''),
       contentType
     );
 
     queryParams.method = 'DELETE';
 
-    return this.httpClient.call(localVarPath, queryParams).then((response) => {
-      return {
-        headers: response.headers,
-        body: ObjectSerializer.deserialize(
-          ObjectSerializer.parse(
-            response.body,
-            response.headers['content-type']
-          ),
-          'ResponseSuccess',
-          ''
-        ) as ResponseSuccess,
-      };
-    });
-  }
-
-  /**
-   * Update a specific playlist for the authenticated user
-   * Update a playlist
-   * @param id Playlist ID
-   * @param file
-   * @param metadata
-   * @param name
-   * @param tags
-   */
-  public async updatePlaylist(
-    id: string,
-    file: string | Readable | Buffer,
-    metadata?: Array<Metadata>,
-    name?: string,
-    tags?: Array<string>
-  ): Promise<ResponseSuccess> {
-    return this.updatePlaylistWithResponseHeaders(
-      id,
-      file,
-      metadata,
-      name,
-      tags
-    ).then((res) => res.body);
-  }
-
-  /**
-   * Update a specific playlist for the authenticated user
-   * Update a playlist
-   * @param id Playlist ID
-   * @param file
-   * @param metadata
-   * @param name
-   * @param tags
-   */
-  public async updatePlaylistWithResponseHeaders(
-    id: string,
-    file: string | Readable | Buffer,
-    metadata?: Array<Metadata>,
-    name?: string,
-    tags?: Array<string>
-  ): Promise<{ headers: ApiResponseHeaders; body: ResponseSuccess }> {
-    const queryParams: QueryOptions = {};
-    queryParams.headers = {};
-    if (id === null || id === undefined) {
-      throw new Error(
-        'Required parameter id was null or undefined when calling updatePlaylist.'
-      );
-    }
-    let fileName = 'file';
-    let fileBuffer = file;
-    if (typeof file === 'string') {
-      fileName = path.basename(file);
-      fileBuffer = createReadStream(file);
-    }
-    if (file instanceof Readable) {
-      fileBuffer = await readableToBuffer(file);
-    }
-
-    // Path Params
-    const localVarPath = '/playlists/{id}'
-      .substring(1)
-      .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
-
-    queryParams.method = 'PATCH';
-
-    const formData = new FormData();
-
-    formData.append(fileName, fileBuffer, fileName);
-    if (metadata) {
-      formData.append('metadata', metadata.join(COLLECTION_FORMATS['csv']));
-    }
-
-    if (typeof name !== undefined) {
-      formData.append('name', name);
-    }
-    if (tags) {
-      formData.append('tags', tags.join(COLLECTION_FORMATS['csv']));
-    }
-
-    queryParams.body = formData;
     return this.httpClient.call(localVarPath, queryParams).then((response) => {
       return {
         headers: response.headers,

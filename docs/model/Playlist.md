@@ -11,7 +11,7 @@ Name | Type | Description | Notes
 **iframe** | **string** |  |  [optional]
 **itemCount** | **number** |  |  [optional]
 **items** | [**Array&lt;PlaylistItem&gt;**](PlaylistItem.md) |  |  [optional]
-**metadata** | **Map&lt;String, string&gt;** |  |  [optional]
+**metadata** | **Map&lt;String, any&gt;** |  |  [optional]
 **name** | **string** |  |  [optional]
 **playlistType** | **string** |  |  [optional]
 **playlistUrl** | **string** |  |  [optional]

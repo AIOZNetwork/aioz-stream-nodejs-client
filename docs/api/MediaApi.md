@@ -1,6 +1,6 @@
 # MediaApi
 
-All URIs are relative to *http://localhost/api*
+All URIs are relative to *https://api.aiozstream.network/api*
 
 | Method | Description | HTTP request |
 | ------------- | ------------- | ------------- |
@@ -14,9 +14,9 @@ All URIs are relative to *http://localhost/api*
 | [**getCaptions()**](MediaApi.md#getCaptions) | Get media captions | **GET** /media/{id}/captions |
 | [**getCost()**](MediaApi.md#getCost) | get media transcoding cost | **GET** /media/cost |
 | [**getDetail()**](MediaApi.md#getDetail) | get media detail | **GET** /media/{id} |
-| [**getMediaList()**](MediaApi.md#getMediaList) | Get user videos list | **POST** /media |
-| [**getMediaPlayerInfo()**](MediaApi.md#getMediaPlayerInfo) | Get media object | **GET** /media/{id}/player.json |
-| [**setDefaultCaption()**](MediaApi.md#setDefaultCaption) | Set default caption | **PATCH** /media/{id}/captions/{lan} |
+| [**getMediaList()**](MediaApi.md#getMediaList) | Get user media list | **POST** /media |
+| [**getMediaPlayerInfo()**](MediaApi.md#getMediaPlayerInfo) | Get media player info | **GET** /media/{id}/player.json |
+| [**setDefaultCaption()**](MediaApi.md#setDefaultCaption) | Set the default caption | **PATCH** /media/{id}/captions/{lan} |
 | [**uploadMediaComplete()**](MediaApi.md#uploadMediaComplete) | Get upload media when complete | **GET** /media/{id}/complete |
 | [**uploadPart()**](MediaApi.md#uploadPart) | Upload part of media | **POST** /media/{id}/part |
 
@@ -31,7 +31,7 @@ Create a media object
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**CreateMediaRequest**](../model/CreateMediaRequest.md)| **yes**| media&#39;s info |
+ | **createMediaRequest** | [**CreateMediaRequest**](../model/CreateMediaRequest.md)| **yes**| media&#39;s info |
 
 
 ### Return type
@@ -52,7 +52,7 @@ Promise<[**CreateMediaResponse**](../model/CreateMediaResponse.md)>.
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| media&#39;s id |
- | **input** | [**UpdateMediaInfoRequest**](../model/UpdateMediaInfoRequest.md)| **yes**| input |
+ | **updateMediaInfoRequest** | [**UpdateMediaInfoRequest**](../model/UpdateMediaInfoRequest.md)| **yes**| input |
 
 
 ### Return type
@@ -140,6 +140,7 @@ Uploads a VTT file and creates a new media caption for the specified media.
  | **id** | **string**| **yes**| Media ID |
  | **lan** | **string**| **yes**| Language |
  | **file** | **string \| Readable \| Buffer**| **yes**| VTT File |
+ | **description** | **string**| no|  |
 
 
 ### Return type
@@ -232,7 +233,7 @@ Retrieve the media details by media id.
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| mediav&#39;s id |
+ | **id** | **string**| **yes**| media&#39;s id |
 
 
 ### Return type
@@ -245,16 +246,16 @@ Promise<[**GetMediaDetailResponse**](../model/GetMediaDetailResponse.md)>.
 ---
 
 <a name="getMediaList"></a>
-## **`getMediaList()` - Get user videos list**
+## **`getMediaList()` - Get user media list**
 
 
-Retrieve a list of videos for the authenticated user.
+Retrieve a list of media for the authenticated user.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **request** | [**GetMediaListRequest**](../model/GetMediaListRequest.md)| **yes**| video&#39;s info |
+ | **getMediaListRequest** | [**GetMediaListRequest**](../model/GetMediaListRequest.md)| **yes**| media&#39;s info |
 
 
 ### Return type
@@ -267,16 +268,16 @@ Promise<[**GetMediaListResponse**](../model/GetMediaListResponse.md)>.
 ---
 
 <a name="getMediaPlayerInfo"></a>
-## **`getMediaPlayerInfo()` - Get media object**
+## **`getMediaPlayerInfo()` - Get media player info**
 
 
-Get media object
+Get media player info
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| media ID |
+ | **id** | **string**| **yes**| Media ID |
  | **token** | **string**| no| Token |
 
 
@@ -290,10 +291,10 @@ Promise<[**GetMediaPlayerInfoResponse**](../model/GetMediaPlayerInfoResponse.md)
 ---
 
 <a name="setDefaultCaption"></a>
-## **`setDefaultCaption()` - Set default caption**
+## **`setDefaultCaption()` - Set the default caption**
 
 
-Set default caption for a media
+Mark or unmark the caption in a specific language as the one the player shows by default for this media.
 
 ### Parameters
 
@@ -301,6 +302,7 @@ Set default caption for a media
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Media ID |
  | **lan** | **string**| **yes**| Language |
+ | **setDefaultCaptionRequest** | [**SetDefaultCaptionRequest**](../model/SetDefaultCaptionRequest.md)| **yes**| Whether this caption is the default |
 
 
 ### Return type
@@ -344,7 +346,7 @@ Upload part of media
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| video&#39;s id |
+ | **id** | **string**| **yes**| media&#39;s id |
  | **file** | **string \| Readable \| Buffer**| **yes**| File media to be uploaded |
  | **hash** | **string**| no| Md5 hash of part |
  | **index** | **string**| no| Index of the part |
@@ -370,7 +372,7 @@ const client = new StreamClient({
 ```js
 const client = new StreamClient({ apiKey: "stream-secret-key", apiPublicKey: "stream-public-key" });const client = new StreamClient({ apiKey: "stream-secret-key", apiPublicKey: "stream-public-key" });
 
-const id = 'id_example'; // video's id
+const id = 'id_example'; // media's id
 
 const hash = 'hash_example'; // Md5 hash of part
 

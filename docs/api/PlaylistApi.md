@@ -1,33 +1,82 @@
 # PlaylistApi
 
-All URIs are relative to *http://localhost/api*
+All URIs are relative to *https://api.aiozstream.network/api*
 
 | Method | Description | HTTP request |
 | ------------- | ------------- | ------------- |
-| [**addVideoToPlaylist()**](PlaylistApi.md#addVideoToPlaylist) | Add a video to a playlist | **POST** /playlists/{id}/items |
-| [**createPlaylist()**](PlaylistApi.md#createPlaylist) | Create a playlist | **POST** /playlists/create |
-| [**deletePlaylistById()**](PlaylistApi.md#deletePlaylistById) | Delete a playlist by ID | **DELETE** /playlists/{id} |
-| [**deletePlaylistThumbnail()**](PlaylistApi.md#deletePlaylistThumbnail) | Delete a playlist thumbnail | **DELETE** /playlists/{id}/thumbnail |
-| [**getPlaylistById()**](PlaylistApi.md#getPlaylistById) | Get playlist by ID | **GET** /playlists/{id} |
-| [**getPlaylistPublicInfo()**](PlaylistApi.md#getPlaylistPublicInfo) | Get a playlist public | **GET** /playlists/{id}/player.json |
-| [**getPlaylists()**](PlaylistApi.md#getPlaylists) | Get user&#39;s playlists | **POST** /playlists |
-| [**moveVideoInPlaylist()**](PlaylistApi.md#moveVideoInPlaylist) | Move a video in a playlist | **PUT** /playlists/{id}/items |
-| [**removeMediaFromPlaylist()**](PlaylistApi.md#removeMediaFromPlaylist) | Remove a media from a playlist | **DELETE** /playlists/{id}/items/{item_id} |
-| [**updatePlaylist()**](PlaylistApi.md#updatePlaylist) | Update a playlist | **PATCH** /playlists/{id} |
+| [**create()**](PlaylistApi.md#create) | Create a playlist | **POST** /playlists/create |
+| [**get()**](PlaylistApi.md#get) | Get a playlist | **GET** /playlists/{id} |
+| [**update()**](PlaylistApi.md#update) | Update a playlist | **PATCH** /playlists/{id} |
+| [**delete()**](PlaylistApi.md#delete) | Delete a playlist | **DELETE** /playlists/{id} |
+| [**list()**](PlaylistApi.md#list) | List playlists | **POST** /playlists |
+| [**deleteThumbnail()**](PlaylistApi.md#deleteThumbnail) | Delete a playlist thumbnail | **DELETE** /playlists/{id}/thumbnail |
+| [**addMedia()**](PlaylistApi.md#addMedia) | Add media to playlists | **POST** /playlists/{id}/items |
+| [**getPublic()**](PlaylistApi.md#getPublic) | Get a playlist for the player | **GET** /playlists/{id}/player.json |
+| [**moveItem()**](PlaylistApi.md#moveItem) | Reorder a playlist | **PUT** /playlists/{id}/items |
+| [**removeMedia()**](PlaylistApi.md#removeMedia) | Remove an item from playlists | **DELETE** /playlists/{id}/items/{item_id} |
 
 
-<a name="addVideoToPlaylist"></a>
-## **`addVideoToPlaylist()` - Add a video to a playlist**
+<a name="create"></a>
+## **`create()` - Create a playlist**
 
 
-Add a specific video to a playlist for the authenticated user
+Creates an empty playlist in your workspace.
+
+### Parameters
+
+| Name | Type | Required | Description |
+| ------------- | ------------- | ------------- | ------------- |
+ | **createPlaylistRequest** | [**CreatePlaylistRequest**](../model/CreatePlaylistRequest.md)| **yes**| Playlist |
+
+
+### Return type
+
+Promise<[**PlaylistResponse**](../model/PlaylistResponse.md)>.
+
+
+
+
+---
+
+<a name="get"></a>
+## **`get()` - Get a playlist**
+
+
+Returns one playlist and its items, ordered as you ask.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Playlist ID |
- | **payload** | [**AddMediaToPlaylistRequest**](../model/AddMediaToPlaylistRequest.md)| **yes**| Video details |
+ | **orderBy** | **&#39;asc&#39; \| &#39;desc&#39;**| no|  |
+ | **search** | **string**| no|  |
+ | **sortBy** | **&#39;created_at&#39; \| &#39;title&#39; \| &#39;duration&#39; \| &#39;status&#39;**| no|  |
+
+
+### Return type
+
+Promise<[**PlaylistResponse**](../model/PlaylistResponse.md)>.
+
+
+
+
+---
+
+<a name="update"></a>
+## **`update()` - Update a playlist**
+
+
+Changes a playlist's name, tags or thumbnail, sent as multipart/form-data. The file field is the new thumbnail: a PNG or JPEG, judged by its content, whose name, if it has an extension, must agree with it. The handler also takes a JSON body (name, tags, metadata); metadata can only be changed that way, since a form cannot carry its key/value list.
+
+### Parameters
+
+| Name | Type | Required | Description |
+| ------------- | ------------- | ------------- | ------------- |
+ | **id** | **string**| **yes**| Playlist ID |
+ | **file** | **string \| Readable \| Buffer**| no| New thumbnail |
+ | **name** | **string**| no| New name |
+ | **tags** | **Array&lt;string&gt;**| no| New tags, one field per tag |
 
 
 ### Return type
@@ -39,33 +88,11 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 
 ---
 
-<a name="createPlaylist"></a>
-## **`createPlaylist()` - Create a playlist**
+<a name="delete"></a>
+## **`delete()` - Delete a playlist**
 
 
-Create a playlist for the authenticated user
-
-### Parameters
-
-| Name | Type | Required | Description |
-| ------------- | ------------- | ------------- | ------------- |
- | **request** | [**CreatePlaylistRequest**](../model/CreatePlaylistRequest.md)| **yes**| Playlist input |
-
-
-### Return type
-
-Promise<[**CreatePlaylistResponse**](../model/CreatePlaylistResponse.md)>.
-
-
-
-
----
-
-<a name="deletePlaylistById"></a>
-## **`deletePlaylistById()` - Delete a playlist by ID**
-
-
-Delete a specific playlist by its ID for the authenticated user
+Deletes a playlist. The media in it is not deleted.
 
 ### Parameters
 
@@ -83,11 +110,33 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 
 ---
 
-<a name="deletePlaylistThumbnail"></a>
-## **`deletePlaylistThumbnail()` - Delete a playlist thumbnail**
+<a name="list"></a>
+## **`list()` - List playlists**
 
 
-Delete the thumbnail of a specific playlist for the authenticated user
+Returns a page of the playlists in your workspace.
+
+### Parameters
+
+| Name | Type | Required | Description |
+| ------------- | ------------- | ------------- | ------------- |
+ | **listPlaylistsRequest** | [**ListPlaylistsRequest**](../model/ListPlaylistsRequest.md)| **yes**| Filter and paging |
+
+
+### Return type
+
+Promise<[**ListPlaylistsResponse**](../model/ListPlaylistsResponse.md)>.
+
+
+
+
+---
+
+<a name="deleteThumbnail"></a>
+## **`deleteThumbnail()` - Delete a playlist thumbnail**
+
+
+Removes the thumbnail from a playlist.
 
 ### Parameters
 
@@ -105,87 +154,18 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 
 ---
 
-<a name="getPlaylistById"></a>
-## **`getPlaylistById()` - Get playlist by ID**
+<a name="addMedia"></a>
+## **`addMedia()` - Add media to playlists**
 
 
-Retrieve a specific playlist by its ID for the current user.
-
-### Parameters
-
-| Name | Type | Required | Description |
-| ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| Playlist ID |
- | **sortBy** | **string**| no| Sort by field (created_at, title, duration) |
- | **orderBy** | **string**| no| Order by (asc, desc) |
- | **search** | **string**| no| Search term |
-
-
-### Return type
-
-Promise<[**GetPlaylistByIdResponse**](../model/GetPlaylistByIdResponse.md)>.
-
-
-
-
----
-
-<a name="getPlaylistPublicInfo"></a>
-## **`getPlaylistPublicInfo()` - Get a playlist public**
-
-
-Get a specific playlist public by its ID
+Adds one or more media to one or more of your playlists.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Playlist ID |
-
-
-### Return type
-
-Promise<[**PublicPlaylistObject**](../model/PublicPlaylistObject.md)>.
-
-
-
-
----
-
-<a name="getPlaylists"></a>
-## **`getPlaylists()` - Get user&#39;s playlists**
-
-
-Retrieve a list of playlists for the authenticated user
-
-### Parameters
-
-| Name | Type | Required | Description |
-| ------------- | ------------- | ------------- | ------------- |
- | **request** | [**GetPlaylistListRequest**](../model/GetPlaylistListRequest.md)| **yes**| Playlist filter |
-
-
-### Return type
-
-Promise<[**GetPlaylistListResponse**](../model/GetPlaylistListResponse.md)>.
-
-
-
-
----
-
-<a name="moveVideoInPlaylist"></a>
-## **`moveVideoInPlaylist()` - Move a video in a playlist**
-
-
-Move a specific video in a playlist for the authenticated user
-
-### Parameters
-
-| Name | Type | Required | Description |
-| ------------- | ------------- | ------------- | ------------- |
- | **id** | **string**| **yes**| Playlist ID |
- | **payload** | [**MoveVideoInPlaylistRequest**](../model/MoveVideoInPlaylistRequest.md)| **yes**| Video details |
+ | **addMediaRequest** | [**AddMediaRequest**](../model/AddMediaRequest.md)| **yes**| Media and playlists |
 
 
 ### Return type
@@ -197,19 +177,17 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 
 ---
 
-<a name="removeMediaFromPlaylist"></a>
-## **`removeMediaFromPlaylist()` - Remove a media from a playlist**
+<a name="getPublic"></a>
+## **`getPublic()` - Get a playlist for the player**
 
 
-Remove a specific media from a playlist for the authenticated user
+Returns the payload the player needs to play a playlist, including its theme. No account required.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Playlist ID |
- | **itemId** | **string**| **yes**| Playlist Item ID |
- | **payload** | [**RemoveMediasFromPlaylistRequest**](../model/RemoveMediasFromPlaylistRequest.md)| **yes**| Optional payload |
 
 
 ### Return type
@@ -221,21 +199,42 @@ Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
 
 ---
 
-<a name="updatePlaylist"></a>
-## **`updatePlaylist()` - Update a playlist**
+<a name="moveItem"></a>
+## **`moveItem()` - Reorder a playlist**
 
 
-Update a specific playlist for the authenticated user
+Moves one item within a playlist. Send next_id to move it to the start, previous_id to move it to the end, or both to move it between two items.
 
 ### Parameters
 
 | Name | Type | Required | Description |
 | ------------- | ------------- | ------------- | ------------- |
  | **id** | **string**| **yes**| Playlist ID |
- | **file** | **string \| Readable \| Buffer**| **yes**|  |
- | **metadata** | **Array&lt;Metadata&gt;**| no|  |
- | **name** | **string**| no|  |
- | **tags** | **Array&lt;string&gt;**| no|  |
+ | **moveItemRequest** | [**MoveItemRequest**](../model/MoveItemRequest.md)| **yes**| Where to move it |
+
+
+### Return type
+
+Promise<[**ResponseSuccess**](../model/ResponseSuccess.md)>.
+
+
+
+
+---
+
+<a name="removeMedia"></a>
+## **`removeMedia()` - Remove an item from playlists**
+
+
+Removes one item from one or more of your playlists.
+
+### Parameters
+
+| Name | Type | Required | Description |
+| ------------- | ------------- | ------------- | ------------- |
+ | **id** | **string**| **yes**| Playlist ID |
+ | **itemId** | **string**| **yes**| Playlist item ID |
+ | **removeMediaRequest** | [**RemoveMediaRequest**](../model/RemoveMediaRequest.md)| **yes**| Other playlists |
 
 
 ### Return type

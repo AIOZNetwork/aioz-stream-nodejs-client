@@ -1,6 +1,6 @@
 /**
  * @aiozstream/nodejs-client
- * Aioz Stream Service
+ * The AIOZ Stream API, as the generated SDK clients see it.
  *
  * The version of the OpenAPI document: 1.0
  *
@@ -10,10 +10,10 @@
  */
 
 import AttributeType from './AttributeType.js';
-import Media from './Media.js';
+import MediaObject from './MediaObject.js';
 
 export default class GetMediaDetailResponse {
-  'data'?: Media;
+  'data'?: MediaObject;
   'status'?: string;
 
   static readonly discriminator?: string = undefined;
@@ -22,7 +22,7 @@ export default class GetMediaDetailResponse {
     {
       name: 'data',
       baseName: 'data',
-      type: 'Media',
+      type: 'MediaObject',
       format: '',
     },
     {

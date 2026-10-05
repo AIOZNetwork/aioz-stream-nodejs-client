@@ -1,4 +1,4 @@
-import { describe, expect, it } from '@jest/globals';
+import { expect } from '@jest/globals';
 import StreamError from '../src/StreamError';
 import { anonymousMockTestClient, mockTestClient } from './src/mockTestClient';
 import { v4 as uuidv4 } from 'uuid';
