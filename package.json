@@ -1,6 +1,6 @@
 {
   "name": "@aiozstream/nodejs-client",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "AIOZ stream nodejs API client",
   "keywords": [
     "aioz",

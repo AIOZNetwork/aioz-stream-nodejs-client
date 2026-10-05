@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**balance** | **number** |  |  [optional]
+**balance** | **string** |  |  [optional]
 **createdAt** | **string** |  |  [optional]
-**debt** | **number** |  |  [optional]
+**debt** | **string** |  |  [optional]
 **deletedAt** | **string** |  |  [optional]
 **editorProjects** | [**Array&lt;EditorProject&gt;**](EditorProject.md) |  |  [optional]
 **email** | **string** |  |  [optional]

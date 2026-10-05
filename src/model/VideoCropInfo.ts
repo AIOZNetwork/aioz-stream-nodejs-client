@@ -24,25 +24,25 @@ export default class VideoCropInfo {
       name: 'height',
       baseName: 'height',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'width',
       baseName: 'width',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'x',
       baseName: 'x',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'y',
       baseName: 'y',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
   ];
 

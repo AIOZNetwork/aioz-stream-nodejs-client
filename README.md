@@ -70,6 +70,16 @@ import StreamClient from "@aiozstream/nodejs-client";
 ### API endpoints
 
 
+#### AnalyticsApi
+
+Method | Description | HTTP request
+------------- | ------------- | -------------
+[**getAggregatedMetrics()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/AnalyticsApi.md#getAggregatedMetrics) | Aggregate one metric | **POST** `/analytics/metrics/data/{metric}/{aggregation}`
+[**getBreakdownMetrics()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/AnalyticsApi.md#getBreakdownMetrics) | Bucket one metric by dimension | **POST** `/analytics/metrics/bucket/{metric}/{breakdown}`
+[**getDataUsage()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/AnalyticsApi.md#getDataUsage) | Delivery volume over time | **GET** `/analytics/data`
+[**getOvertimeMetrics()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/AnalyticsApi.md#getOvertimeMetrics) | Bucket one metric by time | **POST** `/analytics/metrics/timeseries/{metric}/{interval}`
+
+
 #### ApiKeyApi
 
 Method | Description | HTTP request
@@ -78,6 +88,32 @@ Method | Description | HTTP request
 [**update()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/ApiKeyApi.md#update) | Rename an API key | **PATCH** `/api_keys/{id}`
 [**delete()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/ApiKeyApi.md#delete) | Delete an API key | **DELETE** `/api_keys/{id}`
 [**list()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/ApiKeyApi.md#list) | List API keys | **GET** `/api_keys`
+
+
+#### LiveStreamApi
+
+Method | Description | HTTP request
+------------- | ------------- | -------------
+[**uploadThumbnail()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#uploadThumbnail) | Upload live stream media thumbnail | **POST** `/live_streams/{id}/thumbnail`
+[**deleteThumbnail()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#deleteThumbnail) | Delete live stream media thumbnail | **DELETE** `/live_streams/{id}/thumbnail`
+[**addLiveStreamMulticasts()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#addLiveStreamMulticasts) | Add live stream multicast | **POST** `/live_streams/multicast/{stream_key}`
+[**createLiveStreamKey()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#createLiveStreamKey) | Create live stream key | **POST** `/live_streams`
+[**createStreaming()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#createStreaming) | Create a new live stream media | **POST** `/live_streams/{id}/streamings`
+[**deleteLiveStreamKey()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#deleteLiveStreamKey) | Delete live stream key | **DELETE** `/live_streams/{id}`
+[**deleteLiveStreamMulticast()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#deleteLiveStreamMulticast) | Delete live stream multicast | **DELETE** `/live_streams/multicast/{stream_key}`
+[**getLiveStreamKey()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getLiveStreamKey) | Get live stream key | **GET** `/live_streams/{id}`
+[**getLiveStreamKeys()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getLiveStreamKeys) | Get live stream key list | **GET** `/live_streams`
+[**getLiveStreamMedia()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getLiveStreamMedia) | Get live stream media | **GET** `/live_streams/{id}/media`
+[**getLiveStreamMedias()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getLiveStreamMedias) | Get live stream media | **POST** `/live_streams/{id}/media`
+[**getLiveStreamMulticastByStreamKey()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getLiveStreamMulticastByStreamKey) | Get live stream multicast by stream key | **GET** `/live_streams/multicast/{stream_key}`
+[**getLiveStreamPlayerInfo()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getLiveStreamPlayerInfo) | Get live stream media public | **GET** `/live_streams/player/{id}/media`
+[**getLiveStreamStatisticByStreamMediaId()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getLiveStreamStatisticByStreamMediaId) | Get live stream statistic by stream media id | **GET** `/live_streams/statistic/{stream_media_id}`
+[**getLiveStreamUsage()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getLiveStreamUsage) | Get usage details for a specific live stream | **GET** `/live_streams/usage/{stream_id}`
+[**getStreaming()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getStreaming) | Get live stream media streaming | **GET** `/live_streams/{id}/streamings/{stream_id}`
+[**getStreamings()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getStreamings) | Get live stream media streamings | **GET** `/live_streams/{id}/streamings`
+[**getUserStreamsUsageDetail()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#getUserStreamsUsageDetail) | Get paginated list of streams with usage details for current user | **GET** `/live_streams/usage/streams`
+[**updateLiveStreamKey()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#updateLiveStreamKey) | Update live stream key | **PUT** `/live_streams/{id}`
+[**updateLiveStreamMedia()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/LiveStreamApi.md#updateLiveStreamMedia) | Update live stream media | **PUT** `/live_streams/{id}/streamings`
 
 
 #### MediaApi
@@ -141,6 +177,13 @@ Method | Description | HTTP request
 [**removeMedia()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/PlaylistApi.md#removeMedia) | Remove an item from playlists | **DELETE** `/playlists/{id}/items/{item_id}`
 
 
+#### UserApi
+
+Method | Description | HTTP request
+------------- | ------------- | -------------
+[**getMe()**](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/api/UserApi.md#getMe) | Get the current account | **GET** `/user/me`
+
+
 #### WebhookApi
 
 Method | Description | HTTP request
@@ -157,6 +200,8 @@ Method | Description | HTTP request
 ### Models
 
  - [AddMediaRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/AddMediaRequest.md)
+ - [AggregatedMetricsData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/AggregatedMetricsData.md)
+ - [AggregatedMetricsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/AggregatedMetricsResponse.md)
  - [ApiKey](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ApiKey.md)
  - [Asset](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Asset.md)
  - [AttachThemeRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/AttachThemeRequest.md)
@@ -165,6 +210,8 @@ Method | Description | HTTP request
  - [CreateApiKeyData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateApiKeyData.md)
  - [CreateApiKeyRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateApiKeyRequest.md)
  - [CreateApiKeyResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateApiKeyResponse.md)
+ - [CreateLiveStreamKeyRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateLiveStreamKeyRequest.md)
+ - [CreateLiveStreamKeyResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateLiveStreamKeyResponse.md)
  - [CreateMediaCaptionData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaCaptionData.md)
  - [CreateMediaCaptionResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaCaptionResponse.md)
  - [CreateMediaChapterData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaChapterData.md)
@@ -172,9 +219,25 @@ Method | Description | HTTP request
  - [CreateMediaRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaRequest.md)
  - [CreateMediaResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateMediaResponse.md)
  - [CreatePlaylistRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreatePlaylistRequest.md)
+ - [CreateStreamingRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateStreamingRequest.md)
+ - [CreateStreamingResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/CreateStreamingResponse.md)
+ - [DataUsage](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/DataUsage.md)
+ - [DataUsageData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/DataUsageData.md)
+ - [DataUsageRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/DataUsageRequest.md)
+ - [DataUsageResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/DataUsageResponse.md)
  - [DeletedAt](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/DeletedAt.md)
  - [EditorProject](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/EditorProject.md)
  - [ErrorBody](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ErrorBody.md)
+ - [GetLiveStreamKeyData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamKeyData.md)
+ - [GetLiveStreamKeyResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamKeyResponse.md)
+ - [GetLiveStreamKeysListData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamKeysListData.md)
+ - [GetLiveStreamKeysListResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamKeysListResponse.md)
+ - [GetLiveStreamMediaPublicResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamMediaPublicResponse.md)
+ - [GetLiveStreamMediaResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamMediaResponse.md)
+ - [GetLiveStreamMediasRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamMediasRequest.md)
+ - [GetLiveStreamMediasResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamMediasResponse.md)
+ - [GetLiveStreamMulticastResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamMulticastResponse.md)
+ - [GetLiveStreamStatisticResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetLiveStreamStatisticResponse.md)
  - [GetMediaCaptionsData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaCaptionsData.md)
  - [GetMediaCaptionsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaCaptionsResponse.md)
  - [GetMediaChaptersData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaChaptersData.md)
@@ -184,8 +247,12 @@ Method | Description | HTTP request
  - [GetMediaListRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaListRequest.md)
  - [GetMediaListResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaListResponse.md)
  - [GetMediaPlayerInfoResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetMediaPlayerInfoResponse.md)
+ - [GetStreamUsageResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetStreamUsageResponse.md)
+ - [GetStreamingResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetStreamingResponse.md)
+ - [GetStreamingsResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetStreamingsResponse.md)
  - [GetTranscodeCostData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetTranscodeCostData.md)
  - [GetTranscodeCostResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetTranscodeCostResponse.md)
+ - [GetUserStreamsUsageDetailResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/GetUserStreamsUsageDetailResponse.md)
  - [HighlightChunk](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/HighlightChunk.md)
  - [HighlightChunkStatus](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/HighlightChunkStatus.md)
  - [HighlightClip](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/HighlightClip.md)
@@ -204,7 +271,16 @@ Method | Description | HTTP request
  - [ListWebhooksData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ListWebhooksData.md)
  - [ListWebhooksRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ListWebhooksRequest.md)
  - [ListWebhooksResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ListWebhooksResponse.md)
+ - [LiveStreamAssets](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamAssets.md)
+ - [LiveStreamKeyData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamKeyData.md)
+ - [LiveStreamMediaData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamMediaData.md)
+ - [LiveStreamMediaResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamMediaResponse.md)
+ - [LiveStreamMediasResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamMediasResponse.md)
+ - [LiveStreamMulticast](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamMulticast.md)
+ - [LiveStreamStatisticResp](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/LiveStreamStatisticResp.md)
  - [ManifestType](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ManifestType.md)
+ - [MeData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MeData.md)
+ - [MeResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MeResponse.md)
  - [MediaAssets](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaAssets.md)
  - [MediaCaption](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaCaption.md)
  - [MediaChapter](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaChapter.md)
@@ -213,6 +289,12 @@ Method | Description | HTTP request
  - [MediaType](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaType.md)
  - [MediaWatermark](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MediaWatermark.md)
  - [Metadata](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Metadata.md)
+ - [MetricFilter](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MetricFilter.md)
+ - [MetricItem](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MetricItem.md)
+ - [MetricsContext](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MetricsContext.md)
+ - [MetricsPageData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MetricsPageData.md)
+ - [MetricsPageResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MetricsPageResponse.md)
+ - [MetricsRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MetricsRequest.md)
  - [MoveItemRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/MoveItemRequest.md)
  - [PlayerTheme](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/PlayerTheme.md)
  - [PlayerThemeInput](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/PlayerThemeInput.md)
@@ -225,14 +307,23 @@ Method | Description | HTTP request
  - [QualityObject](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/QualityObject.md)
  - [RemoveMediaRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/RemoveMediaRequest.md)
  - [RenameApiKeyRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/RenameApiKeyRequest.md)
+ - [RenditionUsage](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/RenditionUsage.md)
  - [ResponseError](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ResponseError.md)
  - [ResponseSuccess](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ResponseSuccess.md)
  - [SetDefaultCaptionRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/SetDefaultCaptionRequest.md)
+ - [StreamUsageSummary](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/StreamUsageSummary.md)
  - [Theme](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Theme.md)
  - [ThemeData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ThemeData.md)
  - [ThemeResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/ThemeResponse.md)
+ - [TimeFrame](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/TimeFrame.md)
+ - [UpdateLiveStreamKeyData](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateLiveStreamKeyData.md)
+ - [UpdateLiveStreamKeyRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateLiveStreamKeyRequest.md)
+ - [UpdateLiveStreamKeyResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateLiveStreamKeyResponse.md)
+ - [UpdateLiveStreamMediaRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateLiveStreamMediaRequest.md)
  - [UpdateMediaInfoRequest](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpdateMediaInfoRequest.md)
+ - [UpsertLiveStreamMulticastInput](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UpsertLiveStreamMulticastInput.md)
  - [User](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/User.md)
+ - [UserStreamsUsageResponse](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/UserStreamsUsageResponse.md)
  - [VideoConfig](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/VideoConfig.md)
  - [VideoCropInfo](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/VideoCropInfo.md)
  - [Webhook](https://github.com/AIOZNetwork/aiozstream-nodejs-client/blob/main/docs/model/Webhook.md)

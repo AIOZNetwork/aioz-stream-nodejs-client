@@ -29,7 +29,7 @@ export default class GetMediaChaptersData {
       name: 'total',
       baseName: 'total',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
   ];
 

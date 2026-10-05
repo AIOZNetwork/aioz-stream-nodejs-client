@@ -1,8 +1,8 @@
 # Changelog
 All changes to this project will be documented in this file.
 
-## [3.0.3] - 2026-10-05
-- Generated from the AIOZ Stream API v3.0.3.
+## [3.0.4] - 2026-10-05
+- Generated from the AIOZ Stream API v3.0.4.
 
 ## [1.0.11] - 2025-08-15
 - Upgrade from temporarily hiding livestream

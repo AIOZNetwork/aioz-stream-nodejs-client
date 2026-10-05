@@ -135,7 +135,7 @@ export default class MediaObject {
       name: 'size',
       baseName: 'size',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'status',
@@ -183,7 +183,7 @@ export default class MediaObject {
       name: 'view',
       baseName: 'view',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
   ];
 

@@ -27,7 +27,7 @@ export default class QualityObject {
       name: 'audioBitrate',
       baseName: 'audio_bitrate',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'audioCodec',
@@ -57,7 +57,7 @@ export default class QualityObject {
       name: 'videoBitrate',
       baseName: 'video_bitrate',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'videoCodec',

@@ -30,7 +30,7 @@ export default class GetMediaListRequest {
       name: 'limit',
       baseName: 'limit',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'metadata',
@@ -42,7 +42,7 @@ export default class GetMediaListRequest {
       name: 'offset',
       baseName: 'offset',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'orderBy',

@@ -54,14 +54,14 @@ export default class ListWebhooksRequest {
       name: 'limit',
       baseName: 'limit',
       type: 'number',
-      format: '',
+      format: 'int64',
       defaultValue: 25,
     },
     {
       name: 'offset',
       baseName: 'offset',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'orderBy',

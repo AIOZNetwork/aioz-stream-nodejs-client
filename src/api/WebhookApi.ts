@@ -361,13 +361,13 @@ export default class WebhookApi {
     if (limit !== undefined) {
       urlSearchParams.append(
         'limit',
-        ObjectSerializer.serialize(limit, 'number', '')
+        ObjectSerializer.serialize(limit, 'number', 'int64')
       );
     }
     if (offset !== undefined) {
       urlSearchParams.append(
         'offset',
-        ObjectSerializer.serialize(offset, 'number', '')
+        ObjectSerializer.serialize(offset, 'number', 'int64')
       );
     }
     if (orderBy !== undefined) {

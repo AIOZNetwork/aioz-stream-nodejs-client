@@ -13,9 +13,9 @@ import AttributeType from './AttributeType.js';
 import EditorProject from './EditorProject.js';
 
 export default class User {
-  'balance'?: number;
+  'balance'?: string;
   'createdAt'?: string;
-  'debt'?: number;
+  'debt'?: string;
   'deletedAt'?: string;
   'editorProjects'?: Array<EditorProject>;
   'email'?: string;
@@ -35,7 +35,7 @@ export default class User {
     {
       name: 'balance',
       baseName: 'balance',
-      type: 'number',
+      type: 'string',
       format: '',
     },
     {
@@ -47,7 +47,7 @@ export default class User {
     {
       name: 'debt',
       baseName: 'debt',
-      type: 'number',
+      type: 'string',
       format: '',
     },
     {

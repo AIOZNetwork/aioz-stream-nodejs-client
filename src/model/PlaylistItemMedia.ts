@@ -67,7 +67,7 @@ export default class PlaylistItemMedia {
       name: 'size',
       baseName: 'size',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'thumbnailUrl',

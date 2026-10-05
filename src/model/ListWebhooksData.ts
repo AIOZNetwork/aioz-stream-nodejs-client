@@ -31,7 +31,7 @@ export default class ListWebhooksData {
       name: 'total',
       baseName: 'total',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'webhooks',

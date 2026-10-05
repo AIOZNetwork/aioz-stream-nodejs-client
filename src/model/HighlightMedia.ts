@@ -73,7 +73,7 @@ export default class HighlightMedia {
       name: 'fileSize',
       baseName: 'file_size',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'highlightChunks',
@@ -133,7 +133,7 @@ export default class HighlightMedia {
       name: 'totalChunk',
       baseName: 'total_chunk',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'updatedAt',

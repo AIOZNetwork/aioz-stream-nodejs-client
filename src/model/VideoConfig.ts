@@ -23,7 +23,7 @@ export default class VideoConfig {
       name: 'bitrate',
       baseName: 'bitrate',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'codec',
@@ -35,7 +35,7 @@ export default class VideoConfig {
       name: 'index',
       baseName: 'index',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
   ];
 

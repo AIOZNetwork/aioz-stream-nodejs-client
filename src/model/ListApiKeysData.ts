@@ -37,7 +37,7 @@ export default class ListApiKeysData {
       name: 'total',
       baseName: 'total',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
   ];
 

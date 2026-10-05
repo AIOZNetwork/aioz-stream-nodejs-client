@@ -29,7 +29,7 @@ export default class ListPlaylistsRequest {
       name: 'limit',
       baseName: 'limit',
       type: 'number',
-      format: '',
+      format: 'int64',
       defaultValue: 25,
     },
     {
@@ -42,7 +42,7 @@ export default class ListPlaylistsRequest {
       name: 'offset',
       baseName: 'offset',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'orderBy',

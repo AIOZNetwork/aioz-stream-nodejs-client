@@ -60,7 +60,7 @@ export default class Playlist {
       name: 'itemCount',
       baseName: 'item_count',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'items',
@@ -96,7 +96,7 @@ export default class Playlist {
       name: 'size',
       baseName: 'size',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'tags',

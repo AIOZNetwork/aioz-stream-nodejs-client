@@ -26,7 +26,7 @@ export default class AudioConfig {
       name: 'bitrate',
       baseName: 'bitrate',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'channels',
@@ -44,7 +44,7 @@ export default class AudioConfig {
       name: 'index',
       baseName: 'index',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'language',
@@ -56,7 +56,7 @@ export default class AudioConfig {
       name: 'sampleRate',
       baseName: 'sample_rate',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
   ];
 

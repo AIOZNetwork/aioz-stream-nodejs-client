@@ -92,7 +92,7 @@ export default class CreateMediaRequest {
       name: 'segmentDuration',
       baseName: 'segment_duration',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'sourceUrl',

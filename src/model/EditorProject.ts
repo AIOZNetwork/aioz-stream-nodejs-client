@@ -75,7 +75,7 @@ export default class EditorProject {
       name: 'revision',
       baseName: 'revision',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'title',

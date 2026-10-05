@@ -70,19 +70,19 @@ export default class HighlightClip {
       name: 'relevanceScore',
       baseName: 'relevance_score',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'sourceInMs',
       baseName: 'source_in_ms',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'sourceOutMs',
       baseName: 'source_out_ms',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'text',

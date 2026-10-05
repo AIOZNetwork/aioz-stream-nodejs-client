@@ -53,7 +53,7 @@ export default class HighlightChunk {
       name: 'fileSize',
       baseName: 'file_size',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'id',
@@ -77,7 +77,7 @@ export default class HighlightChunk {
       name: 'offset',
       baseName: 'offset',
       type: 'number',
-      format: '',
+      format: 'int64',
     },
     {
       name: 'status',
